@@ -2,14 +2,14 @@
 
 ## _Relational Data Model and SQL_
 
-Resume: Today you will see how relational model works and how to get needed data based on basic constructions of SQL.
+Resume: Today you will see how relational model works and how to get needed data based базовые конструкции SQL.
 
-💡 [Tap here](https://new.oprosso.net/p/4cb31ec3f47a4596bc758ea1861fb624) **to leave your feedback on the project**. It's anonymous and will help our team make your educational experience better. We recommend completing the survey immediately after the project.
+💡 [Поделиться](https://new.oprosso.net/p/4cb31ec3f47a4596bc758ea1861fb624) **Оставьте обратную связь **. Это анонимно и поможет нашей команде сделать ваше обучение и полученный опыт лучше. We recommend completing the survey immediately после прокта.
 
 ## Contents
 
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
+1. [Часть !](#chapter-i) \
+    1.1. [Преамбула](#preamble)
 2. [Chapter II](#chapter-ii) \
     2.1. [General Rules](#general-rules)
 3. [Chapter III](#chapter-iii) \
@@ -107,7 +107,7 @@ Please take a look at some SQL standards below and try to think about the future
 People's visit and people's order are different entities and don't contain any correlation between data. For example, a customer can be in a restaurant (just looking at the menu) and at the same time place an order in another restaurant by phone or mobile application. Or another case, just be at home and again make a call with order without any visits.
 
 ## Chapter IV
-## Exercise 00 — First steps into SQL world
+## Exercise 00 — Первые шаги в мире SQL  
 
 | Exercise 00: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -116,12 +116,12 @@ People's visit and people's order are different entities and don't contain any c
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Let’s make our first task. 
+Давай выполним наше первое задание. 
 Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.
-
+![D00_01](src/day00_ex00.sql)
 
 ## Chapter V
-## Exercise 01 — First steps into SQL world
+## Exercise 01 — Первые шаги в мире SQL  
 
 | Exercise 01: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -130,52 +130,54 @@ Please make a select statement which returns all person's names and person's age
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please make a select statement which returns names , ages for all women from the city ‘Kazan’. Yep, and please sort result by name.
+Через оператор select  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени.  
+(statement - оператор, заявление)  
+![D00_01](src/day00_ex01.sql)
 
 ## Chapter VI
-## Exercise 02 — First steps into SQL world
+## Exercise 02 — Первые шаги в мире SQL  
 
-| Exercise 02: First steps into SQL world |                                                                                                                          |
+| Exercise 02: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex02                                                                                                                     |
 | Files to turn-in                      | `day00_ex02.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please make 2 syntax different select statements which return a list of pizzerias (pizzeria name and rating) with rating between 3.5 and 5 points (including limit points) and ordered by pizzeria rating.
-- the 1st select statement must contain comparison signs  (<=, >=);
-- the 2nd select statement must contain `BETWEEN` keyword.
-
+Please make 2 syntax different select запроса которые вернет список из таблицы pizzeria (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
+- the 1st select должен бытть основан на неравенствах  (<=, >=);
+- the 2nd select с ключевым словом `BETWEEN`.
+![D00_01](src/day00_ex02.sql)
 ## Chapter VII
-## Exercise 03 — First steps into SQL world
+## Exercise 03 — Первые шаги в мире SQL  
 
-| Exercise 03: First steps into SQL world |                                                                                                                          |
+| Exercise 03: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex03                                                                                                                     |
 | Files to turn-in                      | `day00_ex03.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please make a select statement that returns the person identifiers (without duplicates) who visited pizzerias in a period from January 6, 2022 to January 9, 2022 (including all days) or visited pizzerias with identifier 2. Also include ordering clause by person identifier in descending mode.
-
+Please make a select запрос который возвращает the person identifiers (без дублей) тех кто посетил пиццерию в период с 6 января 2022 по 9 января 2022 (включительно) или посетил пиццерию с индетификатором 2. Also включите сортировку clause by person identifier in descending mode(по убыванию).  
+![D00_01](src/day00_ex03.sql)
 ## Chapter VIII
-## Exercise 04 — First steps into SQL world
+## Exercise 04 — Первые шаги в мире SQL  
 
 
-| Exercise 04: First steps into SQL world |                                                                                                                          |
+| Exercise 04: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex04                                                                                                                     |
 | Files to turn-in                      | `day00_ex04.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please make a select statement which returns one calculated field with name ‘person_information’ in one string like described in the next sample:
+Please make a select запрос который вернет одно вычисленное поле которые называется   ‘person_information’ in one string like described (описываемый) in the next sample:
 
 `Anna (age:16,gender:'female',address:'Moscow')`
 
 Finally, please add the ordering clause by calculated column in ascending mode.
 Please pay attention to the quotation marks in your formula!
-
+![D00_01](src/day00_ex04.sql)
 ## Chapter IX
 ## Exercise 05 — First steps into SQL world
 
