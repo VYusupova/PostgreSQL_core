@@ -4,14 +4,13 @@
 
 Resume: Today you will see how relational model works and how to get needed data based базовые конструкции SQL.
 
-💡 [Поделиться](https://new.oprosso.net/p/4cb31ec3f47a4596bc758ea1861fb624) **Оставьте обратную связь **. Это анонимно и поможет нашей команде сделать ваше обучение и полученный опыт лучше. We recommend completing the survey immediately после прокта.
 
-## Contents
+## Contents \ Оглавление
 
 1. [Часть !](#chapter-i) \
     1.1. [Преамбула](#preamble)
 2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
+    2.1. [Главные правила](#general-rules)
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
 4. [Chapter IV](#chapter-iv) \
@@ -56,8 +55,8 @@ Please take a look at some SQL standards below and try to think about the future
 ## General Rules
 
 - Use this page as your only reference. Do not listen to rumors and speculations about how to prepare your solution.
-- Make sure you are using the latest version of PostgreSQL.
-- It is perfectly fine if you use the IDE to write source code (aka SQL script).
+- Убедись что используешь последнюю версию PostgreSQL (Make sure you are using the latest version of PostgreSQL.)
+- Будет просто прекрасно если для написания SQL-скриптов ты будешь испльзовать ИДЕ (It is perfectly fine if you use the IDE to write source code (aka SQL script).)
 - To be evaluated, your solution must be in your GIT repository.
 - Your solutions will be evaluated by your peers.
 - You should not leave any files in your directory other than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore' to avoid accidents.
@@ -65,12 +64,12 @@ Please take a look at some SQL standards below and try to think about the future
 - Your reference manual: mates / Internet / Google. 
 - Read the examples carefully. You may need things not specified in the topic.
 - And may the SQL-Force be with you!
-- Absolutely anything can be represented in SQL! Let's get started and have fun!
+- Absolutely anything can be represented in SQL!Давай начнем и повеселимся (Let's get started and have fun!)
 
 ## Chapter III
 ## Rules of the day
 
--  Please make sure you have your own database and access to it on your PostgreSQL cluster.
+ Please make sure you have your own database and access to it on your PostgreSQL cluster.
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
 - Please have a look at the Logical View of our Database Model. 
@@ -79,9 +78,9 @@ Please take a look at some SQL standards below and try to think about the future
 
 
 1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id — primary key
-- field name — name of pizzeria
-- field rating — average rating of pizzeria (from 0 to 5 points)
+- field **id** — primary key 
+- field **name** — название пиццерии  
+- field **rating** — average(средний) рейтинг пицерии (от 0 до 5)
 2. **person** table (Dictionary Table with persons who loves pizza)
 - field id — primary key
 - field name — name of person
@@ -104,7 +103,7 @@ Please take a look at some SQL standards below and try to think about the future
 - field menu_id — foreign key to menu
 - field order_date — date (for example 2022-01-01) of person order 
 
-People's visit and people's order are different entities and don't contain any correlation between data. For example, a customer can be in a restaurant (just looking at the menu) and at the same time place an order in another restaurant by phone or mobile application. Or another case, just be at home and again make a call with order without any visits.
+People's visit(посещения) and people's order(заказы) are different entities and don't contain any correlation between data. For example, a customer can be in a restaurant (just looking at the menu) and at the same time place an order in another restaurant by phone or mobile application. Or another case, just be at home and again make a call with order without any visits.
 
 ## Chapter IV
 ## Exercise 00 — Первые шаги в мире SQL  
@@ -118,7 +117,7 @@ People's visit and people's order are different entities and don't contain any c
 
 Давай выполним наше первое задание. 
 Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.
-![D00_01](src/day00_ex00.sql)
+[D00_01](src/day00_ex00.sql)
 
 ## Chapter V
 ## Exercise 01 — Первые шаги в мире SQL  
@@ -179,10 +178,10 @@ Finally, please add the ordering clause by calculated column in ascending mode.
 Please pay attention to the quotation marks in your formula!
 ![D00_01](src/day00_ex04.sql)
 ## Chapter IX
-## Exercise 05 — First steps into SQL world
+## Exercise 05 — Первые шаги в мире SQL  
 
 
-| Exercise 05: First steps into SQL world |                                                                                                                          |
+| Управжнение 05: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex05                                                                                                                     |
 | Files to turn-in                      | `day00_ex05.sql`                                                                                 |
@@ -191,7 +190,8 @@ Please pay attention to the quotation marks in your formula!
 | **Denied**                               |                                           
 | SQL Syntax Construction                        | `IN`, any types of `JOINs`                                                                                              |
 
-Write a select statement that returns the names of people (based on an internal query in the `SELECT` clause) who placed orders for the menu with identifiers 13, 14, and 18, and the date of the orders should be January 7, 2022. Be careful with "Denied Section" before your work.
+Напиши селект запрос который вернет имена людей () которые сделали заказ из меню с идентификаторами 13, 14 и 18, дата заказа должна быть 7 января 2022 года. 
+Write a select statement that returns the names of people (based on an internal query in the `SELECT` clause) who placed orders for the menu with identifiers 13, 14, and 18, and the date of the orders should be January 7, 2022. Be careful with "Denied Section"(запрещенный раздел) before your work.
 
 Please take a look at the pattern of internal query.
 
@@ -199,6 +199,8 @@ Please take a look at the pattern of internal query.
 	    (SELECT ... ) AS NAME  -- this is an internal query in a main SELECT clause
     FROM ...
     WHERE ...
+    
+[D00_01](src/day00_ex05.sql)
 
 ## Chapter X
 ## Exercise 06 — First steps into SQL world
@@ -213,10 +215,13 @@ Please take a look at the pattern of internal query.
 | **Denied**                               |                                           
 | SQL Syntax Construction                        | `IN`, any types of `JOINs`                                                                                              |
 
+Использую SQL-конструкцию из упражениия 05 и добавь новый вычисляемый столбец (назови его ‘check_name’) 
 Use the SQL construction from Exercise 05 and add a new calculated column (use column name ‘check_name’) with a check statement a pseudocode for this check is given below) in the `SELECT` clause.
 
     if (person_name == 'Denis') then return true
         else return false
+
+[D00_01](src/day00_ex06.sql)
 
 ## Chapter XI
 ## Exercise 07 — First steps into SQL world
