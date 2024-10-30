@@ -14,25 +14,25 @@ Resume: Today you will see how relational model works and how to get needed data
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
 4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 — First steps into SQL world](#exercise-00-first-steps-into-sql-world)  
+    4.1. [Exercise 00 — First steps into SQL world]  
 5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 — First steps into SQL world](#exercise-01-first-steps-into-sql-world)  
+    5.1. [Exercise 01 — First steps into SQL world]  
 6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 — First steps into SQL world](#exercise-02-first-steps-into-sql-world)  
+    6.1. [Exercise 02 — First steps into SQL world]  
 7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 — First steps into SQL world](#exercise-03-first-steps-into-sql-world)  
+    7.1. [Exercise 03 — First steps into SQL world]  
 8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 — First steps into SQL world](#exercise-04-first-steps-into-sql-world)
+    8.1. [Exercise 04 — First steps into SQL world]  
 9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 — First steps into SQL world](#exercise-05-first-steps-into-sql-world)
+    9.1. [Exercise 05 — First steps into SQL world]  
 10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 — First steps into SQL world](#exercise-06-first-steps-into-sql-world)
+    10.1. [Exercise 06 — First steps into SQL world]  
 11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 — First steps into SQL world](#exercise-07-first-steps-into-sql-world)
+    11.1. [Exercise 07 — First steps into SQL world]  
 12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 — First steps into SQL world](#exercise-08-first-steps-into-sql-world)
+    12.1. [Exercise 08 — First steps into SQL world]  
 13. [Chapter XIII](#chapter-xiii) \
-    13.1. [Exercise 09 — First steps into SQL world](#exercise-09-first-steps-into-sql-world)
+    13.1. [Exercise 09 — First steps into SQL world]  
 
 ## Chapter I
 ## Preamble
@@ -82,11 +82,11 @@ Please take a look at some SQL standards below and try to think about the future
 - field **name** — название пиццерии  
 - field **rating** — average(средний) рейтинг пицерии (от 0 до 5)
 2. **person** table (Dictionary Table with persons who loves pizza)
-- field id — primary key
-- field name — name of person
-- field age — age of person
-- field gender — gender of person
-- field address — address of person
+- field **id** — primary key
+- field **name** — Имя  
+- field **age** — возраст  
+- field **gender** — пол  
+- field **address** — адресс  
 3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
 - field id — primary key
 - field pizzeria_id — foreign key to pizzeria
@@ -106,9 +106,9 @@ Please take a look at some SQL standards below and try to think about the future
 People's visit(посещения) and people's order(заказы) are different entities and don't contain any correlation between data. For example, a customer can be in a restaurant (just looking at the menu) and at the same time place an order in another restaurant by phone or mobile application. Or another case, just be at home and again make a call with order without any visits.
 
 ## Chapter IV
-## Exercise 00 — Первые шаги в мире SQL  
+## Exercise(Упражение) 00 — Первые шаги в мире SQL  
 
-| Exercise 00: First steps into SQL world |                                                                                                                          |
+| Упражение 00: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex00                                                                                                                     |
 | Files to turn-in                      | `day00_ex00.sql`                                                                                 |
@@ -117,12 +117,12 @@ People's visit(посещения) and people's order(заказы) are differen
 
 Давай выполним наше первое задание. 
 Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.
-[D00_01](src/day00_ex00.sql)
+[D00_ex00](src/day00_ex00.sql)
 
 ## Chapter V
 ## Exercise 01 — Первые шаги в мире SQL  
 
-| Exercise 01: First steps into SQL world |                                                                                                                          |
+| Упражение 01: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex01                                                                                                                     |
 | Files to turn-in                      | `day00_ex01.sql`                                                                                 |
@@ -131,12 +131,12 @@ Please make a select statement which returns all person's names and person's age
 
 Через оператор select  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени.  
 (statement - оператор, заявление)  
-![D00_01](src/day00_ex01.sql)
+[D00_ex01](src/day00_ex01.sql)
 
 ## Chapter VI
 ## Exercise 02 — Первые шаги в мире SQL  
 
-| Exercise 02: Первые шаги в мире SQL |                                                                                                                          |
+| Упражение 02: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex02                                                                                                                     |
 | Files to turn-in                      | `day00_ex02.sql`                                                                                 |
@@ -146,11 +146,11 @@ Please make a select statement which returns all person's names and person's age
 Please make 2 syntax different select запроса которые вернет список из таблицы pizzeria (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
 - the 1st select должен бытть основан на неравенствах  (<=, >=);
 - the 2nd select с ключевым словом `BETWEEN`.
-![D00_01](src/day00_ex02.sql)
+[D00_ex02](src/day00_ex02.sql)
 ## Chapter VII
 ## Exercise 03 — Первые шаги в мире SQL  
 
-| Exercise 03: Первые шаги в мире SQL |                                                                                                                          |
+| Упражение 03: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex03                                                                                                                     |
 | Files to turn-in                      | `day00_ex03.sql`                                                                                 |
@@ -163,7 +163,7 @@ Please make a select запрос который возвращает the person
 ## Exercise 04 — Первые шаги в мире SQL  
 
 
-| Exercise 04: Первые шаги в мире SQL |                                                                                                                          |
+| Упражение 04: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex04                                                                                                                     |
 | Files to turn-in                      | `day00_ex04.sql`                                                                                 |
@@ -176,7 +176,7 @@ Please make a select запрос который вернет одно вычи�
 
 Finally, please add the ordering clause by calculated column in ascending mode.
 Please pay attention to the quotation marks in your formula!
-![D00_01](src/day00_ex04.sql)
+[D00_ex04](src/day00_ex04.sql)
 ## Chapter IX
 ## Exercise 05 — Первые шаги в мире SQL  
 
@@ -187,7 +187,7 @@ Please pay attention to the quotation marks in your formula!
 | Files to turn-in                      | `day00_ex05.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                           
+| **Denied**   (запрещено использовать)                            |                                           
 | SQL Syntax Construction                        | `IN`, any types of `JOINs`                                                                                              |
 
 Напиши селект запрос который вернет имена людей () которые сделали заказ из меню с идентификаторами 13, 14 и 18, дата заказа должна быть 7 января 2022 года. 
@@ -200,19 +200,19 @@ Please take a look at the pattern of internal query.
     FROM ...
     WHERE ...
     
-[D00_01](src/day00_ex05.sql)
+[D00_ex05](src/day00_ex05.sql)
 
 ## Chapter X
-## Exercise 06 — First steps into SQL world
+## Exercise 06 — Первые шаги в мире SQL  
 
 
-| Exercise 06: First steps into SQL world |                                                                                                                          |
+| Упражение 06: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex06                                                                                                                     |
 | Files to turn-in                      | `day00_ex06.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                           
+| **Denied**       (не используй)                        |                                           
 | SQL Syntax Construction                        | `IN`, any types of `JOINs`                                                                                              |
 
 Использую SQL-конструкцию из упражениия 05 и добавь новый вычисляемый столбец (назови его ‘check_name’) 
@@ -221,13 +221,13 @@ Use the SQL construction from Exercise 05 and add a new calculated column (use c
     if (person_name == 'Denis') then return true
         else return false
 
-[D00_01](src/day00_ex06.sql)
+[D00_ex06](src/day00_ex06.sql)
 
 ## Chapter XI
-## Exercise 07 — First steps into SQL world
+## Exercise 07 — Первые шаги в мире SQL  
 
 
-| Exercise 07: First steps into SQL world |                                                                                                                          |
+| Упражение 07: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex07                                                                                                                     |
 | Files to turn-in                      | `day00_ex07.sql`                                                                                 |
@@ -242,12 +242,12 @@ Please make an SQL statement that returns the identifiers of a person, the perso
     else return 'interval #3'
 
 And yes... please sort a result by ‘interval_info’ column in ascending mode.
+[D00_ex07](src/day00_ex07.sql)
+
 
 ## Chapter XII
-## Exercise 08 — First steps into SQL world
 
-
-| Exercise 08: First steps into SQL world |                                                                                                                          |
+| Упражение 08: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex08                                                                                                                     |
 | Files to turn-in                      | `day00_ex08.sql`                                                                                 |
@@ -255,10 +255,9 @@ And yes... please sort a result by ‘interval_info’ column in ascending mode.
 | Language                        | ANSI SQL                                                                                              |
 
 Create an SQL statement that returns all columns from the `person_order` table with rows whose identifier is an even number. The result must be ordered by the returned identifier.
+[D00_ex08](src/day00_ex08.sql)
 
 ## Chapter XIII
-## Exercise 09 — First steps into SQL world
-
 
 | Exercise 09: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
