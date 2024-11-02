@@ -1,8 +1,9 @@
 # Day 01 - Piscine SQL
 
-## _First steps working with sets and JOINs in SQL_
+## _First steps working with sets and JOINs in SQL(начало работы с наборами и JOIN в SQL)_
 
-Resume: Today you will see how to get needed data based on sets constructions and simple JOINs
+Resume: Today you will see how to get needed data based on sets constructions and simple JOINs  
+*(Сегодня вы увидите, как получить необходимые данные на основе наборов, конструкций и простых соединений)*
 
 ## Contents
 
@@ -41,7 +42,8 @@ Resume: Today you will see how to get needed data based on sets constructions an
 
 ![D01_01](misc/images/D01_01.png)
 
-In many aspects, sets are used in Relational Databases. Not just, make UNION or find MINUS between sets. Sets are also good candidates to make recursive queries.
+In many aspects, sets are used in Relational Databases. Not just, make UNION or find MINUS between sets. Sets are also good candidates to make recursive queries.  
+(Во многих аспектах, множества используются в реляционных базах данных. Не только для объединения или поиска отрицательных значений между множествами. Множества также хороши для выполнения рекурсивных запросов)
 
 There are the next set operators in PostgreSQL. 
 - UNION [ALL]
@@ -122,7 +124,9 @@ Persons' visit and persons' order are different entities and don't contain any c
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns menu’s identifier and pizza names from `menu` table and person’s identifier and person name from `person` table in one global list (with column names as presented on a sample below) ordered by object_id and then by object_name columns.
+Please write a SQL statement which returns menu’s identifier and pizza names from `menu` table and person’s identifier and person name from `person` table in one global list (with column names as presented on a sample below) ordered by object_id and then by object_name columns.  
+  
+(Напишите запрос который вернет id меню и название пицы из таблицы `menu` и id человека и его имя из таблицы `person` в одном списке вывода (с названием столбцов как показано ниже) отсортируйте сначала по object_id а затем по object_name
 
 | object_id | object_name |
 | ------ | ------ |
@@ -133,7 +137,7 @@ Please write a SQL statement which returns menu’s identifier and pizza names f
 
 
 ## Chapter V
-## Exercise 01 - UNION dance with subquery
+## Exercise 01 - UNION dance with subquery (с подзапросом) 
 
 | Exercise 01: UNION dance with subquery|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -142,7 +146,9 @@ Please write a SQL statement which returns menu’s identifier and pizza names f
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please modify a SQL statement from “exercise 00” by removing the object_id column. Then change ordering by object_name for part of data from the `person` table and then from `menu` table (like presented on a sample below). Please save duplicates!
+Please modify a SQL statement from “exercise 00” by removing the object_id column. Then change ordering by object_name for part of data from the `person` table and then from `menu` table (like presented on a sample below). Please save duplicates!  
+
+(Измените SQL запрос из прошлого упражнения уберите столбец object_id. Затем измените сортировку по object_name сначало сортируйте значения из таблицы  `person` и затем только из таблицы `menu`(как поаказано ниже). Записи могут дублироваться!
 
 | object_name |
 | ------ |
@@ -166,7 +172,9 @@ Please modify a SQL statement from “exercise 00” by removing the object_id c
 | **Denied**                               |                                                                                                                          |
 | SQL Syntax Construction                        | `DISTINCT`, `GROUP BY`, `HAVING`, any type of `JOINs`                                                                                              |
 
-Please write a SQL statement which returns unique pizza names from the `menu` table and orders by pizza_name column in descending mode. Please pay attention to the Denied section.
+Please write a SQL statement which returns unique pizza names from the `menu` table and orders by pizza_name column in descending mode. Please pay attention to the Denied section.  
+
+(напишите SQL запрос который возвращает только уникальные названия пицц из таблицы `menu` и сортирует по названию пицц в убывающем порядке. обратите внимание некоторые конструкции запрещены )
 
 ## Chapter VII
 ## Exercise 03 - “Hidden” Insights
