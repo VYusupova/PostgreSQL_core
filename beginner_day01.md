@@ -3,7 +3,7 @@
 ## _First steps working with sets and JOINs in SQL(начало работы с наборами и JOIN в SQL)_
 
 Resume: Today you will see how to get needed data based on sets constructions and simple JOINs  
-*(Сегодня вы увидите, как получить необходимые данные на основе наборов, конструкций и простых соединений)*
+>*(Сегодня вы увидите, как получить необходимые данные на основе наборов, конструкций и простых соединений)*
 
 ## Contents
 
@@ -43,16 +43,18 @@ Resume: Today you will see how to get needed data based on sets constructions an
 ![D01_01](misc/images/D01_01.png)
 
 In many aspects, sets are used in Relational Databases. Not just, make UNION or find MINUS between sets. Sets are also good candidates to make recursive queries.  
-(Во многих аспектах, множества используются в реляционных базах данных. Не только для объединения или поиска отрицательных значений между множествами. Множества также хороши для выполнения рекурсивных запросов)
+>(Во многих аспектах, множества используются в реляционных базах данных. Не только для объединения или поиска отрицательных значений между множествами. Множества также хороши для выполнения рекурсивных запросов)
 
 There are the next set operators in PostgreSQL. 
 - UNION [ALL]
 - EXCEPT [ALL] 
 - INTERSECT [ALL]
 
-Keyword “ALL” means to save duplicates of rows in the result.
-The main rules to work with sets are below
+Keyword “ALL” means to save duplicates of rows in the result.  
+> ключевое слово “ALL” выведет в результат строки с дублями  
+The main rules to work with sets are below (основные правила для работы с множествами) :
 - The main SQL provides a final names of attributes for whole query
+> 
 - The attributes of controlled SQL should satisfied number of columns and corresponding family types of main SQL
 
 ![D01_02](misc/images/D01_02.png)
@@ -78,41 +80,45 @@ Moreover, SQL sets are useful  to calculate some specific Data Science metrics, 
 ## Chapter III
 ## Rules of the day
 
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
+- Please make sure you have an own(собственный) database and access for it on your PostgreSQL cluster. 
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
+- Please take a look at the Logical View of our Database Model. (посмотрите логическое представление модели базы данных ниже)
 
 ![schema](misc/images/schema.png)
 
-
 1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
+- field **id** — primary key 
+- field **name** — название пиццерии  
+- field **rating** — average(средний) рейтинг пицерии (от 0 до 5)
 2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
+- field **id** — primary key
+- field **name** — Имя  
+- field **age** — возраст  
+- field **gender** — пол  
+- field **address** — адресс  
 3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
+- field  **id** - primary key
+- field **pizzeria_id** - foreign key to pizzeria
+- field **pizza_name** - название пиццы в пицерии
+- field **price** - цена пиццы
 4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
+- field **id** - primary key
 - field person_id - foreign key to person
 - field pizzeria_id - foreign key to pizzeria
 - field visit_date - date (for example 2022-01-01) of person visit 
 5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
+- field  **id** - primary key
 - field person_id - foreign key to person
 - field menu_id - foreign key to menu
 - field order_date - date (for example 2022-01-01) of person order 
 
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+
+
+Persons' visit and persons' order are different entities and don't contain any correlation between data.  
+For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application.  
+>в заданиях клиенты могут быть в одном ресторане (только посмотреть меню) и в это время делать заказ в другом по телефону или из мобильного приложения.
+Or another case,  just be at home and again make a call with order without any visits.
 
 ## Chapter IV
 ## Exercise 00 - Let’s make UNION dance
@@ -126,7 +132,7 @@ Persons' visit and persons' order are different entities and don't contain any c
 
 Please write a SQL statement which returns menu’s identifier and pizza names from `menu` table and person’s identifier and person name from `person` table in one global list (with column names as presented on a sample below) ordered by object_id and then by object_name columns.  
   
-(Напишите запрос который вернет id меню и название пицы из таблицы `menu` и id человека и его имя из таблицы `person` в одном списке вывода (с названием столбцов как показано ниже) отсортируйте сначала по object_id а затем по object_name
+(Напишите SQL запрос который вернет id меню и название пицы из таблицы `menu` и id человека и его имя из таблицы `person` в одном списке вывода (с названием столбцов как показано ниже) отсортируйте сначала по object_id а затем по object_name
 
 | object_id | object_name |
 | ------ | ------ |
@@ -134,7 +140,7 @@ Please write a SQL statement which returns menu’s identifier and pizza names f
 | 1 | cheese pizza |
 | ... | ... |
 
-
+[D01_ex01](src/day01_ex00.sql)
 
 ## Chapter V
 ## Exercise 01 - UNION dance with subquery (с подзапросом) 
@@ -159,6 +165,7 @@ Please modify a SQL statement from “exercise 00” by removing the object_id c
 | cheese pizza |
 | ... |
 
+[D01_ex01](src/day01_ex01.sql)
 
 ## Chapter VI
 ## Exercise 02 - Duplicates or not duplicates
@@ -188,7 +195,8 @@ Please write a SQL statement which returns unique pizza names from the `menu` ta
 | **Denied**                               |                                                                                                                          |
 | SQL Syntax Construction                        |  any type of `JOINs`                                                                                              |
 
-Please write a SQL statement which returns common rows for attributes order_date, person_id from `person_order` table from one side and visit_date, person_id from `person_visits` table from the other side (please see a sample below). In other words, let’s find identifiers of persons, who visited and ordered some pizza on the same day. Actually, please add ordering by action_date in ascending mode and then by person_id in descending mode.
+Please write a SQL statement which returns common rows for attributes order_date, person_id from `person_order` table from one side and visit_date, person_id from `person_visits` table from the other side (please see a sample below). In other words, let’s find identifiers of persons, who visited and ordered some pizza on the same day. Actually, please add ordering by action_date in ascending mode and then by person_id in descending mode.  
+который возвращает строки из атрибутов даты заказа, персон_ид из таблицы `person_order` с одной стороны и дата визита из `person_visits` таблицы из сдругой сторовны (пожалуйста смотрите пример ниже). в других словах, давай найдем идентификаторы людей, кто посещал и заказывал 
 
 | action_date | person_id |
 | ------ | ------ |
