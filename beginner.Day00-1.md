@@ -13,12 +13,9 @@ Resume: Today you will see how relational model works and how to get needed data
     2.1. [Главные правила](#general-rules)
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 — First steps into SQL world]  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 — First steps into SQL world]  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 — First steps into SQL world]  
+4. [Chapter IV](#chapter-iv) Exercise 00 
+5. [Chapter V](#chapter-v) Exercise 01  
+6. [Chapter VI](#chapter-vi) Exercise 02   
 7. [Chapter VII](#chapter-vii) \
     7.1. [Exercise 03 — First steps into SQL world]  
 8. [Chapter VIII](#chapter-viii) \
@@ -115,8 +112,8 @@ People's visit(посещения) and people's order(заказы) are differen
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Давай выполним наше первое задание. 
-Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.
+Давай выполним наше первое задание. Создать выбоку через select в которой будет имена и возраст всех кто живет в городе Казань.
+Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.  
 [D00_ex00](src/day00_ex00.sql)
 
 ## Chapter V
@@ -143,9 +140,9 @@ Please make a select statement which returns all person's names and person's age
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please make 2 syntax different select запроса которые вернет список из таблицы pizzeria (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
+Please make 2 syntax different select запроса которые вернет список из таблицы `pizzeria` (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
 - the 1st select должен бытть основан на неравенствах  (<=, >=);
-- the 2nd select с ключевым словом `BETWEEN`.
+- the 2nd select с ключевым словом `BETWEEN`.  
 [D00_ex02](src/day00_ex02.sql)
 ## Chapter VII
 ## Exercise 03 — Первые шаги в мире SQL  
@@ -157,8 +154,8 @@ Please make 2 syntax different select запроса которые вернет
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please make a select запрос который возвращает the person identifiers (без дублей) тех кто посетил пиццерию в период с 6 января 2022 по 9 января 2022 (включительно) или посетил пиццерию с индетификатором 2. Also включите сортировку clause by person identifier in descending mode(по убыванию).  
-![D00_01](src/day00_ex03.sql)
+Please make a select запрос который возвращает the person identifiers (без дублей) тех кто посетил пиццерию в период с 6 января 2022 по 9 января 2022 (включительно) или посетил пиццерию с индетификатором 2. Also включите сортировку clause by person identifier in **descending** mode(по убыванию).  
+[D00_01](src/day00_ex03.sql)
 ## Chapter VIII
 ## Exercise 04 — Первые шаги в мире SQL  
 
@@ -174,8 +171,8 @@ Please make a select запрос который вернет одно вычи�
 
 `Anna (age:16,gender:'female',address:'Moscow')`
 
-Finally, please add the ordering clause by calculated column in ascending mode.
-Please pay attention to the quotation marks in your formula!
+Finally, please add the ordering clause by calculated column in **ascending** mode.
+Please pay attention to the **quotation** marks in your formula! (обратите внимание на то что в формуле должны быть кавычки)  
 [D00_ex04](src/day00_ex04.sql)
 ## Chapter IX
 ## Exercise 05 — Первые шаги в мире SQL  
@@ -206,7 +203,7 @@ Please take a look at the pattern of internal query.
 ## Exercise 06 — Первые шаги в мире SQL  
 
 
-| Упражение 06: First steps into SQL world |                                                                                                                          |
+| Упражение 06:  |       First steps into SQL world                                                                                                                   |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex06                                                                                                                     |
 | Files to turn-in                      | `day00_ex06.sql`                                                                                 |
@@ -215,8 +212,8 @@ Please take a look at the pattern of internal query.
 | **Denied**       (не используй)                        |                                           
 | SQL Syntax Construction                        | `IN`, any types of `JOINs`                                                                                              |
 
-Использую SQL-конструкцию из упражениия 05 и добавь новый вычисляемый столбец (назови его ‘check_name’) 
-Use the SQL construction from Exercise 05 and add a new calculated column (use column name ‘check_name’) with a check statement a pseudocode for this check is given below) in the `SELECT` clause.
+Используя SQL-конструкцию из упражениия 05 и добавь новый вычисляемый столбец (назови его ‘check_name’) проверяющий запрос в пвсевдокоде в предложении `SELECT`   
+Use the SQL construction from Exercise 05 and add a new calculated column (use column name ‘check_name’) with a check statement a pseudocode for this check is given below(ниже)) in the `SELECT` clause(предложении).
 
     if (person_name == 'Denis') then return true
         else return false
@@ -234,14 +231,18 @@ Use the SQL construction from Exercise 05 and add a new calculated column (use c
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Let's apply data intervals to the `person` table. 
-Please make an SQL statement that returns the identifiers of a person, the person's names, and the interval of the person's ages (set a name of a new calculated column as 'interval_info') based on the pseudo code below.
+Let's apply data intervals to the `person` table.  
+((*apply*)применение интервалов к таблице `person`  )
+Please make an SQL statement that returns the identifiers of a person, the person's names, and the interval of the person's ages (set a name of a new calculated column as 'interval_info') based on the pseudo code below(базовый псевдокод представлен ниже).
+
+
 
     if (age >= 10 and age <= 20) then return 'interval #1'
     else if (age > 20 and age < 24) then return 'interval #2'
     else return 'interval #3'
 
 And yes... please sort a result by ‘interval_info’ column in ascending mode.
+И да... пожалуйтса отсортируй результат по столбцу ‘interval_info’ по возрастанию
 [D00_ex07](src/day00_ex07.sql)
 
 
@@ -254,7 +255,9 @@ And yes... please sort a result by ‘interval_info’ column in ascending mode.
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Create an SQL statement that returns all columns from the `person_order` table with rows whose identifier is an even number. The result must be ordered by the returned identifier.
+Create an SQL statement that returns all columns from the `person_order` table with rows whose identifier is an even number. The result must be ordered by the returned identifier.  
+
+Создать запрос который вернет все столбцы из таблицы `person_order` в чьих строках identifier это четное число.  Рузультат должен быть отсортирован по возрвращаемуму идентификатору
 [D00_ex08](src/day00_ex08.sql)
 
 ## Chapter XIII
@@ -269,8 +272,9 @@ Create an SQL statement that returns all columns from the `person_order` table w
 | SQL Syntax Construction                        | any types of `JOINs`                                                                                              |
 
 
-Please make a select statement that returns person names and pizzeria names based on the `person_visits` table with a visit date in a period from January 07 to January 09, 2022 (including all days) (based on an internal query in the `FROM' clause).
+Please make a select statement that returns person names and pizzeria names based on the `person_visits` table with a visit date in a period from January 07 to January 09, 2022 (including all days) (based on an internal(внутренний) query in the `FROM' clause (предложении)).
 
+Пожалуйста сделайте select запрос который вернет имена и названия пиццерий из таблицы `person_visits` где дата визита была в период с 7 января по 9 января 2022(включая эти дни) (основной  внутренний запрос в предложении `FROM')
 
 Please take a look at the pattern of the final query.
 
@@ -279,5 +283,5 @@ Please take a look at the pattern of the final query.
     FROM (SELECT … FROM person_visits WHERE …) AS pv -- this is an internal query in a main FROM clause
     ORDER BY ...
 
-Please add a ordering clause by person name in ascending mode and by pizzeria name in descending mode.
+Please add a **ordering** clause by person name in ascending mode and by pizzeria name in descending mode.
 
