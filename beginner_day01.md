@@ -7,19 +7,15 @@ Resume: Today you will see how to get needed data based on sets constructions an
 
 ## Contents
 
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
+1. [Chapter I](#chapter-i) [Preamble](#preamble)
+2. [Chapter II](#chapter-ii) [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) [Rules of the day](#rules-of-the-day)  
 4. [Chapter IV](#chapter-iv) [Exercise 00 - Let’s make UNION dance](#exercise-00-lets-make-union-dance)  
 5. [Chapter V](#chapter-v) \
     5.1. [Exercise 01 - UNION dance with subquery](#exercise-01-union-dance-with-subquery)  
 6. [Chapter VI](#chapter-vi) \
     6.1. [Exercise 02 - Duplicates or not duplicates](#exercise-02-duplicates-or-not-duplicates)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 - “Hidden” Insights](#exercise-03-hidden-insights)  
+7. [Chapter VII](#chapter-vii) [Exercise 03 - “Hidden” Insights](#exercise-03-hidden-insights)  
 8. [Chapter VIII](#chapter-viii) \
     8.1. [Exercise 04 - Difference? Yep, let's find the difference between multisets](#exercise-04-difference-yep-lets-find-the-difference-between-multisets)
 9. [Chapter IX](#chapter-ix) \
@@ -267,8 +263,8 @@ Let's return our mind back to exercise #03 and change our SQL statement to retur
 | 2022-01-01 | Andrey |
 | ... | ... |
 
-[D01_ex06](src/day01_ex06_v1.sql)  
-[D01_ex06](src/day01_ex06_v2.sql)
+[D01_ex06 v1](src/day01_ex06_v1.sql)  
+[D01_ex06 v2](src/day01_ex06_v2.sql)
 ## Chapter XI
 ## Exercise 07 - Just make a JOIN
 
@@ -280,7 +276,9 @@ Let's return our mind back to exercise #03 and change our SQL statement to retur
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns the date of order from the `person_order` table and corresponding person name (name and age are formatted as in the data sample below) which made an order from the `person` table. Add a sort by both columns in ascending mode.
+Please write a SQL statement which returns the date of order from the `person_order` table and corresponding person name (name and age are formatted as in the data sample below) which made an order from the `person` table. Add a sort by both columns in ascending mode.  
+
+> вернуть дату заказа из таблицы `person_order` и  имена персон ( имя и возраст форматируй как данные в примере ниже) сделай сортирвку в таблице персон.  добавь сортирвку по возрастанию 
 
 | order_date | person_information |
 | ------ | ------ |
@@ -289,6 +287,7 @@ Please write a SQL statement which returns the date of order from the `person_or
 | 2022-01-01 | Anna (age:16) |
 | ... | ... |
 
+[D01_ex07](src/day01_ex07.sql)  
 
 ## Chapter XII
 ## Exercise 08 - Migrate JOIN to NATURAL JOIN
@@ -305,7 +304,9 @@ Please write a SQL statement which returns the date of order from the `person_or
 | SQL Syntax Construction                        | other type of  `JOINs`                                                                                              |
 
 Please rewrite a SQL statement from exercise #07 by using NATURAL JOIN construction. The result must be the same like for exercise #07.  
-
+> Перепиши запрос из прошлого упражения используя  NATURAL JOIN конструкцию. Результат должен быть таким же как и в прошлом упражении
+[D01_ex08 v1](src/day01_ex08_v1.sql)  
+[D01_ex08 v2](src/day01_ex08_v2.sql)  
 ## Chapter XIII
 ## Exercise 09 - IN versus EXISTS
 
@@ -317,8 +318,9 @@ Please rewrite a SQL statement from exercise #07 by using NATURAL JOIN construct
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please write 2 SQL statements which return a list of pizzerias names which have not been visited by persons by using IN for 1st one and EXISTS for the 2nd one.
-
+Please write 2 SQL statements which return a list of pizzerias names which have not been visited by persons by using IN for 1st one and EXISTS for the 2nd one.  
+> напиши 2 запросв которые вернуть список названий пиццерий в которые никто не приходил с использованием IN для первого и EXISTS для второго запроса. 
+[D01_ex09](src/day01_ex09.sql)  
 ## Chapter XIV
 ## Exercise 10 - Global JOIN
 
@@ -331,6 +333,7 @@ Please write 2 SQL statements which return a list of pizzerias names which have 
 | Language                        | ANSI SQL                                                                                              |
 
 Please write a SQL statement which returns a list of the person names which made an order for pizza in the corresponding pizzeria. The sample result (with named columns) is provided below and yes ... please make ordering by 3 columns in ascending mode.
+> верни список имен кто делал заказ пиццы в пиццерии. Пример рузультат (с названиями столбцов) есть  
 
 | person_name | pizza_name | pizzeria_name | 
 | ------ | ------ | ------ |
