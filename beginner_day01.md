@@ -13,8 +13,7 @@ Resume: Today you will see how to get needed data based on sets constructions an
     2.1. [General Rules](#general-rules)
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 - Let’s make UNION dance](#exercise-00-lets-make-union-dance)  
+4. [Chapter IV](#chapter-iv) [Exercise 00 - Let’s make UNION dance](#exercise-00-lets-make-union-dance)  
 5. [Chapter V](#chapter-v) \
     5.1. [Exercise 01 - UNION dance with subquery](#exercise-01-union-dance-with-subquery)  
 6. [Chapter VI](#chapter-vi) \
@@ -183,6 +182,7 @@ Please write a SQL statement which returns unique pizza names from the `menu` ta
 
 (напишите SQL запрос который возвращает только уникальные названия пицц из таблицы `menu` и сортирует по названию пицц в убывающем порядке. обратите внимание некоторые конструкции запрещены )
 
+[D01_ex02](src/day01_ex02.sql)
 ## Chapter VII
 ## Exercise 03 - “Hidden” Insights
 
@@ -206,7 +206,7 @@ Please write a SQL statement which returns common rows for attributes order_date
 | 2022-01-03 | 7 |
 | 2022-01-04 | 3 |
 | ... | ... |
-
+[D01_ex03](src/day01_ex03.sql)
 ## Chapter VIII
 ## Exercise 04 - Difference? Yep, let's find the difference between multisets.
 
@@ -220,20 +220,22 @@ Please write a SQL statement which returns common rows for attributes order_date
 | **Denied**                               |                                                                                                                          |
 | SQL Syntax Construction                        |  any type of `JOINs`                                                                                              |
 
-Please write a SQL statement which returns a difference (minus) of person_id column values with saving duplicates between `person_order` table and `person_visits` table for order_date and visit_date are for 7th of January of 2022
-
+Please write a SQL statement which returns a difference (minus) of person_id column values with saving duplicates between `person_order` table and `person_visits` table for order_date and visit_date are for 7th of January of 2022  
+> вернуть разницу значения столбца  person_id с дублями  между  `person_order` и  `person_visits` таблицами дата заказа и дата визита 7  января 2022  
+[D01_ex04](src/day01_ex04.sql)
 ## Chapter IX
-## Exercise 05 - Did you hear about Cartesian Product?
+## Exercise 05 - Did you hear about Cartesian Product? (Вы слышали о Декартовом произведении)
 
 
-| Exercise 05: Did you hear about Cartesian Product? |                                                                                                                          |
+| Exercise 05: Декартово произведение |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex05                                                                                                                     |
 | Files to turn-in                      | `day01_ex05.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns all possible combinations between `person` and `pizzeria` tables and please set ordering by person identifier and then by pizzeria identifier columns. Please take a look at the result sample below. Please be aware column's names can be different for you.
+Please write a SQL statement which returns all possible combinations between `person` and `pizzeria` tables and please set ordering by person identifier and then by pizzeria identifier columns. Please take a look at the result sample below. Please be aware column's names can be different for you.  
+> вернуть все возможные комбинации между таблицами `person` и `pizzeria` и отсортируйте по идентификатору персоны и затем по идентификатору пиццерии. посмотрите на пример результата ниже. Ознакомьтесь с названиями столбцов 
 
 | person.id | person.name | age | gender | address | pizzeria.id | pizzeria.name | rating |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -241,7 +243,7 @@ Please write a SQL statement which returns all possible combinations between `pe
 | 1 | Anna | 16 | female | Moscow | 2 | Dominos | 4.3 |
 | ... | ... | ... | ... | ... | ... | ... | ... |
 
-
+[D01_ex05](src/day01_ex05.sql)
 ## Chapter X
 ## Exercise 06 - Lets see on “Hidden” Insights
 
@@ -253,7 +255,10 @@ Please write a SQL statement which returns all possible combinations between `pe
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Let's return our mind back to exercise #03 and change our SQL statement to return person names instead of person identifiers and change ordering by action_date in ascending mode and then by person_name in descending mode. Please take a look at a data sample below.
+Let's return our mind back to exercise #03 and change our SQL statement to return person names instead(вместо) of person identifiers and change ordering by action_date in ascending(возрастающем) mode and then by person_name in descending mode. Please take a look at a data sample below.
+
+> Давай вернемся к нашему решению из упражнения #03 и изменим запрос так что бы он возвращал имена вместо идентификаторов персон и изменим сортирувоку по action_date в возрастающем порядке а затем по именам в убывающем порядке. посмотри на данные из примера ниже.  
+
 
 | action_date | person_name |
 | ------ | ------ |
@@ -262,6 +267,8 @@ Let's return our mind back to exercise #03 and change our SQL statement to retur
 | 2022-01-01 | Andrey |
 | ... | ... |
 
+[D01_ex06](src/day01_ex06_v1.sql)  
+[D01_ex06](src/day01_ex06_v2.sql)
 ## Chapter XI
 ## Exercise 07 - Just make a JOIN
 
