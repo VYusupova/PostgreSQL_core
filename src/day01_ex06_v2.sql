@@ -1,6 +1,12 @@
-Select action_date, (SELECT name From person where id = person_id) as person_name From
-(SELECT order_date as action_date, person_id from person_order 
-INTERSECT
-select visit_date as action_date, person_id from person_visits
-)
-Order by 1 ASC, 2 DESC
+SELECT action_date,
+      (SELECT name FROM person WHERE id = person_id) AS person_name
+  FROM
+      (SELECT order_date AS action_date,
+              person_id
+         FROM person_order
+       INTERSECT
+       SELECT  visit_date AS action_date,
+               person_id
+          FROM person_visits
+       )
+ORDER BY 1 ASC, 2 DESC
