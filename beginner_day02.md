@@ -12,8 +12,7 @@ Resume: Today you will see how to get needed data based on different structures 
     2.1. [General Rules](#general-rules)
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 - Move to the LEFT, move to the RIGHT](#exercise-00-move-to-the-left-move-to-the-right)  
+4. [Chapter IV](#chapter-iv) [Exercise 00 - Move to the LEFT, move to the RIGHT](#exercise-00-move-to-the-left-move-to-the-right)  
 5. [Chapter V](#chapter-v) \
     5.1. [Exercise 01 - Find data gaps](#exercise-01-find-data-gaps)  
 6. [Chapter VI](#chapter-vi) \
@@ -97,29 +96,28 @@ It’s just a set of loops ... Not magic at all
 
 ![schema](misc/images/schema.png)
 
-
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
+- 1. **pizzeria** table (Dictionary Table with available pizzerias)
+- field **id** — primary key 
+- field **name** — название пиццерии  
+- field **rating** — average(средний) рейтинг пицерии (от 0 до 5)
 2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
+- field **id** — primary key
+- field **name** — Имя  
+- field **age** — возраст  
+- field **gender** — пол  
+- field **address** — адресс  
 3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
+- field  **id** - primary key
+- field **pizzeria_id** - foreign key to pizzeria
+- field **pizza_name** - название пиццы в пицерии
+- field **price** - цена пиццы
 4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
+- field **id** - primary key
+- field **person_id** - foreign key to person
+- field **pizzeria_id** - foreign key to pizzeria
+- field **visit_date** - дата посещения (напрмер 2022-01-01)  
 5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
+- field  **id** - primary key
 - field person_id - foreign key to person
 - field menu_id - foreign key to menu
 - field order_date - date (for example 2022-01-01) of person order 
@@ -139,6 +137,7 @@ Persons' visit and persons' order are different entities and don't contain any c
 | SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
 Please write a SQL statement which returns a list of pizzerias names with corresponding rating value which have not been visited by persons. 
+>необходимо вернуть список названий пиццерий с рейтингом которые никто не посещал
 
 
 ## Chapter V
@@ -154,7 +153,8 @@ Please write a SQL statement which returns a list of pizzerias names with corres
 | **Denied**                               |                                                                                                                          |
 | SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
-Please write a SQL statement which returns the missing days from 1st to 10th of January 2022 (including all days) for visits  of persons with identifiers 1 or 2 (it means days missed by both). Please order by visiting days in ascending mode. The sample of data with column name is presented below.
+Please write a SQL statement which returns the missing days from 1st to 10th of January 2022 (including all days) for visits  of persons with identifiers 1 or 2 (it means days missed by both). Please order by visiting days in ascending mode. The sample of data with column name is presented below.  
+> вернуть потерянные даты с 1 по 10  января 2022 (включительно) посещений с идентификатором 1 или 2 (это значит дней дней утеряно оба) отсортируйте дни посещений по возрастанию. Пример с названием поля ниже.
 
 | missing_date |
 | ------ |
@@ -176,7 +176,8 @@ Please write a SQL statement which returns the missing days from 1st to 10th of 
 | **Denied**                               |                                                                                                                          |
 | SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
-Please write a SQL statement that returns a whole list of person names visited (or not visited) pizzerias during the period from 1st to 3rd of January 2022 from one side and the whole list of pizzeria names which have been visited (or not visited) from the other side. The data sample with needed column names is presented below. Please pay attention to the substitution value ‘-’ for `NULL` values in `person_name` and `pizzeria_name` columns. Please also add ordering for all 3 columns.
+Please write a SQL statement that returns a whole list of person names visited (or not visited) pizzerias during(в течении) the period from 1st to 3rd of January 2022 from one side and the whole list of pizzeria names which have been visited (or not visited) from the other side. The data sample with needed column names is presented below. Please pay attention to (рьпатите внимание на) the substitution value ‘-’ for `NULL` values in `person_name` and `pizzeria_name` columns. Please also add ordering for all 3 columns.  
+> вернуть весь список имен посетителей( или не посетителей) пиццерий за период с 1 по 3 января 2022 с одной стороны и весь список названий пиццерий который имеет и не имет посетителй с другой стороны. Пример с нужными названими колонок представлен ниже. Обратите внимание на замену ‘-’ for `NULL` значений в столбцах.
 
 | person_name | visit_date | pizzeria_name |
 | ------ | ------ | ------ |
@@ -202,7 +203,8 @@ Please write a SQL statement that returns a whole list of person names visited (
 | **Denied**                               |                                                                                                                          |
 | SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
-Let’s return back to Exercise #01, please rewrite your SQL by using the CTE (Common Table Expression) pattern. Please move into the CTE part of your "day generator". The result should be similar like in Exercise #01
+Let’s return back to Exercise #01, please rewrite your SQL by using the CTE (Common Table Expression) pattern. Please move into the CTE part of your "day generator". The result should be similar like in Exercise #01  
+> вернемся к упраженению 1 перепешите ваш SQL с использованием СТЕ паттерна. перемести в часть СТЕ ваш "генератор дней". Вывод должен быть таким же как в упражнениии 1
 
 | missing_date | 
 | ------ | 
