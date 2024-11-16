@@ -12,16 +12,11 @@ Resume: Today you will see how to change data based on DML language
     2.1. [General Rules](#general-rules)
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 - Let’s find appropriate prices for Kate](#exercise-00-lets-find-appropriate-prices-for-kate)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 - Let’s find forgotten menus](#exercise-01-lets-find-forgotten-menus)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 - Let’s find forgotten pizza and pizzerias](#exercise-02-lets-find-forgotten-pizza-and-pizzerias)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 - Let’s compare visits](#exercise-03-lets-compare-visits)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 - Let’s compare orders](#exercise-04-lets-compare-orders)
+4. [Chapter IV](#chapter-iv) [Exercise 00 - Let’s find appropriate prices for Kate](#exercise-00-lets-find-appropriate-prices-for-kate)  
+5. [Chapter V](#chapter-v) [Exercise 01 - Let’s find forgotten menus](#exercise-01-lets-find-forgotten-menus)  
+6. [Chapter VI](#chapter-vi) [Exercise 02 - Let’s find forgotten pizza and pizzerias](#exercise-02-lets-find-forgotten-pizza-and-pizzerias)  
+7. [Chapter VII](#chapter-vii) [Exercise 03 - Let’s compare visits](#exercise-03-lets-compare-visits)  
+8. [Chapter VIII](#chapter-viii) [Exercise 04 - Let’s compare orders](#exercise-04-lets-compare-orders)
 9. [Chapter IX](#chapter-ix) \
     9.1. [Exercise 05 - Visited but did not make any order](#exercise-05-visited-but-did-not-make-any-order)
 10. [Chapter X](#chapter-x) \
@@ -131,7 +126,7 @@ Let’s make a cheese of our data! :-)
 Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
 ## Chapter IV
-## Exercise 00 - Let’s find appropriate prices for Kate
+## Exercise 00 - Let’s find appropriate(Подходящий) prices for Kate
 
 | Exercise 00: Let’s find appropriate prices for Kate |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -141,6 +136,8 @@ Persons' visit and persons' order are different entities and don't contain any c
 | Language                        | ANSI SQL                                                                                              |
 
 Please write a SQL statement which returns a list of pizza names, pizza prices, pizzerias names and dates of visit for Kate and for prices in range from 800 to 1000 rubles. Please sort by pizza, price and pizzeria names. Take a look at the sample of data below.
+
+> вернуть список наименование пиццы, цена, название пиццерии и дату визита Кати и цена пиццы от 800 до 100. Отсоритируйте по названию цены и названию пиццерии. Посмотрите на пример данных ниже 
 
 | pizza_name | price | pizzeria_name | visit_date |
 | ------ | ------ | ------ | ------ |
@@ -164,6 +161,8 @@ Please write a SQL statement which returns a list of pizza names, pizza prices, 
 
 Please find all menu identifiers which are not ordered by anyone. The result should be sorted by identifiers. The sample of output data is presented below.
 
+> найдите все идентификаторы в мею которые никто не заказывал. Результат должен быть отсортирован. Простой вывод представлен ниже. 
+ 
 | menu_id |
 | ------ |
 | 5 |
@@ -183,6 +182,8 @@ Please find all menu identifiers which are not ordered by anyone. The result sho
 
 Please use SQL statement from Exercise #01 and show pizza names from pizzeria which are not ordered by anyone, including corresponding prices also. The result should be sorted by pizza name and price. The sample of output data is presented below.
 
+> Используя запрос из упраженния 1 и покажите названия пицц из пиццерий которые никто никогда не заказывал, включая соответвующую цену. Результат должен быть отсортирован по названию пиццы и цене. Простой вывод данных представлен ниже. 
+
 | pizza_name | price | pizzeria_name |
 | ------ | ------ | ------ |
 | cheese pizza | 700 | Papa Johns |
@@ -199,8 +200,9 @@ Please use SQL statement from Exercise #01 and show pizza names from pizzeria wh
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please find pizzerias that have been visited more often by women or by men. For any SQL operators with sets save duplicates (UNION ALL, EXCEPT ALL, INTERSECT ALL constructions). Please sort a result by the pizzeria name. The data sample is provided below.
+Please find pizzerias that have been visited more often(часто) by women or by men. For any SQL operators with sets save duplicates (UNION ALL, EXCEPT ALL, INTERSECT ALL constructions). Please sort a result by the pizzeria name. The data sample is provided below.
 
+> найти пиццерии которые часто посещали мужчины или женщины. для любого оператора множестово вывода должно сохранять дубликаты (UNION ALL, EXCEPT ALL, INTERSECT ALL constructions). Результат отсортируйте по назанию пиццерий. пример вывода : 
 
 | pizzeria_name | 
 | ------ | 
