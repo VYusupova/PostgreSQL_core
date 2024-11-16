@@ -17,8 +17,7 @@ Resume: Today you will see how to change data based on DML language
 6. [Chapter VI](#chapter-vi) [Exercise 02 - Let’s find forgotten pizza and pizzerias](#exercise-02-lets-find-forgotten-pizza-and-pizzerias)  
 7. [Chapter VII](#chapter-vii) [Exercise 03 - Let’s compare visits](#exercise-03-lets-compare-visits)  
 8. [Chapter VIII](#chapter-viii) [Exercise 04 - Let’s compare orders](#exercise-04-lets-compare-orders)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 - Visited but did not make any order](#exercise-05-visited-but-did-not-make-any-order)
+9. [Chapter IX](#chapter-ix) [Exercise 05 - Visited but did not make any order (*Посетили но не сделали ни один заказ*)](#exercise-05-visited-but-did-not-make-any-order)
 10. [Chapter X](#chapter-x) \
     10.1. [Exercise 06 - Find price-similarity pizzas](#exercise-06-find-price-similarity-pizzas)
 11. [Chapter XI](#chapter-xi) \
@@ -41,7 +40,9 @@ Resume: Today you will see how to change data based on DML language
 
 ![D03_01](misc/images/D03_01.png)
 
-Relation Theory is a mathematical foundation for modern Relational Databases. Every databases’ aspect has corresponding mathematical and logical justification. Including INSERT / UPDATE / DELETE operators. (Dr. Edgar Frank Codd is on the picture).
+Relation Theory is a mathematical foundation for modern(современный) Relational Databases. Every databases’ aspect has corresponding mathematical and logical justification(обоснование). Including INSERT / UPDATE / DELETE operators. (Dr. Edgar Frank Codd is on the picture).
+
+> Реляционная теория это математическая основа для соверменных реляционной базы данных. Любой аспект базы данных имеет соответсвующую математичесое и логическое обоснование. Включая операторы вставки / обновления / удаления.  ( доктор Эдгар Франк Кодд на снимке) 
 
 How the INSERT operator works from a mathematical point of view.
 
@@ -137,7 +138,8 @@ Persons' visit and persons' order are different entities and don't contain any c
 
 Please write a SQL statement which returns a list of pizza names, pizza prices, pizzerias names and dates of visit for Kate and for prices in range from 800 to 1000 rubles. Please sort by pizza, price and pizzeria names. Take a look at the sample of data below.
 
-> вернуть список наименование пиццы, цена, название пиццерии и дату визита Кати и цена пиццы от 800 до 100. Отсоритируйте по названию цены и названию пиццерии. Посмотрите на пример данных ниже 
+> вернуть список наименование пиццы, цена, название пиццерии и в дату визита Кати и цена пиццы от 800 до 1000. Отсоритируйте по названию цены и названию пиццерии. Посмотрите на пример данных ниже
+> В дни когда Катя посещала пиццерию, вывести список пицц, их цену и названия пиццерий с ценой от 800 до 1000. Результат должен быть отсортирован сначала по названию пиццы потом по цене и затем по названию пиццерий. Ниже представлен вывод
 
 | pizza_name | price | pizzeria_name | visit_date |
 | ------ | ------ | ------ | ------ |
@@ -221,8 +223,9 @@ Please find pizzerias that have been visited more often(часто) by women or 
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please find a union of pizzerias that have orders either from women or  from men. Other words, you should find a set of pizzerias names have been ordered by females only and make "UNION" operation with set of pizzerias names have been ordered by males only. Please be aware with word “only” for both genders. For any SQL operators with sets don’t save duplicates (`UNION`, `EXCEPT`, `INTERSECT`).  Please sort a result by the pizzeria name. The data sample is provided below.
+Please find a union of pizzerias that have orders either from women or  from men. Other words, you should find a set of pizzerias names have been ordered by females only and make "UNION" operation with set of pizzerias names have been ordered by males only. Please be aware(осведомленный) with word “only” for both genders. For any SQL operators with sets don’t save duplicates (`UNION`, `EXCEPT`, `INTERSECT`).  Please sort a result by the pizzeria name. The data sample is provided below.
 
+> найти пиццерий в которыйх были заказы как мужчин так и женщин. Другими словами, вам надо найти множество названий пиццерий в который заказывали только женщины и обеденить с множеством пиццерий где заказывали только мужчины. Пожалуйста убедитесь со словом "только" для обеих полов. Для любых операторова SQL в множестве не должно быть дублей  (`UNION`, `EXCEPT`, `INTERSECT`). Результат отсортируйте. Пример  вывода ниже :
 
 | pizzeria_name | 
 | ------ | 
@@ -241,6 +244,7 @@ Please find a union of pizzerias that have orders either from women or  from men
 
 Please write a SQL statement which returns a list of pizzerias which Andrey visited but did not make any orders. Please order by the pizzeria name. The sample of data is provided below.
 
+> Вернуть список пиццерй с визитом Андрея но в которых не было заказано. Сортируйте по названию. пример вывода ниже :
 
 | pizzeria_name | 
 | ------ | 
