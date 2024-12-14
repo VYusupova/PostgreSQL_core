@@ -148,6 +148,7 @@ Please write a SQL statement which returns a list of pizza names, pizza prices, 
 | pepperoni pizza | 800 | DinoPizza | 2022-01-04 |
 | ... | ... | ... | ... |
 
+[D03_ex00](src/day03_ex00.sql)
 
 ## Chapter V
 ## Exercise 01 - Let’s find forgotten menus
@@ -163,7 +164,7 @@ Please write a SQL statement which returns a list of pizza names, pizza prices, 
 
 Please find all menu identifiers which are not ordered by anyone. The result should be sorted by identifiers. The sample of output data is presented below.
 
-> найдите все идентификаторы в мею которые никто не заказывал. Результат должен быть отсортирован. Простой вывод представлен ниже. 
+> найдите все идентификаторы в меню? которые никто не заказывал. Результат должен быть отсортирован. Простой вывод представлен ниже. 
  
 | menu_id |
 | ------ |
@@ -171,6 +172,7 @@ Please find all menu identifiers which are not ordered by anyone. The result sho
 | 10 |
 | ... |
 
+[D03_ex01](src/day03_ex01.sql)
 
 ## Chapter VI
 ## Exercise 02 - Let’s find forgotten pizza and pizzerias
@@ -184,13 +186,15 @@ Please find all menu identifiers which are not ordered by anyone. The result sho
 
 Please use SQL statement from Exercise #01 and show pizza names from pizzeria which are not ordered by anyone, including corresponding prices also. The result should be sorted by pizza name and price. The sample of output data is presented below.
 
-> Используя запрос из упраженния 1 и покажите названия пицц из пиццерий которые никто никогда не заказывал, включая соответвующую цену. Результат должен быть отсортирован по названию пиццы и цене. Простой вывод данных представлен ниже. 
+> Используя запрос из упраженния 1 и покажите названия пицц из пиццерий которые никто никогда не заказывал, включая соответвующую цену. Результат должен быть отсортирован по названию пиццы и цене. Простой вывод данных представлен ниже.
 
 | pizza_name | price | pizzeria_name |
 | ------ | ------ | ------ |
 | cheese pizza | 700 | Papa Johns |
 | cheese pizza | 780 | DoDo Pizza |
 | ... | ... | ... |
+
+[D03_ex02](src/day03_ex02.sql)
 
 ## Chapter VII
 ## Exercise 03 - Let’s compare visits
@@ -211,6 +215,8 @@ Please find pizzerias that have been visited more often(часто) by women or 
 | Best Pizza | 
 | Dominos |
 | ... |
+
+[D03_ex03](src/day03_ex03.sql)
 
 ## Chapter VIII
 ## Exercise 04 - Let’s compare orders
