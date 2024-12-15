@@ -306,11 +306,14 @@ Please register a new pizza with name “greek pizza” (use id = 19) with price
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |           
 | **Denied**                               |                                                                                                                          |
-| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria                                                                                               |       
+| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria  
+>Не используйте прямые цифры для идентификаторов первичного ключа и меню|       
 
 Please register a new pizza with name “sicilian pizza” (whose id should be calculated by formula is “maximum id value + 1”) with a price of 900 rubles in “Dominos” restaurant (please use internal query to get identifier of pizzeria).
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercise 07.
 
+> Пожалуйста, зарегистрируйте новую пиццу с названием “сицилийская пицца” (идентификатор которой должен быть рассчитан по формуле “максимальное значение идентификатора + 1”) стоимостью 900 рублей в ресторане “Доминос” (пожалуйста, используйте внутренний запрос для получения идентификатора пиццерии).
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
 
 ## Chapter XIII
 ## Exercise 09 - New pizza means new visits
@@ -327,6 +330,9 @@ Please register a new pizza with name “sicilian pizza” (whose id should be c
 
 Please register new visits into Dominos restaurant from Denis and Irina on 24th of February 2022.
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 and 08..
+
+> ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
 
 
 ## Chapter XIV
@@ -346,6 +352,9 @@ Please register new visits into Dominos restaurant from Denis and Irina on 24th 
 Please register new orders from Denis and Irina on 24th of February 2022 for the new menu with “sicilian pizza”.
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 and 09.
 
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+
 
 ## Chapter XV
 ## Exercise 11 - “Improve” a price for clients
@@ -360,6 +369,9 @@ Please register new orders from Denis and Irina on 24th of February 2022 for the
     
 Please change the price for “greek pizza” on -10% from the current value.
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 and 10.
+
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
 
 
 ## Chapter XVI
@@ -382,6 +394,8 @@ Please change the price for “greek pizza” on -10% from the current value.
 
 Please register new orders from all persons for “greek pizza” on 25th of February 2022.
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 and 11.
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
 
 
 ## Chapter XVII
@@ -397,3 +411,6 @@ Please register new orders from all persons for “greek pizza” on 25th of Feb
     
 Please write 2 SQL (DML) statements that delete all new orders from exercise #12 based on order date. Then delete “greek pizza” from the menu. 
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 , 11, 12 and 13.
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+
