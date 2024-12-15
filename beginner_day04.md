@@ -23,9 +23,10 @@ Resume: Today you will see how to use a virtual view and physical snapshot of da
 11. [Chapter XI](#chapter-xi)[Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
 12. [Chapter XII](#chapter-xii) [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
 
-## Chapter I
-## Preamble
+## Chapter I Preamble
+<details>
 
+<summary>развернуть</summary>
 ![D04_02](misc/images/D04_02.png)
 
 Why do we need virtual tables and materialized views in databases? Databases are just tables, aren't they? 
@@ -52,12 +53,15 @@ Also, there are “a few” additional differences between View and Materialized
 - Virtual Tables can have “Instead Of” Triggers to make a better control of incoming `INSERT/UPDATE/DELETE` traffic.
 - Materialized View is ReadOnly object for `INSERT/UPDATE/DELETE` traffic
 - Materialized Views can have user defined indexes on columns to speed up queries
+  </details>
 
+## Chapter II General Rules
+<details>
 
-## Chapter II
-## General Rules
+<summary>развернуть</summary>
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
+  > Используйте эту страницу как единственную ссылку. Не слушайте никаких слухов и домыслов о том, как подготовить свое решение.  
 - Please make sure you are using the latest version of PostgreSQL.
 - That is completely OK if you are using IDE to write a source code (aka SQL script).
 - To be assessed your solution must be in your GIT repository.
@@ -68,10 +72,12 @@ Also, there are “a few” additional differences between View and Materialized
 - Read the examples carefully. They may require things that are not otherwise specified in the subject.
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
+</details>
 
-## Chapter III
-## Rules of the day
+## Chapter III Rules of the day
+<details>
 
+<summary>развернуть</summary>
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
@@ -107,9 +113,11 @@ Also, there are “a few” additional differences between View and Materialized
 - field order_date - date (for example 2022-01-01) of person order 
 
 Persons' visit and persons' order are different(другой) entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different(другой) one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+</details>
 
-## Chapter IV
-## Exercise 00 - Let’s create separated views for persons(Давайте создадим отдельные представления для персон)
+## Chapter IV Exercise 00 - Let’s create separated views for persons(Давайте создадим отдельные представления для персон)
+<details>
+<summary>развернуть</summary>
 
 | Exercise 00: Let’s create separated views for persons |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -123,10 +131,12 @@ Please create 2 Database Views (with similar attributes like the original table)
 >теория https://translated.turbopages.org/proxy_u/en-ru.ru.1650019b-675ef6a7-2b33a928-74722d776562/https/www.geeksforgeeks.org/postgresql-managing-views/
 
 [D04_ex00](src/day04_ex00.sql)
+</details>
 
-## Chapter V
-## Exercise 01 - From parts to common view(от частей к общему виду)
-
+## Chapter V Exercise 01 - From parts to common view(от частей к общему виду)
+<details>
+<summary>развернуть</summary>
+    
 | Exercise 01: From parts to common view|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex01                                                                                                                     |
@@ -144,10 +154,11 @@ Please use 2 Database Views from Exercise #00 and write SQL to get female and ma
 | ... |
 
 [D04_ex01](src/day04_ex01.sql)
+</details>
 
-## Chapter VI
-## Exercise 02 - “Store” generated dates in one place("хранение" сгенерированных дат в одном месте)
-
+## Chapter VI Exercise 02 - “Store” generated dates in one place("хранение" сгенерированных дат в одном месте)
+<details>
+<summary>развернуть</summary>
 | Exercise 02: “Store” generated dates in one place|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex02                                                                                                                     |
@@ -166,9 +177,11 @@ Please create a Database View (with name `v_generated_dates`) which should be �
 | ... |
 
 [D04_ex02](src/day04_ex02.sql)
+</details>
 
-## Chapter VII
-## Exercise 03 - Find missing visit days with Database View(Найдите пропущенные дни посещений с помощью представлений)
+## Chapter VII Exercise 03 - Find missing visit days with Database View(Найдите пропущенные дни посещений с помощью представлений)
+<details>
+<summary>развернуть</summary>
 
 | Exercise 03: Find missing visit days with Database View |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -187,9 +200,13 @@ Please write a SQL statement which returns missing days for persons’ visits in
 | 2022-01-12 |
 | ... |
 
-## Chapter VIII
-## Exercise 04 - Let’s find something from Set Theory(Давайте найдем что-нибудь из теории множеств)
+[D04_ex03](src/day04_ex03.sql)
+</details>
 
+## Chapter VIII Exercise 04 - Let’s find something from Set Theory(Давайте найдем что-нибудь из теории множеств)
+<details>
+
+<summary>развернуть</summary>
 
 | Exercise 04: Let’s find something from Set Theory |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -207,10 +224,14 @@ Where R is the `person_visits` table with filter by 2nd of January 2022, S is al
 > Где R это `person_visits` с фильтром по 2 января 2022, S это также `person_visits` но с другим фильтром по 6 января 2022. Пожалуйста, сделайте ваше вычисление с множеством над `person_id` столбцом и этот столбец должен быть единственным в результате. Результат отсортируйте по `person_id` и ваш финальное SQL представлет в `v_symmetric_union`  (*) представлении
 > (*) Честно говоря, определения «симметричное объединение» в теории множеств не существует. Это интерпретация автора, основная идея основана на существующем правиле симметричной разности.
 
+[D04_ex04](src/day04_ex04.sql)
+</details>
 
 ## Chapter IX
 ## Exercise 05 - Let’s calculate a discount price for each person(Давайте посчитаем цену скидки для каждой персоны)
+<details>
 
+<summary>развернуть</summary>
 
 | Exercise 05: Let’s calculate a discount price for each person |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -229,13 +250,14 @@ Please create a Database View `v_price_with_discount` that returns a person's or
 | Andrey | mushroom pizza | 1100 | 990 |
 | ... | ... | ... | ... |
 
+[D04_ex05](src/day04_ex05.sql)
 
-
+</details>
 
 ## Chapter X
-## Exercise 06 - Materialization from virtualization
-
-
+<details>
+<summary> Exercise 06 - Materialization from virtualization</summary>
+    
 | Exercise 06: Materialization from virtualization |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex06                                                                                                                     |
@@ -247,10 +269,15 @@ Please create a Materialized View `mv_dmitriy_visits_and_eats` (with data includ
 
 To check yourself you can write SQL to Materialized View `mv_dmitriy_visits_and_eats` and compare results with your previous query.
 
+> Создайте материализованное представление `mv_dmitriy_visits_and_eats` (с включенными данными) на основе оператора SQL, который находит название пиццерии, которую Дмитрий посетил 8 января 2022 года и мог съесть пиццу менее чем за 800 рублей (этот SQL вы можете найти в упражнении № 02 дня № 07).
+> Чтобы проверить себя, вы можете написать SQL в материализованное представление `mv_dmitriy_visits_and_eats` и сравнить результаты с вашим предыдущим запросом.
+
+[D04_ex06](src/day04_ex06.sql)
+</details>
 
 ## Chapter XI
-## Exercise 07 - Refresh our state
-
+<details>
+<summary> Exercise 07 - Refresh our state (Обновить наше состояние) </summary>
 
 | Exercise 07: Refresh our state|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -264,8 +291,17 @@ To check yourself you can write SQL to Materialized View `mv_dmitriy_visits_and_
 Let's refresh data in our Materialized View `mv_dmitriy_visits_and_eats` from exercise #06. Before this action, please generate one more Dmitriy visit that satisfies the SQL clause of Materialized View except pizzeria that we can see in a result from exercise #06.
 After adding a new visit please refresh a state of data for `mv_dmitriy_visits_and_eats`.
 
+>Давайте обновим данные в нашем материализованном представлении `mv_dmitriy_visits_and_eats` из упражнения № 06. Перед этим действием, пожалуйста, сгенерируйте еще одно посещение Дмитрия, которое удовлетворяет предложению SQL материализованного представления, за исключением пиццерии, которую мы можем увидеть в результате из упражнения № 06.
+>После добавления нового посещения, пожалуйста, обновите состояние данных для `mv_dmitriy_visits_and_eats`.
+
+[D04_ex07](src/day04_ex07.sql)
+
+</details>
+
 ## Chapter XII
-## Exercise 08 - Just clear our database
+
+<details>
+<summary> Exercise 08 - Just clear our database (Просто очистим нашу базу данных)</summary>
 
 
 | Exercise 08: Just clear our database |                                                                                                                          |
@@ -277,4 +313,6 @@ After adding a new visit please refresh a state of data for `mv_dmitriy_visits_a
 
 After all our exercises were born a few Virtual Tables and one Materialized View. Let’s drop them!
 
+[D04_ex08](src/day04_ex08.sql)
 
+</details>
