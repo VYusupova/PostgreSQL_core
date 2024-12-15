@@ -1,13 +1,14 @@
 # Day 04 - Piscine SQL
 
 ## _Snapshots, virtual tables… What is going on?_
+>Снимки, виртуальные таблицы... Что происходит?
 
 Resume: Today you will see how to use a virtual view and physical snapshot of data
+>Резюме: Сегодня вы увидите, как использовать виртуальное представление и физический снимок данных
 
 ## Contents
 
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
+1. [Chapter I](#chapter-i) [Preamble](#preamble)
 2. [Chapter II](#chapter-ii) \
     2.1. [General Rules](#general-rules)
 3. [Chapter III](#chapter-iii) \
@@ -38,6 +39,8 @@ Resume: Today you will see how to use a virtual view and physical snapshot of da
 
 Why do we need virtual tables and materialized views in databases? Databases are just tables, aren't they? 
 No, actually not. Databases are similar for object-oriented language. Just recall, you have a lot of abstraction in Java (I mean Java Interfaces). We need abstraction to achieve “Clean Architecture” and change objects with minimal effect on dependencies (sometimes it’s working :-). 
+> Зачем нам нужны виртуальные таблицы и материализованные представления в базах данных? Базы данных — это просто таблицы, не так ли?
+Нет, на самом деле нет. Базы данных похожи на объектно-ориентированные языки. Просто вспомните, в Java много абстракций (я имею в виду интерфейсы Java). Нам нужна абстракция, чтобы достичь «Чистой архитектуры» и изменять объекты с минимальным влиянием на зависимости (иногда это работает :-).
 
 Moreover, there is a specific architectures’ pattern in the Relational Database with the name ANSI/SPARK.
 This pattern splits objects on three levels: 
@@ -112,10 +115,10 @@ Also, there are “a few” additional differences between View and Materialized
 - field menu_id - foreign key to menu
 - field order_date - date (for example 2022-01-01) of person order 
 
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+Persons' visit and persons' order are different(другой) entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different(другой) one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
 ## Chapter IV
-## Exercise 00 - Let’s create separated views for persons
+## Exercise 00 - Let’s create separated views for persons(Давайте создадим отдельные представления для персон)
 
 | Exercise 00: Let’s create separated views for persons |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -125,10 +128,11 @@ Persons' visit and persons' order are different entities and don't contain any c
 | Language                        | ANSI SQL                                                                                              |
 
 Please create 2 Database Views (with similar attributes like the original table) based on simple filtering of gender of persons. Set the corresponding names for the database views: `v_persons_female` and `v_persons_male`.
-
+>Создайте 2 представления базы данных (с похожими атрибутами, как у исходной таблицы) на основе простой фильтрации пола лиц. Задайте соответствующие имена для представлений базы данных: `v_persons_female` и `v_persons_male`.
+>теория https://translated.turbopages.org/proxy_u/en-ru.ru.1650019b-675ef6a7-2b33a928-74722d776562/https/www.geeksforgeeks.org/postgresql-managing-views/
 
 ## Chapter V
-## Exercise 01 - From parts to common view
+## Exercise 01 - From parts to common view(от частей к общему виду)
 
 | Exercise 01: From parts to common view|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -138,6 +142,7 @@ Please create 2 Database Views (with similar attributes like the original table)
 | Language                        | ANSI SQL                                                                                              |
 
 Please use 2 Database Views from Exercise #00 and write SQL to get female and male person names in one list. Please set the order by person name. The sample of data is presented below.
+>Используя 2 представления данных из упражнения#00 напишите SQL-скрипт который вернет имена мужчин и женщин в одном списке. Отсортируйте список по именам. Вид вывдоа представлен ниже. 
 
 | name |
 | ------ |
@@ -147,7 +152,7 @@ Please use 2 Database Views from Exercise #00 and write SQL to get female and ma
 
 
 ## Chapter VI
-## Exercise 02 - “Store” generated dates in one place
+## Exercise 02 - “Store” generated dates in one place("хранение" сгенерированных дат в одном месте)
 
 | Exercise 02: “Store” generated dates in one place|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -158,7 +163,7 @@ Please use 2 Database Views from Exercise #00 and write SQL to get female and ma
 | SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
 
 Please create a Database View (with name `v_generated_dates`) which should be “store” generated dates from 1st to 31th of January 2022 in DATE type. Don’t forget about order for the generated_date column.  
-
+> создайте представление (с именем `v_generated_dates`) которое должно сохранять сгенерированные данные с 1 по 31 января 2022 с типом DATE. Не забудьте отсортировать сгенерированные данные по дате. 
 | generated_date |
 | ------ |
 | 2022-01-01 |
@@ -167,7 +172,7 @@ Please create a Database View (with name `v_generated_dates`) which should be �
 
 
 ## Chapter VII
-## Exercise 03 - Find missing visit days with Database View
+## Exercise 03 - Find missing visit days with Database View(Найдите пропущенные дни посещений с помощью представлений)
 
 | Exercise 03: Find missing visit days with Database View |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -178,6 +183,7 @@ Please create a Database View (with name `v_generated_dates`) which should be �
 
 
 Please write a SQL statement which returns missing days for persons’ visits in January of 2022. Use `v_generated_dates` view for that task and sort the result by missing_date column. The sample of data is presented below.
+> Напишите SQL-скрипт который вернет пропущенные дни посещений в январе 2022. Используейте представление `v_generated_dates` для этой задачи и отсортируйте результат по пропущенной дате. Пример вывода представлен ниже 
 
 | missing_date |
 | ------ |
@@ -186,7 +192,7 @@ Please write a SQL statement which returns missing days for persons’ visits in
 | ... |
 
 ## Chapter VIII
-## Exercise 04 - Let’s find something from Set Theory
+## Exercise 04 - Let’s find something from Set Theory(Давайте найдем что-нибудь из теории множеств)
 
 
 | Exercise 04: Let’s find something from Set Theory |                                                                                                                          |
@@ -196,15 +202,18 @@ Please write a SQL statement which returns missing days for persons’ visits in
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which satisfies a formula `(R - S)∪(S - R)` .
+Please write a SQL statement which satisfies(удовлетворяет) a formula `(R - S)∪(S - R)` .
 Where R is the `person_visits` table with filter by 2nd of January 2022, S is also `person_visits` table but with a different filter by 6th of January 2022. Please make your calculations with sets under the `person_id` column and this column will be alone in a result. The result please sort by `person_id` column and your final SQL please present in `v_symmetric_union` (*) database view.
 
 (*) to be honest, the definition “symmetric union” doesn’t exist in Set Theory. This is the author's interpretation, the main idea is based on the existing rule of symmetric difference. 
 
+> Напишите SQL-запрос который удовлетворяет формуле `(R - S)∪(S - R)`.
+> Где R это `person_visits` с фильтром по 2 января 2022, S это также `person_visits` но с другим фильтром по 6 января 2022. Пожалуйста, сделайте ваше вычисление с множеством над `person_id` столбцом и этот столбец должен быть единственным в результате. Результат отсортируйте по `person_id` и ваш финальное SQL представлет в `v_symmetric_union`  (*) представлении
+> (*) Честно говоря, определения «симметричное объединение» в теории множеств не существует. Это интерпретация автора, основная идея основана на существующем правиле симметричной разности.
 
 
 ## Chapter IX
-## Exercise 05 - Let’s calculate a discount price for each person
+## Exercise 05 - Let’s calculate a discount price for each person(Давайте посчитаем цену скидки для каждой персоны)
 
 
 | Exercise 05: Let’s calculate a discount price for each person |                                                                                                                          |
@@ -216,6 +225,7 @@ Where R is the `person_visits` table with filter by 2nd of January 2022, S is al
 
 Please create a Database View `v_price_with_discount` that returns a person's orders with person names, pizza names, real price and calculated column `discount_price` (with applied 10% discount and satisfies formula `price - price*0.1`). The result please sort by person name and pizza name and make a round for `discount_price` column to integer type. Please take a look at a sample result below.
 
+>Создайте представление  `v_price_with_discount` которое возвращает заказы с именем, названием пицы, ценой и вычисляемый столбик  `discount_price`(с применением 10% скидки и высчитвываемом по формуле   `price - price*0.1`). Результат, пожалуйста, отсортируйте по имени и названию пиццы и округлите `discount_price` до целого типа. Пожалуйтса, обратите внимание на пример ниже. 
 
 | name |  pizza_name | price | discount_price |
 | ------ | ------ | ------ | ------ | 
