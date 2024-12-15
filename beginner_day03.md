@@ -237,6 +237,8 @@ Please find a union of pizzerias that have orders either from women or  from men
 | ------ | 
 | Papa Johns | 
 
+[D03_ex04](src/day03_ex04.sql)
+
 ## Chapter IX
 ## Exercise 05 - Visited but did not make any order
 
@@ -270,6 +272,8 @@ Please write a SQL statement which returns a list of pizzerias which Andrey visi
 | Language                        | ANSI SQL                                                                                              |
 
 Please find the same pizza names who have the same price, but from different pizzerias. Make sure that the result is ordered by pizza name. The sample of data is presented below. Please make sure your column names are corresponding column names below.
+
+> Найти несколько пиц названия которых имеют одинаковую стоимость но в разных пицериях. Убедитесь что результат отсортирован по названию пицц. Простоой вывод представлен ниже. Пожалуйста проверьте что названия столбцов такие же как ниже. 
 
 | pizza_name | pizzeria_name_1 | pizzeria_name_2 | price |
 | ------ | ------ | ------ | ------ |
