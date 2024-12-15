@@ -1,66 +1,75 @@
-# Day 04 - Piscine SQL
+# Day 03 - Piscine SQL
 
-## _Snapshots, virtual tables… What is going on?_
->Снимки, виртуальные таблицы... Что происходит?
+## _Continuing to JOIN and make change in data_
 
-Resume: Today you will see how to use a virtual view and physical snapshot of data
->Резюме: Сегодня вы увидите, как использовать виртуальное представление и физический снимок данных
+Resume: Today you will see how to change data based on DML language
 
 ## Contents
 
-1. [Chapter I](#chapter-i) [Preamble](#preamble)
+1. [Chapter I](#chapter-i) \
+    1.1. [Preamble](#preamble)
 2. [Chapter II](#chapter-ii) \
     2.1. [General Rules](#general-rules)
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 - Let’s create separated views for persons](#exercise-00-lets-create-separated-views-for-persons)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 - From parts to common view](#exercise-01-from-parts-to-common-view)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 - “Store” generated dates in one place](#exercise-02-store-generated-dates-in-one-place)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 - Find missing visit days with Database View](#exercise-03-find-missing-visit-days-with-database-view)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 - Let’s find something from Set Theory](#exercise-04-lets-find-something-from-set-theory)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 - Let’s calculate a discount price for each person](#exercise-05-lets-calculate-a-discount-price-for-each-person)
+4. [Chapter IV](#chapter-iv) [Exercise 00 - Let’s find appropriate prices for Kate](#exercise-00-lets-find-appropriate-prices-for-kate)  
+5. [Chapter V](#chapter-v) [Exercise 01 - Let’s find forgotten menus](#exercise-01-lets-find-forgotten-menus)  
+6. [Chapter VI](#chapter-vi) [Exercise 02 - Let’s find forgotten pizza and pizzerias](#exercise-02-lets-find-forgotten-pizza-and-pizzerias)  
+7. [Chapter VII](#chapter-vii) [Exercise 03 - Let’s compare visits](#exercise-03-lets-compare-visits)  
+8. [Chapter VIII](#chapter-viii) [Exercise 04 - Let’s compare orders](#exercise-04-lets-compare-orders)
+9. [Chapter IX](#chapter-ix) [Exercise 05 - Visited but did not make any order (*Посетили но не сделали ни один заказ*)](#exercise-05-visited-but-did-not-make-any-order)
 10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 - Materialization from virtualization](#exercise-06-materialization-from-virtualization)
+    10.1. [Exercise 06 - Find price-similarity pizzas](#exercise-06-find-price-similarity-pizzas)
 11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
+    11.1. [Exercise 07 - Let’s cook a new type of pizza](#exercise-07-lets-cook-a-new-type-of-pizza)
 12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
+    12.1. [Exercise 08 - Let’s cook a new type of pizza with more dynamics](#exercise-08-lets-cook-a-new-type-of-pizza-with-more-dynamics)
+13. [Chapter XIII](#chapter-xiii) \
+    13.1. [Exercise 09 - New pizza means new visits](#exercise-09-new-pizza-means-new-visits)
+14. [Chapter XIV](#chapter-xiv) \
+    14.1. [Exercise 10 - New visits means new orders](#exercise-10-new-visits-means-new-orders)
+15. [Chapter XV](#chapter-xv) \
+    15.1. [Exercise 11 - “Improve” a price for clients](#exercise-11-improve-a-price-for-clients)    
+16. [Chapter XVI](#chapter-xvi) \
+    16.1. [Exercise 12 - New orders are coming!](#exercise-12-new-orders-are-coming)
+17. [Chapter XVII](#chapter-xvii) \
+    17.1. [Exercise 13 - Money back to our customers](#exercise-13-money-back-to-our-customers)
 
 ## Chapter I
 ## Preamble
 
-![D04_02](misc/images/D04_02.png)
+![D03_01](misc/images/D03_01.png)
 
-Why do we need virtual tables and materialized views in databases? Databases are just tables, aren't they? 
-No, actually not. Databases are similar for object-oriented language. Just recall, you have a lot of abstraction in Java (I mean Java Interfaces). We need abstraction to achieve “Clean Architecture” and change objects with minimal effect on dependencies (sometimes it’s working :-). 
-> Зачем нам нужны виртуальные таблицы и материализованные представления в базах данных? Базы данных — это просто таблицы, не так ли?
-Нет, на самом деле нет. Базы данных похожи на объектно-ориентированные языки. Просто вспомните, в Java много абстракций (я имею в виду интерфейсы Java). Нам нужна абстракция, чтобы достичь «Чистой архитектуры» и изменять объекты с минимальным влиянием на зависимости (иногда это работает :-).
+Relation Theory is a mathematical foundation for modern(современный) Relational Databases. Every databases’ aspect has corresponding mathematical and logical justification(обоснование). Including INSERT / UPDATE / DELETE operators. (Dr. Edgar Frank Codd is on the picture).
 
-Moreover, there is a specific architectures’ pattern in the Relational Database with the name ANSI/SPARK.
-This pattern splits objects on three levels: 
-- external level
-- conceptual level
-- internal level
+> Реляционная теория это математическая основа для соверменных реляционной базы данных. Любой аспект базы данных имеет соответсвующую математичесое и логическое обоснование. Включая операторы вставки / обновления / удаления.  ( доктор Эдгар Франк Кодд на снимке) 
 
-Therefore we can say that Virtual Tables and Materialized Views are physical interfaces between tables with data and user / application.
-So, what is the difference then between 2 objects? The main difference is in the “freshness of data”. Below , you can see behaviors of these objects in graphical representation.
+How the INSERT operator works from a mathematical point of view.
 
 |  |  |
 | ------ | ------ |
-| View is a continuous object with the same data like in the underlying table(s), that are used to create this view. Other words, if we select data from view, view reroutes our query to underlying objects and then returns results for us. | ![D04_03](misc/images/D04_03.png) |
-| ![D04_04](misc/images/D04_04.png) | Materialized View is a discrete object. Other words, we need to wait when the Materialized View will be refreshed based on an “event trigger” (for example, time schedule). This object always is behind actual data in underlying tables. |
+|`INSERT rel RELATION {TUPLE {A INTEGER(4),B INTEGER(4),C STRING ('Hello') }};` | You can use mathematical INSERT statements and integrate “tuple” construction to convert an incoming data to row. |
+| From the other side, you can use explicit assignment with the UNION operator. | `rel:=rel UNION RELATION {TUPLE {A INTEGER(4), B INTEGER (7), C STRING ('Hello')}};` |
 
-Also, there are “a few” additional differences between View and Materialized View.
-- Virtual Table can work with `INSERT/UPDATE/DELETE` traffic but with some restrictions. 
-- Virtual Tables can have “Instead Of” Triggers to make a better control of incoming `INSERT/UPDATE/DELETE` traffic.
-- Materialized View is ReadOnly object for `INSERT/UPDATE/DELETE` traffic
-- Materialized Views can have user defined indexes on columns to speed up queries
+What’s about the DELETE statement?
+
+|  |  |
+| ------ | ------ |
+|`DELETE rel WHERE A = 1;` | If you want to delete a row for A = 1, you can do it in a direct way. |
+| ... or by using a new assignment without key A = 1 | `rel:=rel WHERE NOT (A = 1);` |
+
+... and finally UPDATE statement. Also there are 2 cases.
+
+|  |  |
+| ------ | ------ |
+|`UPDATE rel WHERE A = 1 {B:= 23*A, C:='String #4'};` | Update statement from mathematical point of view |
+| New assignment for relation variable rel based on CTE and working with Sets | `rel:=WITH (rel WHERE A = 1) AS T1, (EXTEND T1 ADD (23*A AS NEW_B, 'String #4' AS NEW_C)) AS T2, T2 {ALL BUT B,C} AS T3, (T3 RENAME (NEW _B AS B, NEW _C AS C)) AS T4: (S MINUS T1) UNION T4;` |
+
+The last case with UPDATE statement is really interesting, because in other words you add a new tuple and after that make a MINUS of the old row. The same behavior in physical implementation! Actually, `UPDATE = DELETE + INSERT` and there is a special term “Tombstone” status for a particular deleted/updated row.  Then if you have a lot of Tombstones then you have a bad TPS metric and you need to control your dead data!
+
+![D03_02](misc/images/D03_02.png)
+
+Let’s make a cheese of our data! :-)
 
 
 ## Chapter II
@@ -82,7 +91,7 @@ Also, there are “a few” additional differences between View and Materialized
 ## Rules of the day
 
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
+- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
 - Please take a look at the Logical View of our Database Model. 
 
@@ -115,170 +124,293 @@ Also, there are “a few” additional differences between View and Materialized
 - field menu_id - foreign key to menu
 - field order_date - date (for example 2022-01-01) of person order 
 
-Persons' visit and persons' order are different(другой) entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different(другой) one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
 ## Chapter IV
-## Exercise 00 - Let’s create separated views for persons(Давайте создадим отдельные представления для персон)
+## Exercise 00 - Let’s find appropriate(Подходящий) prices for Kate
 
-| Exercise 00: Let’s create separated views for persons |                                                                                                                          |
+| Exercise 00: Let’s find appropriate prices for Kate |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex00                                                                                                                     |
-| Files to turn-in                      | `day04_ex00.sql`                                                                                 |
+| Files to turn-in                      | `day03_ex00.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please create 2 Database Views (with similar attributes like the original table) based on simple filtering of gender of persons. Set the corresponding names for the database views: `v_persons_female` and `v_persons_male`.
->Создайте 2 представления базы данных (с похожими атрибутами, как у исходной таблицы) на основе простой фильтрации пола лиц. Задайте соответствующие имена для представлений базы данных: `v_persons_female` и `v_persons_male`.
->теория https://translated.turbopages.org/proxy_u/en-ru.ru.1650019b-675ef6a7-2b33a928-74722d776562/https/www.geeksforgeeks.org/postgresql-managing-views/
+Please write a SQL statement which returns a list of pizza names, pizza prices, pizzerias names and dates of visit for Kate and for prices in range from 800 to 1000 rubles. Please sort by pizza, price and pizzeria names. Take a look at the sample of data below.
 
-## Chapter V
-## Exercise 01 - From parts to common view(от частей к общему виду)
+> вернуть список наименование пиццы, цена, название пиццерии и в дату визита Кати и цена пиццы от 800 до 1000. Отсоритируйте по названию цены и названию пиццерии. Посмотрите на пример данных ниже
+> В дни когда Катя посещала пиццерию, вывести список пицц, их цену и названия пиццерий с ценой от 800 до 1000. Результат должен быть отсортирован сначала по названию пиццы потом по цене и затем по названию пиццерий. Ниже представлен вывод
 
-| Exercise 01: From parts to common view|                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex01                                                                                                                     |
-| Files to turn-in                      | `day04_ex01.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
-Please use 2 Database Views from Exercise #00 and write SQL to get female and male person names in one list. Please set the order by person name. The sample of data is presented below.
->Используя 2 представления данных из упражнения#00 напишите SQL-скрипт который вернет имена мужчин и женщин в одном списке. Отсортируйте список по именам. Вид вывдоа представлен ниже. 
-
-| name |
-| ------ |
-| Andrey |
-| Anna |
-| ... |
-
-
-## Chapter VI
-## Exercise 02 - “Store” generated dates in one place("хранение" сгенерированных дат в одном месте)
-
-| Exercise 02: “Store” generated dates in one place|                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex02                                                                                                                     |
-| Files to turn-in                      | `day04_ex02.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
-
-Please create a Database View (with name `v_generated_dates`) which should be “store” generated dates from 1st to 31th of January 2022 in DATE type. Don’t forget about order for the generated_date column.  
-> создайте представление (с именем `v_generated_dates`) которое должно сохранять сгенерированные данные с 1 по 31 января 2022 с типом DATE. Не забудьте отсортировать сгенерированные данные по дате. 
-| generated_date |
-| ------ |
-| 2022-01-01 |
-| 2022-01-02 |
-| ... |
-
-
-## Chapter VII
-## Exercise 03 - Find missing visit days with Database View(Найдите пропущенные дни посещений с помощью представлений)
-
-| Exercise 03: Find missing visit days with Database View |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex03                                                                                                                     |
-| Files to turn-in                      | `day04_ex03.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
-
-Please write a SQL statement which returns missing days for persons’ visits in January of 2022. Use `v_generated_dates` view for that task and sort the result by missing_date column. The sample of data is presented below.
-> Напишите SQL-скрипт который вернет пропущенные дни посещений в январе 2022. Используейте представление `v_generated_dates` для этой задачи и отсортируйте результат по пропущенной дате. Пример вывода представлен ниже 
-
-| missing_date |
-| ------ |
-| 2022-01-11 |
-| 2022-01-12 |
-| ... |
-
-## Chapter VIII
-## Exercise 04 - Let’s find something from Set Theory(Давайте найдем что-нибудь из теории множеств)
-
-
-| Exercise 04: Let’s find something from Set Theory |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex04                                                                                                                     |
-| Files to turn-in                      | `day04_ex04.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
-Please write a SQL statement which satisfies(удовлетворяет) a formula `(R - S)∪(S - R)` .
-Where R is the `person_visits` table with filter by 2nd of January 2022, S is also `person_visits` table but with a different filter by 6th of January 2022. Please make your calculations with sets under the `person_id` column and this column will be alone in a result. The result please sort by `person_id` column and your final SQL please present in `v_symmetric_union` (*) database view.
-
-(*) to be honest, the definition “symmetric union” doesn’t exist in Set Theory. This is the author's interpretation, the main idea is based on the existing rule of symmetric difference. 
-
-> Напишите SQL-запрос который удовлетворяет формуле `(R - S)∪(S - R)`.
-> Где R это `person_visits` с фильтром по 2 января 2022, S это также `person_visits` но с другим фильтром по 6 января 2022. Пожалуйста, сделайте ваше вычисление с множеством над `person_id` столбцом и этот столбец должен быть единственным в результате. Результат отсортируйте по `person_id` и ваш финальное SQL представлет в `v_symmetric_union`  (*) представлении
-> (*) Честно говоря, определения «симметричное объединение» в теории множеств не существует. Это интерпретация автора, основная идея основана на существующем правиле симметричной разности.
-
-
-## Chapter IX
-## Exercise 05 - Let’s calculate a discount price for each person(Давайте посчитаем цену скидки для каждой персоны)
-
-
-| Exercise 05: Let’s calculate a discount price for each person |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex05                                                                                                                     |
-| Files to turn-in                      | `day04_ex05.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
-Please create a Database View `v_price_with_discount` that returns a person's orders with person names, pizza names, real price and calculated column `discount_price` (with applied 10% discount and satisfies formula `price - price*0.1`). The result please sort by person name and pizza name and make a round for `discount_price` column to integer type. Please take a look at a sample result below.
-
->Создайте представление  `v_price_with_discount` которое возвращает заказы с именем, названием пицы, ценой и вычисляемый столбик  `discount_price`(с применением 10% скидки и высчитвываемом по формуле   `price - price*0.1`). Результат, пожалуйста, отсортируйте по имени и названию пиццы и округлите `discount_price` до целого типа. Пожалуйтса, обратите внимание на пример ниже. 
-
-| name |  pizza_name | price | discount_price |
-| ------ | ------ | ------ | ------ | 
-| Andrey | cheese pizza | 800 | 720 | 
-| Andrey | mushroom pizza | 1100 | 990 |
+| pizza_name | price | pizzeria_name | visit_date |
+| ------ | ------ | ------ | ------ |
+| cheese pizza | 950 | DinoPizza | 2022-01-04 |
+| pepperoni pizza | 800 | Best Pizza | 2022-01-03 |
+| pepperoni pizza | 800 | DinoPizza | 2022-01-04 |
 | ... | ... | ... | ... |
 
+[D03_ex00](src/day03_ex00.sql)
+
+## Chapter V
+## Exercise 01 - Let’s find forgotten menus
+
+| Exercise 01: Let’s find forgotten menus|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex01                                                                                                                     |
+| Files to turn-in                      | `day03_ex01.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Construction                        | any type of `JOINs`                                                                                              |
+
+Please find all menu identifiers which are not ordered by anyone. The result should be sorted by identifiers. The sample of output data is presented below.
+
+> найдите все идентификаторы в меню? которые никто не заказывал. Результат должен быть отсортирован. Простой вывод представлен ниже. 
+ 
+| menu_id |
+| ------ |
+| 5 |
+| 10 |
+| ... |
+
+[D03_ex01](src/day03_ex01.sql)
+
+## Chapter VI
+## Exercise 02 - Let’s find forgotten pizza and pizzerias
+
+| Exercise 02: Let’s find forgotten pizza and pizzerias|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex02                                                                                                                     |
+| Files to turn-in                      | `day03_ex02.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please use SQL statement from Exercise #01 and show pizza names from pizzeria which are not ordered by anyone, including corresponding prices also. The result should be sorted by pizza name and price. The sample of output data is presented below.
+
+> Используя запрос из упраженния 1 и покажите названия пицц из пиццерий которые никто никогда не заказывал, включая соответвующую цену. Результат должен быть отсортирован по названию пиццы и цене. Простой вывод данных представлен ниже.
+
+| pizza_name | price | pizzeria_name |
+| ------ | ------ | ------ |
+| cheese pizza | 700 | Papa Johns |
+| cheese pizza | 780 | DoDo Pizza |
+| ... | ... | ... |
+
+[D03_ex02](src/day03_ex02.sql)
+
+## Chapter VII
+## Exercise 03 - Let’s compare visits
+
+| Exercise 03: Let’s compare visits |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex03                                                                                                                     |
+| Files to turn-in                      | `day03_ex03.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please find pizzerias that have been visited more often(часто) by women or by men. For any SQL operators with sets save duplicates (UNION ALL, EXCEPT ALL, INTERSECT ALL constructions). Please sort a result by the pizzeria name. The data sample is provided below.
+
+> найти пиццерии которые часто посещали мужчины или женщины. для любого оператора множестово вывода должно сохранять дубликаты (UNION ALL, EXCEPT ALL, INTERSECT ALL constructions). Результат отсортируйте по назанию пиццерий. пример вывода : 
+
+| pizzeria_name | 
+| ------ | 
+| Best Pizza | 
+| Dominos |
+| ... |
+
+[D03_ex03](src/day03_ex03.sql)
+
+## Chapter VIII
+## Exercise 04 - Let’s compare orders
+
+
+| Exercise 04: Let’s compare orders |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex04                                                                                                                     |
+| Files to turn-in                      | `day03_ex04.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please find a union of pizzerias that have orders either from women or  from men. Other words, you should find a set of pizzerias names have been ordered by females only and make "UNION" operation with set of pizzerias names have been ordered by males only. Please be aware(осведомленный) with word “only” for both genders. For any SQL operators with sets don’t save duplicates (`UNION`, `EXCEPT`, `INTERSECT`).  Please sort a result by the pizzeria name. The data sample is provided below.
+
+> найти пиццерий в которыйх были заказы как мужчин так и женщин. Другими словами, вам надо найти множество названий пиццерий в который заказывали только женщины и обеденить с множеством пиццерий где заказывали только мужчины. Пожалуйста убедитесь со словом "только" для обеих полов. Для любых операторова SQL в множестве не должно быть дублей  (`UNION`, `EXCEPT`, `INTERSECT`). Результат отсортируйте. Пример  вывода ниже :
+
+| pizzeria_name | 
+| ------ | 
+| Papa Johns | 
+
+[D03_ex04](src/day03_ex04.sql)
+
+## Chapter IX
+## Exercise 05 - Visited but did not make any order
+
+
+| Exercise 05: Visited but did not make any order |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex05                                                                                                                     |
+| Files to turn-in                      | `day03_ex05.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please write a SQL statement which returns a list of pizzerias which Andrey visited but did not make any orders. Please order by the pizzeria name. The sample of data is provided below.
+
+> Вернуть список пиццерй с визитом Андрея но в которых не было заказано. Сортируйте по названию. пример вывода ниже :
+
+| pizzeria_name | 
+| ------ | 
+| Pizza Hut | 
 
 
 
 ## Chapter X
-## Exercise 06 - Materialization from virtualization
+## Exercise 06 - Find price-similarity pizzas
 
 
-| Exercise 06: Materialization from virtualization |                                                                                                                          |
+| Exercise 06: Find price-similarity pizzas |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex06                                                                                                                     |
-| Files to turn-in                      | `day04_ex06.sql`                                                                                 |
+| Files to turn-in                      | `day03_ex06.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please create a Materialized View `mv_dmitriy_visits_and_eats` (with data included) based on SQL statement that finds the name of pizzeria Dmitriy visited on January 8, 2022 and could eat pizzas for less than 800 rubles (this SQL you can find out at Day #02 Exercise #07). 
+Please find the same pizza names who have the same price, but from different pizzerias. Make sure that the result is ordered by pizza name. The sample of data is presented below. Please make sure your column names are corresponding column names below.
 
-To check yourself you can write SQL to Materialized View `mv_dmitriy_visits_and_eats` and compare results with your previous query.
+> Найти несколько пиц названия которых имеют одинаковую стоимость но в разных пицериях. Убедитесь что результат отсортирован по названию пицц. Простоой вывод представлен ниже. Пожалуйста проверьте что названия столбцов такие же как ниже. 
 
+| pizza_name | pizzeria_name_1 | pizzeria_name_2 | price |
+| ------ | ------ | ------ | ------ |
+| cheese pizza | Best Pizza | Papa Johns | 700 |
+| ... | ... | ... | ... |
 
 ## Chapter XI
-## Exercise 07 - Refresh our state
+## Exercise 07 - Let’s cook a new type of pizza
 
 
-| Exercise 07: Refresh our state|                                                                                                                          |
+| Exercise 07: Let’s cook a new type of pizza |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex07                                                                                                                     |
-| Files to turn-in                      | `day04_ex07.sql`                                                                                 |
+| Files to turn-in                      | `day03_ex07.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please register a new pizza with name “greek pizza” (use id = 19) with price 800 rubles in “Dominos” restaurant (pizzeria_id = 2).
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section.
+
+
+## Chapter XII
+## Exercise 08 - Let’s cook a new type of pizza with more dynamics
+
+
+| Exercise 08: Let’s cook a new type of pizza with more dynamics |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex08                                                                                                                     |
+| Files to turn-in                      | `day03_ex08.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |           
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria  
+>Не используйте прямые цифры для идентификаторов первичного ключа и меню|       
+
+Please register a new pizza with name “sicilian pizza” (whose id should be calculated by formula is “maximum id value + 1”) with a price of 900 rubles in “Dominos” restaurant (please use internal query to get identifier of pizzeria).
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercise 07.
+
+> Пожалуйста, зарегистрируйте новую пиццу с названием “сицилийская пицца” (идентификатор которой должен быть рассчитан по формуле “максимальное значение идентификатора + 1”) стоимостью 900 рублей в ресторане “Доминос” (пожалуйста, используйте внутренний запрос для получения идентификатора пиццерии).
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+## Chapter XIII
+## Exercise 09 - New pizza means new visits
+
+
+| Exercise 09: New pizza means new visits |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex09                                                                                                                     |
+| Files to turn-in                      | `day03_ex09.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 | **Denied**                               |                                                                                                                          |
-| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key, person and pizzeria                                                                                               |
+| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria                                                                                               |       
 
-Let's refresh data in our Materialized View `mv_dmitriy_visits_and_eats` from exercise #06. Before this action, please generate one more Dmitriy visit that satisfies the SQL clause of Materialized View except pizzeria that we can see in a result from exercise #06.
-After adding a new visit please refresh a state of data for `mv_dmitriy_visits_and_eats`.
+Please register new visits into Dominos restaurant from Denis and Irina on 24th of February 2022.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 and 08..
 
-## Chapter XII
-## Exercise 08 - Just clear our database
+> ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
 
 
-| Exercise 08: Just clear our database |                                                                                                                          |
+
+## Chapter XIV
+## Exercise 10 - New visits means new orders
+
+
+| Exercise 10: New visits means new orders |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex08                                                                                                                     |
-| Files to turn-in                      | `day04_ex08.sql`                                                                                 |
+| Turn-in directory                     | ex10                                                                                                                     |
+| Files to turn-in                      | `day03_ex10.sql`                                                                                 |
 | **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |           
+| Language                        | ANSI SQL                                                                                              |
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria                                                                                               |     
 
-After all our exercises were born a few Virtual Tables and one Materialized View. Let’s drop them!
+
+Please register new orders from Denis and Irina on 24th of February 2022 for the new menu with “sicilian pizza”.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 and 09.
+
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+
+
+## Chapter XV
+## Exercise 11 - “Improve” a price for clients
+
+
+| Exercise 11: “Improve” a price for clients|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex11                                                                                                                     |
+| Files to turn-in                      | `day03_ex11.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+    
+Please change the price for “greek pizza” on -10% from the current value.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 and 10.
+
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+
+
+## Chapter XVI
+## Exercise 12 - New orders are coming!
+
+
+| Exercise 12: New orders are coming!|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex12                                                                                                                     |
+| Files to turn-in                      | `day03_ex12.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+| SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
+| SQL Syntax Patten                        | Please use “insert-select” pattern
+`INSERT INTO ... SELECT ...`|
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Patten                        | - Don’t use direct numbers for identifiers of Primary Key, and menu 
+- Don’t use window functions like `ROW_NUMBER( )`
+- Don’t use atomic `INSERT` statements |
+
+Please register new orders from all persons for “greek pizza” on 25th of February 2022.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 and 11.
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+
+
+## Chapter XVII
+## Exercise 13 - Money back to our customers
+
+
+| Exercise 13: Money back to our customers|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex13                                                                                                                     |
+| Files to turn-in                      | `day03_ex13.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+    
+Please write 2 SQL (DML) statements that delete all new orders from exercise #12 based on order date. Then delete “greek pizza” from the menu. 
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 , 11, 12 and 13.
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
 
 
