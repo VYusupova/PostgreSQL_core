@@ -13,24 +13,15 @@ Resume: Today you will see how to use a virtual view and physical snapshot of da
     2.1. [General Rules](#general-rules)
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 - Let’s create separated views for persons](#exercise-00-lets-create-separated-views-for-persons)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 - From parts to common view](#exercise-01-from-parts-to-common-view)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 - “Store” generated dates in one place](#exercise-02-store-generated-dates-in-one-place)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 - Find missing visit days with Database View](#exercise-03-find-missing-visit-days-with-database-view)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 - Let’s find something from Set Theory](#exercise-04-lets-find-something-from-set-theory)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 - Let’s calculate a discount price for each person](#exercise-05-lets-calculate-a-discount-price-for-each-person)
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 - Materialization from virtualization](#exercise-06-materialization-from-virtualization)
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
+4. [Chapter IV](#chapter-iv)[Exercise 00 - Let’s create separated views for persons](#exercise-00-lets-create-separated-views-for-persons)  
+5. [Chapter V](#chapter-v)[Exercise 01 - From parts to common view](#exercise-01-from-parts-to-common-view)  
+6. [Chapter VI](#chapter-vi) [Exercise 02 - “Store” generated dates in one place](#exercise-02-store-generated-dates-in-one-place)  
+7. [Chapter VII](#chapter-vii) [Exercise 03 - Find missing visit days with Database View](#exercise-03-find-missing-visit-days-with-database-view)  
+8. [Chapter VIII](#chapter-viii) [Exercise 04 - Let’s find something from Set Theory](#exercise-04-lets-find-something-from-set-theory)
+9. [Chapter IX](#chapter-ix) [Exercise 05 - Let’s calculate a discount price for each person](#exercise-05-lets-calculate-a-discount-price-for-each-person)
+10. [Chapter X](#chapter-x) [Exercise 06 - Materialization from virtualization](#exercise-06-materialization-from-virtualization)
+11. [Chapter XI](#chapter-xi)[Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
+12. [Chapter XII](#chapter-xii) [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
 
 ## Chapter I
 ## Preamble
@@ -131,6 +122,8 @@ Please create 2 Database Views (with similar attributes like the original table)
 >Создайте 2 представления базы данных (с похожими атрибутами, как у исходной таблицы) на основе простой фильтрации пола лиц. Задайте соответствующие имена для представлений базы данных: `v_persons_female` и `v_persons_male`.
 >теория https://translated.turbopages.org/proxy_u/en-ru.ru.1650019b-675ef6a7-2b33a928-74722d776562/https/www.geeksforgeeks.org/postgresql-managing-views/
 
+[D04_ex00](src/day04_ex00.sql)
+
 ## Chapter V
 ## Exercise 01 - From parts to common view(от частей к общему виду)
 
@@ -150,6 +143,7 @@ Please use 2 Database Views from Exercise #00 and write SQL to get female and ma
 | Anna |
 | ... |
 
+[D04_ex01](src/day04_ex01.sql)
 
 ## Chapter VI
 ## Exercise 02 - “Store” generated dates in one place("хранение" сгенерированных дат в одном месте)
@@ -163,13 +157,15 @@ Please use 2 Database Views from Exercise #00 and write SQL to get female and ma
 | SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
 
 Please create a Database View (with name `v_generated_dates`) which should be “store” generated dates from 1st to 31th of January 2022 in DATE type. Don’t forget about order for the generated_date column.  
-> создайте представление (с именем `v_generated_dates`) которое должно сохранять сгенерированные данные с 1 по 31 января 2022 с типом DATE. Не забудьте отсортировать сгенерированные данные по дате. 
+> создайте представление (с именем `v_generated_dates`) которое должно сохранять сгенерированные данные с 1 по 31 января 2022 с типом DATE. Не забудьте отсортировать сгенерированные данные по дате.
+
 | generated_date |
 | ------ |
 | 2022-01-01 |
 | 2022-01-02 |
 | ... |
 
+[D04_ex02](src/day04_ex02.sql)
 
 ## Chapter VII
 ## Exercise 03 - Find missing visit days with Database View(Найдите пропущенные дни посещений с помощью представлений)
