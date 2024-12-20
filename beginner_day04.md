@@ -8,9 +8,8 @@ Resume: Today you will see how to use a virtual view and physical snapshot of da
 
 ## Contents
 
-1. [Chapter I](#chapter-i) [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
+1. [Chapter I](#chapter-i) \ [Preamble]
+2. [Chapter II](#chapter-ii) \ [General Rules]
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
 4. [Chapter IV](#chapter-iv)[Exercise 00 - Let’s create separated views for persons](#exercise-00-lets-create-separated-views-for-persons)  
@@ -23,10 +22,10 @@ Resume: Today you will see how to use a virtual view and physical snapshot of da
 11. [Chapter XI](#chapter-xi)[Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
 12. [Chapter XII](#chapter-xii) [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
 
-## Chapter I Preamble
+## Chapter I 
 <details>
-
-<summary>развернуть</summary>
+<summary>Preamble</summary>
+    
 ![D04_02](misc/images/D04_02.png)
 
 Why do we need virtual tables and materialized views in databases? Databases are just tables, aren't they? 
@@ -55,10 +54,9 @@ Also, there are “a few” additional differences between View and Materialized
 - Materialized Views can have user defined indexes on columns to speed up queries
   </details>
 
-## Chapter II General Rules
+## Chapter II 
 <details>
-
-<summary>развернуть</summary>
+<summary>General Rules</summary>
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
   > Используйте эту страницу как единственную ссылку. Не слушайте никаких слухов и домыслов о том, как подготовить свое решение.  
