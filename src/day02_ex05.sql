@@ -1,1 +1,5 @@
-select name from person where age > 25 order by name
+SELECT name
+  FROM person
+ WHERE age > 25
+   AND gender = 'female'
+ORDER BY name
