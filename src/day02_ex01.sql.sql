@@ -5,4 +5,4 @@
            ) AS pv1
 RIGHT JOIN person_visits pv2 ON pv1.visit_date = pv2.visit_date
      WHERE pv1.visit_date IS NULL
-  ORDER BY pv2.visit_date
+  ORDER BY pv2.visit_date ASC
