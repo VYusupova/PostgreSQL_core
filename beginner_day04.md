@@ -6,23 +6,25 @@
 Resume: Today you will see how to use a virtual view and physical snapshot of data
 >Резюме: Сегодня вы увидите, как использовать виртуальное представление и физический снимок данных
 
-## Contents
-
+<details>
+<summary>Contents</summary>
+    
 1. [Chapter I](#chapter-i) \ [Preamble]
 2. [Chapter II](#chapter-ii) \ [General Rules]
 3. [Chapter III](#chapter-iii) \
     3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv)[Exercise 00 - Let’s create separated views for persons](#exercise-00-lets-create-separated-views-for-persons)  
-5. [Chapter V](#chapter-v)[Exercise 01 - From parts to common view](#exercise-01-from-parts-to-common-view)  
-6. [Chapter VI](#chapter-vi) [Exercise 02 - “Store” generated dates in one place](#exercise-02-store-generated-dates-in-one-place)  
-7. [Chapter VII](#chapter-vii) [Exercise 03 - Find missing visit days with Database View](#exercise-03-find-missing-visit-days-with-database-view)  
-8. [Chapter VIII](#chapter-viii) [Exercise 04 - Let’s find something from Set Theory](#exercise-04-lets-find-something-from-set-theory)
-9. [Chapter IX](#chapter-ix) [Exercise 05 - Let’s calculate a discount price for each person](#exercise-05-lets-calculate-a-discount-price-for-each-person)
-10. [Chapter X](#chapter-x) [Exercise 06 - Materialization from virtualization](#exercise-06-materialization-from-virtualization)
-11. [Chapter XI](#chapter-xi)[Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
-12. [Chapter XII](#chapter-xii) [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
+4. [Exercise 00 - Let’s create separated views for persons](#exercise-00-lets-create-separated-views-for-persons)  
+5. [Exercise 01 - From parts to common view](#exercise-01-from-parts-to-common-view)  
+6. [Exercise 02 - “Store” generated dates in one place](#exercise-02-store-generated-dates-in-one-place)  
+7.  [Exercise 03 - Find missing visit days with Database View](#exercise-03-find-missing-visit-days-with-database-view)  
+8. [Exercise 04 - Let’s find something from Set Theory](#exercise-04-lets-find-something-from-set-theory)
+9.  [Exercise 05 - Let’s calculate a discount price for each person](#exercise-05-lets-calculate-a-discount-price-for-each-person)
+10. [Exercise 06 - Materialization from virtualization](#exercise-06-materialization-from-virtualization)
+11.[Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
+12.  [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
 
-## Chapter I 
+</details>
+
 <details>
 <summary>Preamble</summary>
     
@@ -54,7 +56,6 @@ Also, there are “a few” additional differences between View and Materialized
 - Materialized Views can have user defined indexes on columns to speed up queries
   </details>
 
-## Chapter II 
 <details>
 <summary>General Rules</summary>
 
@@ -72,10 +73,8 @@ Also, there are “a few” additional differences between View and Materialized
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 </details>
 
-## Chapter III Rules of the day
 <details>
-
-<summary>развернуть</summary>
+<summary>Rules of the day</summary>
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
@@ -113,9 +112,9 @@ Also, there are “a few” additional differences between View and Materialized
 Persons' visit and persons' order are different(другой) entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different(другой) one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 </details>
 
-## Chapter IV Exercise 00 - Let’s create separated views for persons(Давайте создадим отдельные представления для персон)
+
 <details>
-<summary>развернуть</summary>
+<summary>Exercise 00 - Let’s create separated views for persons(Давайте создадим отдельные представления для персон)</summary>
 
 | Exercise 00: Let’s create separated views for persons |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -124,16 +123,16 @@ Persons' visit and persons' order are different(другой) entities and don't
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please create 2 Database Views (with similar attributes like the original table) based on simple filtering of gender of persons. Set the corresponding names for the database views: `v_persons_female` and `v_persons_male`.
+Please create 2 Database Views (with similar attributes like the original table) based on simple filtering of gender of persons. Set the corresponding(соответствующий) names for the database views: `v_persons_female` and `v_persons_male`.
 >Создайте 2 представления базы данных (с похожими атрибутами, как у исходной таблицы) на основе простой фильтрации пола лиц. Задайте соответствующие имена для представлений базы данных: `v_persons_female` и `v_persons_male`.
->теория https://translated.turbopages.org/proxy_u/en-ru.ru.1650019b-675ef6a7-2b33a928-74722d776562/https/www.geeksforgeeks.org/postgresql-managing-views/
+
+>**"теория"** https://translated.turbopages.org/proxy_u/en-ru.ru.1650019b-675ef6a7-2b33a928-74722d776562/https/www.geeksforgeeks.org/postgresql-managing-views/
 
 [D04_ex00](src/day04_ex00.sql)
 </details>
 
-## Chapter V Exercise 01 - From parts to common view(от частей к общему виду)
 <details>
-<summary>развернуть</summary>
+<summary>Exercise 01 - From parts to common view(от частей к общему виду)</summary>
     
 | Exercise 01: From parts to common view|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -154,9 +153,10 @@ Please use 2 Database Views from Exercise #00 and write SQL to get female and ma
 [D04_ex01](src/day04_ex01.sql)
 </details>
 
-## Chapter VI Exercise 02 - “Store” generated dates in one place("хранение" сгенерированных дат в одном месте)
+
 <details>
-<summary>развернуть</summary>
+<summary>Exercise 02 - “Store” generated dates in one place("хранение" сгенерированных дат в одном месте)</summary>
+    
 | Exercise 02: “Store” generated dates in one place|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex02                                                                                                                     |
@@ -177,9 +177,8 @@ Please create a Database View (with name `v_generated_dates`) which should be �
 [D04_ex02](src/day04_ex02.sql)
 </details>
 
-## Chapter VII Exercise 03 - Find missing visit days with Database View(Найдите пропущенные дни посещений с помощью представлений)
 <details>
-<summary>развернуть</summary>
+<summary>Exercise 03 - Find missing visit days with Database View(Найдите пропущенные дни посещений с помощью представлений)</summary>
 
 | Exercise 03: Find missing visit days with Database View |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -201,10 +200,9 @@ Please write a SQL statement which returns missing days for persons’ visits in
 [D04_ex03](src/day04_ex03.sql)
 </details>
 
-## Chapter VIII Exercise 04 - Let’s find something from Set Theory(Давайте найдем что-нибудь из теории множеств)
-<details>
 
-<summary>развернуть</summary>
+<details>
+<summary>Exercise 04 - Let’s find something from Set Theory(Давайте найдем что-нибудь из теории множеств)</summary>
 
 | Exercise 04: Let’s find something from Set Theory |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -225,11 +223,8 @@ Where R is the `person_visits` table with filter by 2nd of January 2022, S is al
 [D04_ex04](src/day04_ex04.sql)
 </details>
 
-## Chapter IX
-## Exercise 05 - Let’s calculate a discount price for each person(Давайте посчитаем цену скидки для каждой персоны)
 <details>
-
-<summary>развернуть</summary>
+<summary>Exercise 05 - Let’s calculate a discount price for each person(Давайте посчитаем цену скидки для каждой персоны)</summary>
 
 | Exercise 05: Let’s calculate a discount price for each person |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -252,7 +247,6 @@ Please create a Database View `v_price_with_discount` that returns a person's or
 
 </details>
 
-## Chapter X
 <details>
 <summary> Exercise 06 - Materialization from virtualization</summary>
     
@@ -273,7 +267,7 @@ To check yourself you can write SQL to Materialized View `mv_dmitriy_visits_and_
 [D04_ex06](src/day04_ex06.sql)
 </details>
 
-## Chapter XI
+
 <details>
 <summary> Exercise 07 - Refresh our state (Обновить наше состояние) </summary>
 
@@ -295,8 +289,6 @@ After adding a new visit please refresh a state of data for `mv_dmitriy_visits_a
 [D04_ex07](src/day04_ex07.sql)
 
 </details>
-
-## Chapter XII
 
 <details>
 <summary> Exercise 08 - Just clear our database (Просто очистим нашу базу данных)</summary>
