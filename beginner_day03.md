@@ -4,40 +4,32 @@
 
 Resume: Today you will see how to change data based on DML language
 
-## Contents
-
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
+<details>
+<summary>Contents</summary>
+1. [Chapter I](#chapter-i) \[Preamble](#preamble)
+2. [Chapter II](#chapter-ii) \ [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) \ [Rules of the day](#rules-of-the-day)  
 4. [Chapter IV](#chapter-iv) [Exercise 00 - Let’s find appropriate prices for Kate](#exercise-00-lets-find-appropriate-prices-for-kate)  
-5. [Chapter V](#chapter-v) [Exercise 01 - Let’s find forgotten menus](#exercise-01-lets-find-forgotten-menus)  
-6. [Chapter VI](#chapter-vi) [Exercise 02 - Let’s find forgotten pizza and pizzerias](#exercise-02-lets-find-forgotten-pizza-and-pizzerias)  
-7. [Chapter VII](#chapter-vii) [Exercise 03 - Let’s compare visits](#exercise-03-lets-compare-visits)  
-8. [Chapter VIII](#chapter-viii) [Exercise 04 - Let’s compare orders](#exercise-04-lets-compare-orders)
-9. [Chapter IX](#chapter-ix) [Exercise 05 - Visited but did not make any order (*Посетили но не сделали ни один заказ*)](#exercise-05-visited-but-did-not-make-any-order)
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 - Find price-similarity pizzas](#exercise-06-find-price-similarity-pizzas)
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 - Let’s cook a new type of pizza](#exercise-07-lets-cook-a-new-type-of-pizza)
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 - Let’s cook a new type of pizza with more dynamics](#exercise-08-lets-cook-a-new-type-of-pizza-with-more-dynamics)
-13. [Chapter XIII](#chapter-xiii) \
-    13.1. [Exercise 09 - New pizza means new visits](#exercise-09-new-pizza-means-new-visits)
-14. [Chapter XIV](#chapter-xiv) \
-    14.1. [Exercise 10 - New visits means new orders](#exercise-10-new-visits-means-new-orders)
-15. [Chapter XV](#chapter-xv) \
-    15.1. [Exercise 11 - “Improve” a price for clients](#exercise-11-improve-a-price-for-clients)    
-16. [Chapter XVI](#chapter-xvi) \
-    16.1. [Exercise 12 - New orders are coming!](#exercise-12-new-orders-are-coming)
-17. [Chapter XVII](#chapter-xvii) \
-    17.1. [Exercise 13 - Money back to our customers](#exercise-13-money-back-to-our-customers)
+[Exercise 01 - Let’s find forgotten menus](#exercise-01-lets-find-forgotten-menus)  
+ [Exercise 02 - Let’s find forgotten pizza and pizzerias](#exercise-02-lets-find-forgotten-pizza-and-pizzerias)  
+ [Exercise 03 - Let’s compare visits](#exercise-03-lets-compare-visits)  
+[Exercise 04 - Let’s compare orders](#exercise-04-lets-compare-orders)
+[Exercise 05 - Visited but did not make any order (*Посетили но не сделали ни один заказ*)](#exercise-05-visited-but-did-not-make-any-order)
+[Exercise 06 - Find price-similarity pizzas](#exercise-06-find-price-similarity-pizzas)
+[Exercise 07 - Let’s cook a new type of pizza](#exercise-07-lets-cook-a-new-type-of-pizza)
+[Exercise 08 - Let’s cook a new type of pizza with more dynamics](#exercise-08-lets-cook-a-new-type-of-pizza-with-more-dynamics)
+[Exercise 09 - New pizza means new visits](#exercise-09-new-pizza-means-new-visits)
+[Exercise 10 - New visits means new orders](#exercise-10-new-visits-means-new-orders)
+15. [Chapter XV](#chapter-xv) \ [Exercise 11 - “Improve” a price for clients](#exercise-11-improve-a-price-for-clients)    
+16. [Chapter XVI](#chapter-xvi) \[Exercise 12 - New orders are coming!](#exercise-12-new-orders-are-coming)
+17. [Chapter XVII](#chapter-xvii) \ [Exercise 13 - Money back to our customers](#exercise-13-money-back-to-our-customers)
+  </details>
+  
 
-## Chapter I
-## Preamble
 
+<details>
+<summary> ## Chapter I Preamble</summary>
+    
 ![D03_01](misc/images/D03_01.png)
 
 Relation Theory is a mathematical foundation for modern(современный) Relational Databases. Every databases’ aspect has corresponding mathematical and logical justification(обоснование). Including INSERT / UPDATE / DELETE operators. (Dr. Edgar Frank Codd is on the picture).
@@ -48,8 +40,8 @@ How the INSERT operator works from a mathematical point of view.
 
 |  |  |
 | ------ | ------ |
-|`INSERT rel RELATION {TUPLE {A INTEGER(4),B INTEGER(4),C STRING ('Hello') }};` | You can use mathematical INSERT statements and integrate “tuple” construction to convert an incoming data to row. |
-| From the other side, you can use explicit assignment with the UNION operator. | `rel:=rel UNION RELATION {TUPLE {A INTEGER(4), B INTEGER (7), C STRING ('Hello')}};` |
+|`INSERT rel RELATION {TUPLE {A INTEGER(4),B INTEGER(4),C STRING ('Hello') }};` | You can use mathematical INSERT statements and integrate “tuple”(кортеж) construction to convert an incoming data to row. |
+| From the other side, you can use explicit assignment(явное присвоение) with the UNION operator. | `rel:=rel UNION RELATION {TUPLE {A INTEGER(4), B INTEGER (7), C STRING ('Hello')}};` |
 
 What’s about the DELETE statement?
 
@@ -71,24 +63,33 @@ The last case with UPDATE statement is really interesting, because in other word
 
 Let’s make a cheese of our data! :-)
 
+  </details>
+  
 
-## Chapter II
-## General Rules
+
+<details>
+<summary> ## Chapter II General Rules</summary>
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
+ > Используйте эту страницу как единственную ссылку. Не слушайте никаких слухов и домыслов о том, как подготовить свое решение.  
 - Please make sure you are using the latest version of PostgreSQL.
 - That is completely OK if you are using IDE to write a source code (aka SQL script).
 - To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
+  > Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Your solutions will be evaluated(оценивается) by your piscine mates.
+ >  Ваши решения будут оценены вашими товарищами по бассейну
 - You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
 - Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
 - Your reference manual: mates / Internet / Google. 
 - Read the examples carefully. They may require things that are not otherwise specified in the subject.
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
+  </details>
+  
+ 
 
-## Chapter III
-## Rules of the day
+<details>
+<summary> ## Chapter III Rules of the day</summary>
 
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
@@ -125,9 +126,12 @@ Let’s make a cheese of our data! :-)
 - field order_date - date (for example 2022-01-01) of person order 
 
 Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+  </details>
+  
 
-## Chapter IV
-## Exercise 00 - Let’s find appropriate(Подходящий) prices for Kate
+<details>
+<summary>Exercise 00 - Let’s find appropriate(Подходящий) prices for Kate</summary>
+
 
 | Exercise 00: Let’s find appropriate prices for Kate |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -150,8 +154,12 @@ Please write a SQL statement which returns a list of pizza names, pizza prices, 
 
 [D03_ex00](src/day03_ex00.sql)
 
-## Chapter V
-## Exercise 01 - Let’s find forgotten menus
+  </details>
+
+
+<details>
+<summary>Exercise 01 - Let’s find forgotten(забытый) menus</summary>
+
 
 | Exercise 01: Let’s find forgotten menus|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -173,9 +181,13 @@ Please find all menu identifiers which are not ordered by anyone. The result sho
 | ... |
 
 [D03_ex01](src/day03_ex01.sql)
+  </details>
+  
 
-## Chapter VI
-## Exercise 02 - Let’s find forgotten pizza and pizzerias
+
+<details>
+<summary>Exercise 02 - Let’s find forgotten pizza and pizzerias</summary>
+
 
 | Exercise 02: Let’s find forgotten pizza and pizzerias|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -196,8 +208,10 @@ Please use SQL statement from Exercise #01 and show pizza names from pizzeria wh
 
 [D03_ex02](src/day03_ex02.sql)
 
-## Chapter VII
-## Exercise 03 - Let’s compare visits
+</details>
+  
+<details>
+<summary> Exercise 03 - Let’s compare(сравнивать) visits</summary>
 
 | Exercise 03: Let’s compare visits |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -217,10 +231,11 @@ Please find pizzerias that have been visited more often(часто) by women or 
 | ... |
 
 [D03_ex03](src/day03_ex03.sql)
+  </details>
+  
 
-## Chapter VIII
-## Exercise 04 - Let’s compare orders
-
+<details>
+<summary>Exercise 04 - Let’s compare orders</summary>
 
 | Exercise 04: Let’s compare orders |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -238,9 +253,11 @@ Please find a union of pizzerias that have orders either from women or  from men
 | Papa Johns | 
 
 [D03_ex04](src/day03_ex04.sql)
+  </details>
 
-## Chapter IX
-## Exercise 05 - Visited but did not make any order
+
+<details>
+<summary>Exercise 05 - Visited but did not make any order</summary>
 
 
 | Exercise 05: Visited but did not make any order |                                                                                                                          |
@@ -252,16 +269,20 @@ Please find a union of pizzerias that have orders either from women or  from men
 
 Please write a SQL statement which returns a list of pizzerias which Andrey visited but did not make any orders. Please order by the pizzeria name. The sample of data is provided below.
 
-> Вернуть список пиццерй с визитом Андрея но в которых не было заказано. Сортируйте по названию. пример вывода ниже :
+> Вернуть список пиццерй с визитом Андрея но в которых он не сделал заказ. Сортируйте по названию. пример вывода ниже :
 
 | pizzeria_name | 
 | ------ | 
 | Pizza Hut | 
 
 
+[D03_ex05](src/day03_ex05.sql)
 
-## Chapter X
-## Exercise 06 - Find price-similarity pizzas
+  </details>
+
+
+<details>
+<summary>Exercise 06 - Find price-similarity pizzas</summary>
 
 
 | Exercise 06: Find price-similarity pizzas |                                                                                                                          |
@@ -279,9 +300,14 @@ Please find the same pizza names who have the same price, but from different piz
 | ------ | ------ | ------ | ------ |
 | cheese pizza | Best Pizza | Papa Johns | 700 |
 | ... | ... | ... | ... |
+ 
+  [D03_ex06](src/day03_ex06.sql)
+  
+  </details>
 
-## Chapter XI
-## Exercise 07 - Let’s cook a new type of pizza
+
+<details>
+<summary>Exercise 07 - Let’s cook a new type of pizza</summary>
 
 
 | Exercise 07: Let’s cook a new type of pizza |                                                                                                                          |
@@ -291,13 +317,19 @@ Please find the same pizza names who have the same price, but from different piz
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please register a new pizza with name “greek pizza” (use id = 19) with price 800 rubles in “Dominos” restaurant (pizzeria_id = 2).
-**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section.
+Please register a new pizza with name “greek pizza” (use id = 19) with price 800 rubles in “Dominos” restaurant (pizzeria_id = 2).  
+**Warning**: this exercise will probably(вероятно) be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section.
+
+> ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня”.
+
+ 
+  [D03_ex07](src/day03_ex07.sql)
+  
+  </details>
 
 
-## Chapter XII
-## Exercise 08 - Let’s cook a new type of pizza with more dynamics
-
+<details>
+<summary>Exercise 08 - Let’s cook a new type of pizza with more dynamics</summary>
 
 | Exercise 08: Let’s cook a new type of pizza with more dynamics |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -309,15 +341,19 @@ Please register a new pizza with name “greek pizza” (use id = 19) with price
 | SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria  
 >Не используйте прямые цифры для идентификаторов первичного ключа и меню|       
 
-Please register a new pizza with name “sicilian pizza” (whose id should be calculated by formula is “maximum id value + 1”) with a price of 900 rubles in “Dominos” restaurant (please use internal query to get identifier of pizzeria).
+Please register a new pizza with name “sicilian pizza” (whose id should be calculated by formula is “maximum id value + 1”) with a price of 900 rubles in “Dominos” restaurant (please use internal query to get identifier of pizzeria).  
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercise 07.
 
 > Пожалуйста, зарегистрируйте новую пиццу с названием “сицилийская пицца” (идентификатор которой должен быть рассчитан по формуле “максимальное значение идентификатора + 1”) стоимостью 900 рублей в ресторане “Доминос” (пожалуйста, используйте внутренний запрос для получения идентификатора пиццерии).
-** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+>** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
 
-## Chapter XIII
-## Exercise 09 - New pizza means new visits
+  [D03_ex08](src/day03_ex08.sql)
 
+  </details>
+
+
+<details>
+<summary>Exercise 09 - New pizza means new visits</summary>
 
 | Exercise 09: New pizza means new visits |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -331,12 +367,15 @@ Please register a new pizza with name “sicilian pizza” (whose id should be c
 Please register new visits into Dominos restaurant from Denis and Irina on 24th of February 2022.
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 and 08..
 
-> ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+> ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07 и 08 .  
+
+[D03_ex09](src/day03_ex09.sql)
+
+  </details>
 
 
-
-## Chapter XIV
-## Exercise 10 - New visits means new orders
+<details>
+<summary>Exercise 10 - New visits means new orders</summary>
 
 
 | Exercise 10: New visits means new orders |                                                                                                                          |
@@ -354,10 +393,14 @@ Please register new orders from Denis and Irina on 24th of February 2022 for the
 
 ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
 
+[D03_ex10](src/day03_ex10.sql)
+
+  </details>
 
 
-## Chapter XV
-## Exercise 11 - “Improve” a price for clients
+<details>
+<summary>Exercise 11 - “Improve” a price for clients</summary>
+## 
 
 
 | Exercise 11: “Improve” a price for clients|                                                                                                                          |
@@ -372,10 +415,14 @@ Please change the price for “greek pizza” on -10% from the current value.
 
 ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
 
+[D03_ex11](src/day03_ex11.sql)
+
+  </details>
 
 
-## Chapter XVI
-## Exercise 12 - New orders are coming!
+<details>
+<summary>Exercise 12 - New orders are coming!</summary>
+
 
 
 | Exercise 12: New orders are coming!|                                                                                                                          |
@@ -396,10 +443,14 @@ Please register new orders from all persons for “greek pizza” on 25th of Feb
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 and 11.
 ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
 
+[D03_ex12](src/day03_ex12.sql)
+
+  </details>
 
 
-## Chapter XVII
-## Exercise 13 - Money back to our customers
+
+<details>
+<summary>Exercise 13 - Money back to our customers</summary>
 
 
 | Exercise 13: Money back to our customers|                                                                                                                          |
@@ -411,6 +462,9 @@ Please register new orders from all persons for “greek pizza” on 25th of Feb
     
 Please write 2 SQL (DML) statements that delete all new orders from exercise #12 based on order date. Then delete “greek pizza” from the menu. 
 **Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 , 11, 12 and 13.
-** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07 , 08 ,09 , 10 , 11, 12 and 13.
 
+  [D03_ex13](src/day03_ex13.sql)
+  
+  </details>
 
