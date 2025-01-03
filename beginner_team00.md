@@ -49,6 +49,8 @@ Below is an example of the output data. Please sort the data by total_cost and t
 
 Please add a way to see additional rows with the most expensive cost to the SQL from the previous exercise. Take a look at the sample data below. Please sort the data by total_cost and then by trip.
 
+> Пожалуйста, добавьте способ просмотра дополнительных строк с самой дорогой стоимостью в SQL из предыдущего упражнения. Взгляните на образец данных ниже. Пожалуйста, отсортируйте данные по total_cost, а затем по trip.
+
 | total_cost | tour |
 | ------ | ------ |
 | 80 | {a,b,d,c,a} |
