@@ -1,10 +1,13 @@
 # Day 05 - Piscine SQL
 
 ## _I improved my SQL Query! Please, provide proof!_
+> Я улучшил свои SQL выражения! Пожалуйста предоставь доказательсва
 
 Resume: Today you will see how and when to create database indexes
+> Сегодня вы увидите как и когда создавать инндексы в базе данных
 
-## Exercise 00 - Let’s create indexes for every foreign key
+<details>
+<summary>  Exercise 00 - Let’s create indexes for every foreign key (давайте создадим индексы для каждого внешнего ключа) </summary>
 
 | Exercise 00: Let’s create indexes for every foreign key |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -15,9 +18,15 @@ Resume: Today you will see how and when to create database indexes
 
 Please create a simple BTree index for every foreign key in our database. The name pattern should satisfy the next rule “idx_{table_name}_{column_name}”. For example, the name BTree index for the pizzeria_id column in the `menu` table is `idx_menu_pizzeria_id`.
 
+>Пожалуйста, создайте простой индекс BTree для каждого внешнего ключа в нашей базе данных. Шаблон имени должен удовлетворять следующему правилу «idx_{table_name}_{column_name}». Например, индекс имени BTree для столбца pizzeria_id в таблице меню — idx_menu_pizzeria_id.
 
-## Chapter V
-## Exercise 01 - How to see that index works?
+[D05_ex00](src/day05_ex00.sql)
+
+</details>
+
+<details>
+<summary>  ## Exercise 01 - How to see that index works? (Как убедиться, что индекс работает?) </summary>
+
 
 | Exercise 01: How to see that index works?|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -28,6 +37,8 @@ Please create a simple BTree index for every foreign key in our database. The na
 
 Before further steps please write a SQL statement that returns pizzas’ and corresponding pizzeria names. Please take a look at the sample result below (no sort needed).
 
+> Перед дальнейшими шагами, пожалуйста, напишите SQL-выражение, которое возвращает названия пицц и соответствующих пиццерий. Пожалуйста, взгляните на пример результата ниже (сортировка не требуется).
+
 | pizza_name | pizzeria_name | 
 | ------ | ------ |
 | cheese pizza | Pizza Hut |
@@ -36,14 +47,20 @@ Before further steps please write a SQL statement that returns pizzas’ and cor
 Let’s provide proof that your indexes are working for your SQL.
 The sample of proof is the output of the `EXPLAIN ANALYZE` command. 
 Please take a look at the sample output command.
-    
+>Давайте предоставим доказательство того, что ваши индексы работают для вашего SQL.
+Пример доказательства — вывод команды `EXPLAIN ANALYZE`.
+Пожалуйста, посмотрите на пример вывода команды.
+
     ...
     ->  Index Scan using idx_menu_pizzeria_id on menu m  (...)
     ...
 
 **Hint**: please think why your indexes are not working in a direct way and what should we do to enable it?
+>**Подсказка**: подумайте, почему ваши индексы не работают напрямую и что нам нужно сделать, чтобы это включить?
 
+[D05_ex01](src/day05_ex01.sql)
 
+</details>
 
 ## Chapter VI
 ## Exercise 02 - Formula is in the index. Is it Ok?
