@@ -1,4 +1,4 @@
-SELECT generated_date AS missing_date From v_generated_dates
+SELECT generated_date AS missing_date FROM v_generated_dates
 EXCEPT
-SELECT DISTINCT visit_date from person_visits
+SELECT DISTINCT visit_date FROM person_visits
 ORDER BY 1
