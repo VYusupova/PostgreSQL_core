@@ -7,7 +7,7 @@ Resume: Today you will see how and when to create database indexes
 > Сегодня вы увидите как и когда создавать инндексы в базе данных
 
 <details>
-<summary>  Exercise 00 - Let’s create indexes for every foreign key (давайте создадим индексы для каждого внешнего ключа) </summary>
+<summary> Exercise 00 - Let’s create indexes for every foreign key (давайте создадим индексы для каждого внешнего ключа) </summary>
 
 | Exercise 00: Let’s create indexes for every foreign key |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -25,7 +25,7 @@ Please create a simple BTree index for every foreign key in our database. The na
 </details>
 
 <details>
-<summary>  ## Exercise 01 - How to see that index works? (Как убедиться, что индекс работает?) </summary>
+<summary> Exercise 01 - How to see that index works? (Как убедиться, что индекс работает?) </summary>
 
 
 | Exercise 01: How to see that index works?|                                                                                                                          |
@@ -62,8 +62,10 @@ Please take a look at the sample output command.
 
 </details>
 
-## Chapter VI
-## Exercise 02 - Formula is in the index. Is it Ok?
+
+<details>
+<summary> Exercise 02 - Formula is in the index. Is it Ok? (Формула в индексе. Все в порядке?) </summary>
+
 
 | Exercise 02: Formula is in the index. Is it Ok?|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -73,11 +75,18 @@ Please take a look at the sample output command.
 | Language                        | ANSI SQL                                                                                              |
 
 Please create a functional B-Tree index with name `idx_person_name` for the column name of the `person` table. Index should contain person names in upper case. 
+> Создайте функциональный индекс B-Tree с именем `idx_person_name` для имени столбца таблицы `person`. Индекс должен содержать имена людей в верхнем регистре.
 
 Please write and provide any SQL with proof (`EXPLAIN ANALYZE`) that index idx_person_name is working. 
+> Пожалуйста, напишите и предоставьте любой SQL-код с доказательством (`EXPLAIN ANALYZE`) того, что индекс idx_person_name работает.
 
-## Chapter VII
-## Exercise 03 - Multicolumn index for our goals
+[D05_ex02](src/day05_ex02.sql)
+
+</details>
+
+
+<details>
+<summary> Exercise 03 - Multicolumn index for our goals (Индекс на основе нескольких столбцов наша цель) </summary>
 
 | Exercise 03: Multicolumn index for our goals |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -88,6 +97,7 @@ Please write and provide any SQL with proof (`EXPLAIN ANALYZE`) that index idx_p
 
 
 Please create a better multicolumn B-Tree index with the name `idx_person_order_multi` for the SQL statement below.
+>Создайте лучший многостолбцовый индекс B-Tree с именем `idx_person_order_multi` для приведенного ниже оператора SQL.
 
     SELECT person_id, menu_id,order_date
     FROM person_order
@@ -95,14 +105,20 @@ Please create a better multicolumn B-Tree index with the name `idx_person_order_
 
 
 The `EXPLAIN ANALYZE` command should return  the next pattern. Please be attention on "Index Only Scan" scanning!
+> Команда `EXPLAIN ANALYZE` должна вернуть следующий шаблон. Будьте внимательны при сканировании "Index Only Scan"!
 
     Index Only Scan using idx_person_order_multi on person_order ...
 
 Please provide any SQL with proof (`EXPLAIN ANALYZE`) that index `idx_person_order_multi` is working. 
+> Пожалуйста, предоставьте любой SQL-код с доказательством (`EXPLAIN ANALYZE`) того, что индекс `idx_person_order_multi` работает.
 
-## Chapter VIII
-## Exercise 04 - Uniqueness for data
 
+[D05_ex03](src/day05_ex03.sql)
+
+</details>
+
+<details>
+<summary> Exercise 04 - Uniqueness for data (уникальность данных) </summary>
 
 | Exercise 04: Uniqueness for data |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -113,10 +129,15 @@ Please provide any SQL with proof (`EXPLAIN ANALYZE`) that index `idx_person_ord
 
 Please create a unique BTree index with the name `idx_menu_unique` on the `menu` table for  `pizzeria_id` and `pizza_name` columns. 
 Please write and provide any SQL with proof (`EXPLAIN ANALYZE`) that index `idx_menu_unique` is working. 
+> Создайте уникальный индекс BTree с именем `idx_menu_unique` в таблице `menu` для столбцов `pizzeria_id` и `pizza_name`.
+> напишите и предоставьте любой SQL с доказательством (`EXPLAIN ANALYZE`) того, что индекс `idx_menu_unique` работает.
 
+[D05_ex04](src/day05_ex04.sql)
 
-## Chapter IX
-## Exercise 05 - Partial uniqueness for data
+</details>
+
+<details>
+<summary> Exercise 05 - Partial uniqueness for data (Частичная уникальность данных) </summary>
 
 
 | Exercise 05: Partial uniqueness for data |                                                                                                                          |
@@ -127,13 +148,19 @@ Please write and provide any SQL with proof (`EXPLAIN ANALYZE`) that index `idx_
 | Language                        | ANSI SQL                                                                                              |
 
 Please create a partial unique BTree index with the name `idx_person_order_order_date` on the `person_order` table for `person_id` and `menu_id` attributes with partial uniqueness for `order_date` column for date ‘2022-01-01’.
+> Создайте частичный уникальный индекс BTree с именем `idx_person_order_order_date` в таблице `person_order` для атрибутов `person_id` и `menu_id` с частичной уникальностью для столбца `order_date` для даты `2022-01-01’.
 
 The `EXPLAIN ANALYZE` command should return  the next pattern
+> Команда `EXPLAIN ANALYZE` должна возвращать следующий шаблон
 
     Index Only Scan using idx_person_order_order_date on person_order …
 
-## Chapter X
-## Exercise 06 - Let’s make performance improvement
+[D05_ex05](src/day05_ex05.sql)
+
+</details>
+
+<details>
+<summary> Exercise 06 - Let’s make performance improvement (Давайте улучшим производительность)  </summary>
 
 
 | Exercise 06: Let’s make performance improvement|                                                                                                                          |
@@ -144,6 +171,7 @@ The `EXPLAIN ANALYZE` command should return  the next pattern
 | Language                        | ANSI SQL                                                                                              |
 
 Please take a look at SQL below from a technical perspective (ignore a logical case of that SQL statement) .
+> Взгляните на SQL ниже с технической точки зрения (игнорируйте логическую сторону этого оператора SQL).
 
     SELECT
         m.pizza_name AS pizza_name,
@@ -153,8 +181,10 @@ Please take a look at SQL below from a technical perspective (ignore a logical c
     ORDER BY 1,2;
 
 Create a new BTree index with name `idx_1` which should improve the “Execution Time” metric of this SQL. Please provide proof (`EXPLAIN ANALYZE`) that SQL was improved.
+> Создайте новый индекс BTree с именем `idx_1`, который должен улучшить метрику «Время выполнения» этого SQL. Пожалуйста, предоставьте доказательство (`EXPLAIN ANALYZE`), что SQL был улучшен.
 
 **Hint**: this exercise looks like a “brute force” task to find a good covering index therefore before your new test remove `idx_1` index.
+> Это упражнение выглядит как задача «грубой силы» для поиска хорошего покрывающего индекса, поэтому перед новым тестом удалите индекс `idx_1`.
 
 Sample of my improvement:
 
@@ -188,3 +218,6 @@ Sample of my improvement:
     Planning Time: 0.338 ms
     Execution Time: 0.203 ms
 
+[D05_ex06](src/day05_ex06.sql)
+
+</details>
