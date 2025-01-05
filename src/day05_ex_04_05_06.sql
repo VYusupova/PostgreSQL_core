@@ -50,3 +50,28 @@ FROM person_order WHERE  order_date = '2022-01-01';
 SET ENABLE_SEQSCAN TO ON;
 
 -- Index Only Scan using idx_person_order_order_date on person_order …
+
+
+      
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+|  Exercise 06 -  (Давайте улучшим производительность)   |
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- ----  
+
+CREATE  INDEX if not EXISTS idx_1  ON pizzeria (rating ASC) ;-- menu (pizza_name) ;-- pizzeria (rating) ;  (pizza_name, pizzeria_id) 
+-- DROP INDEX  idx_1;
+
+SET ENABLE_SEQSCAN TO OFF;
+
+EXPLAIN ANALYZE 
+
+SELECT
+    m.pizza_name AS pizza_name,
+    max(rating) OVER (PARTITION BY rating ORDER BY rating ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS k
+FROM  menu m
+INNER JOIN pizzeria pz ON m.pizzeria_id = pz.id
+ORDER BY 1,2;
+
+SET ENABLE_SEQSCAN TO ON;
+
+
+
