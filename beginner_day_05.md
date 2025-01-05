@@ -1,5 +1,5 @@
 # Day 05 - Piscine SQL
-
+теория https://tproger.ru/articles/indeksy-v-postgresql
 ## _I improved my SQL Query! Please, provide proof!_
 > Я улучшил свои SQL выражения! Пожалуйста предоставь доказательсва
 
