@@ -4,7 +4,8 @@
 
 Resume: Today you will see how to add a new business feature into our data model
 
-## Exercise 00 - Discounts, discounts , everyone loves discounts
+<details>
+<summary> Exercise 00 - Discounts, discounts , everyone loves discounts (Скидки, скидки, все любят скидки)</summary>
 
 | Exercise 00: Discounts, discounts , everyone loves discounts |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -15,17 +16,27 @@ Resume: Today you will see how to add a new business feature into our data model
 
 Let’s expand our data model to involve a new business feature.
 Every person wants to see a personal discount and every business wants to be closer for clients.
+> Давайте расширим нашу модель данных, включив в нее новую бизнес-функцию.
+> Каждый человек хочет видеть персональную скидку, и каждый бизнес хочет быть ближе к клиентам.
 
 Please think about personal discounts for people from one side and pizzeria restaurants from other. Need to create a new relational table (please set a name `person_discounts`) with the next rules.
+>Пожалуйста, подумайте о персональных скидках для людей с одной стороны и пиццерий с другой. Необходимо создать новую реляционную таблицу (задайте имя `person_discounts`) со следующими правилами.
+
 - set id attribute like a Primary Key (please take a look on id column in existing tables and choose the same data type)
+  > - установите атрибут id как первичный ключ (пожалуйста, посмотрите на столбец id в существующих таблицах и выберите тот же тип данных)
 - set for attributes person_id and pizzeria_id foreign keys for corresponding tables (data types should be the same like for id columns in corresponding parent tables)
+  > - задать для атрибутов person_id и pizzeria_id внешние ключи для соответствующих таблиц (типы данных должны быть такими же, как для столбцов id в соответствующих родительских таблицах)
 - please set explicit names for foreign keys constraints by pattern fk_{table_name}_{column_name},  for example `fk_person_discounts_person_id`
+  > - пожалуйста, задайте явные имена для ограничений внешних ключей по шаблону fk_{table_name}_{column_name}, например `fk_person_discounts_person_id`
 - add a discount attribute to store a value of discount in percent. Remember, discount value can be a number with floats (please just use `numeric` data type). So, please choose the corresponding data type to cover this possibility.
+  > - добавьте атрибут скидки для хранения значения скидки в процентах. Помните, что значение скидки может быть числом с плавающей точкой (пожалуйста, просто используйте тип данных `numeric`). Поэтому, пожалуйста, выберите соответствующий тип данных, чтобы охватить эту возможность.
 
+</details>
 
+<details>
+<summary> Exercise 01 - Let’s set personal discounts </summary>
 
-## Chapter V
-## Exercise 01 - Let’s set personal discounts
+    
 
 | Exercise 01: Let’s set personal discounts|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -35,26 +46,42 @@ Please think about personal discounts for people from one side and pizzeria rest
 | Language                        | SQL, DML, DDL                                                                                              |
 
 Actually, we created a structure to store our discounts and we are ready to go further and fill our `person_discounts` table with new records.
+> На самом деле мы создали структуру для хранения наших скидок и готовы пойти дальше и заполнить нашу таблицу `person_discounts` новыми записями.
 
 So, there is a table `person_order` that stores the history of a person's orders. Please write a DML statement (`INSERT INTO ... SELECT ...`) that makes  inserts new records into `person_discounts` table based on the next rules.
-- take aggregated state by person_id and pizzeria_id columns 
+> Итак, есть таблица `person_order`, в которой хранится история заказов человека. Пожалуйста, напишите оператор DML (`INSERT INTO ... SELECT ...`), который вставляет новые записи в таблицу `person_discounts` на основе следующих правил.
+- take aggregated state by person_id and pizzeria_id columns
+  > - взять агрегированное состояние по столбцам person_id и pizzeria_id
 - calculate personal discount value by the next pseudo code:
+  > - рассчитать персональную скидку по следующему псевдокоду:
 
-    `if “amount of orders” = 1 then
-        “discount” = 10.5 
-    else if “amount of orders” = 2 then 
-        “discount” = 22
-    else 
-        “discount” = 30`
+
+    ```
+    if “amount of orders” = 1 then  
+        “discount” = 10.5   
+    else if “amount of orders” = 2 then   
+        “discount” = 22  
+    else   
+        “discount” = 30
+    ```  
+
 
 - to generate a primary key for the person_discounts table please use  SQL construction below (this construction is from the WINDOW FUNCTION  SQL area).
+   >Чтобы сгенерировать первичный ключ для таблицы person_discounts, используйте конструкцию SQL, представленную ниже (эта конструкция взята из раздела SQL WINDOW FUNCTION). 
     
     `... ROW_NUMBER( ) OVER ( ) AS id ...`
 
 
 
 
-## Chapter VI
+</details>
+
+[D06_Exercise 00, 01](src/day06.sql)
+
+<details>
+<summary> Exercise 01 - Let’s set personal discounts </summary>
+
+    
 ## Exercise 02 - Let’s recalculate a history of orders
 
 | Exercise 02: Let’s recalculate a history of orders|                                                                                                                          |
