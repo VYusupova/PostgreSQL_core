@@ -4,37 +4,6 @@
 
 Resume: Today you will see how to get needed data based on different structures JOINs
 
-## Contents
-
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) [Exercise 00 - Move to the LEFT, move to the RIGHT](#exercise-00-move-to-the-left-move-to-the-right)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 - Find data gaps](#exercise-01-find-data-gaps)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 - FULL means ‘completely filled’](#exercise-02-full-means-completely-filled)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 - Reformat to CTE](#exercise-03-reformat-to-cte)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 - Find favourite pizzas](#exercise-04-find-favourite-pizzas)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 - Investigate Person Data](#exercise-05-investigate-person-data)
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 - favourite pizzas for Denis and Anna](#exercise-06-favourite-pizzas-for-denis-and-anna)
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 - Cheapest pizzeria for Dmitriy](#exercise-07-cheapest-pizzeria-for-dmitriy)
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 - Continuing to research data](#exercise-08-continuing-to-research-data)
-13. [Chapter XIII](#chapter-xiii) \
-    13.1. [Exercise 09 - Who loves cheese and pepperoni?](#exercise-09-who-loves-cheese-and-pepperoni)
-14. [Chapter XIV](#chapter-xiv) \
-    14.1. [Exercise 10 - Find persons from one city](#exercise-10-find-persons-from-one-city)
-
-
 ## Chapter I
 ## Preamble
 
@@ -140,8 +109,8 @@ Please write a SQL statement which returns a list of pizzerias names with corres
 >необходимо вернуть список названий пиццерий с рейтингом которые никто не посещал
 
 
-## Chapter V
-## Exercise 01 - Find data gaps
+<details>
+<summary> Exercise 01 - Find data gaps</summary>
 
 | Exercise 01: Find data gaps|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -164,8 +133,11 @@ Please write a SQL statement which returns the missing days from 1st to 10th of 
 | ... |
 
 
-## Chapter VI
-## Exercise 02 - FULL means ‘completely filled’
+</details>
+
+<details>
+<summary>  Exercise 02 - FULL means ‘completely filled’</summary>
+
 
 | Exercise 02: FULL means ‘completely filled’|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -190,8 +162,10 @@ Please write a SQL statement that returns a whole list of person names visited (
 | Dmitriy | null | - |
 | ... | ... | ... |
 
-## Chapter VII
-## Exercise 03 - Reformat to CTE
+</details>
+
+<details>
+<summary> Exercise 03 - Reformat to CTE </summary>
 
 | Exercise 03: Reformat to CTE |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -213,8 +187,13 @@ Let’s return back to Exercise #01, please rewrite your SQL by using the CTE (C
 | 2022-01-05 | 
 | ... |
 
-## Chapter VIII
-## Exercise 04 - Find favourite pizzas
+</details>
+
+
+<details>
+<summary> Exercise 04: Find favourite pizzas  </summary>
+
+
 
 
 | Exercise 04: Find favourite pizzas |                                                                                                                          |
@@ -233,8 +212,11 @@ Find full information about all possible pizzeria names and prices to get mushro
 | pepperoni pizza | Best Pizza | 800 |
 | ... | ... | ... |
 
-## Chapter IX
-## Exercise 05 - Investigate Person Data
+</details>
+
+
+<details>
+<summary> Exercise 05: Investigate Person Data </summary>
 
 
 | Exercise 05: Investigate Person Data |                                                                                                                          |
@@ -253,8 +235,11 @@ Find names of all female persons older than 25 and order the result by name. The
 
 
 
-## Chapter X
-## Exercise 06 - favourite pizzas for Denis and Anna
+</details>
+
+
+<details>
+<summary>Exercise 06 - favourite pizzas for Denis and Anna</summary>
 
 
 | Exercise 06: favourite pizzas for Denis and Anna |                                                                                                                          |
@@ -272,8 +257,11 @@ Please find all pizza names (and corresponding pizzeria names using `menu` table
 | cheese pizza | Pizza Hut |
 | ... | ... |
 
-## Chapter XI
-## Exercise 07 - Cheapest pizzeria for Dmitriy
+</details>
+
+<details>
+<summary> Exercise 07 - Cheapest pizzeria for Dmitriy </summary>
+
 
 
 | Exercise 07: Cheapest pizzeria for Dmitriy |                                                                                                                          |
@@ -285,8 +273,13 @@ Please find all pizza names (and corresponding pizzeria names using `menu` table
 
 Please find the name of pizzeria Dmitriy visited on January 8, 2022 and could eat pizza for less than 800 rubles.
 
-## Chapter XII
-## Exercise 08 - Continuing to research data
+</details>
+
+
+<details>
+<summary> Exercise 08 - Continuing to research data </summary>
+
+
 
 
 | Exercise 08: Continuing to research data |                                                                                                                          |
@@ -305,8 +298,11 @@ Please find the names of all males from Moscow or Samara cities who orders eithe
 | ... |
 
 
-## Chapter XIII
-## Exercise 09 - Who loves cheese and pepperoni?
+</details>
+
+<details>
+<summary> Exercise 09 - Who loves cheese and pepperoni? </summary>
+
 
 
 | Exercise 09: Who loves cheese and pepperoni? |                                                                                                                          |
@@ -324,8 +320,10 @@ Please find the names of all females who ordered both pepperoni and cheese pizza
 | ... |
 
 
-## Chapter XIV
-## Exercise 10 - Find persons from one city
+</details>
+
+<details>
+<summary>Exercise 10 - Find persons from one city</summary>
 
 
 | Exercise 10: Find persons from one city |                                                                                                                          |
@@ -344,3 +342,6 @@ Please find the names of persons who live on the same address. Make sure that th
 | Elvira | Denis | Kazan |
 | ... | ... | ... |
 
+</details>
+
+[D02_Exercise](src/day02.sql)
