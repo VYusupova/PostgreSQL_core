@@ -47,3 +47,73 @@ SELECT
   JOIN pizzeria ON pizzeria.id = menu.pizzeria_id
   JOIN person_discounts pd on menu.pizzeria_id = pd.pizzeria_id AND person.id = pd.person_id
 ORDER BY 1, 2
+
+-- _________________________________________
+-- | Exercise 03 - Improvements are in a way  |
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+CREATE UNIQUE INDEX IF NOT EXISTS idx_person_discounts_unique ON person_discounts (person_id, pizzeria_id);
+--DROP INDEX  idx_person_discounts_unique
+
+SET ENABLE_SEQSCAN TO OFF;
+EXPLAIN ANALYSE
+
+SELECT person_id, pizzeria_id FROM person_discounts ORDER BY 1
+-- _______________________________________________
+-- |Exercise 04 - We need more Data Consistency  |
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+alter table person_discounts add constraint ch_nn_person_id CHECK (person_id is NOT NULL) ;
+alter table person_discounts add constraint ch_nn_pizzeria_id CHECK (pizzeria_id is NOT NULL) ;
+alter table person_discounts add constraint ch_nn_discount CHECK (discounts is NOT NULL) ;
+alter table person_discounts ALTER COLUMN  discounts SET DEFAULT 0;
+alter table person_discounts add constraint ch_range_discount  check ( discounts  between 0 AND 100);
+
+-- _______________________________________________
+-- |         Exercise 05 - Data Governance Rules |
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+COMMENT ON TABLE person_discounts IS 'размер скидки клиента в пиццерии зависит от количетва сделанных заказов в пиццерии';
+
+COMMENT ON COLUMN person_discounts.id IS 'уникальный идентификатор скидки';
+
+COMMENT ON COLUMN person_discounts.person_id IS 'идентификатор клиента для которого есть скидка';
+COMMENT ON COLUMN person_discounts.pizzeria_id IS 'идентификатор пиццерии в которой у клиента скидка';
+COMMENT ON COLUMN person_discounts.discounts IS 'размер скидки клиента';
+
+
+SELECT obj_description(oid), relname
+FROM  pg_class WHERE   obj_description(oid) is not null
+
+
+SELECT * FROM information_schema.tables where table_name like '%c%'
+
+
+-- _____________________________________________________
+-- | Exercise 06: Let’s automate Primary Key generation |
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+CREATE SEQUENCE
+      seq_person_discounts AS INT
+ OWNED BY
+      person_discounts.id;
+
+
+SELECT
+      SETVAL('seq_person_discounts', MAX(id))
+  FROM
+      person_discounts;
+
+
+ ALTER TABLE
+      person_discounts
+ ALTER COLUMN
+      id SET DEFAULT NEXTVAL('seq_person_discounts');
+
+
+INSERT INTO
+      person_discounts (person_id, pizzeria_id, discount)
+VALUES
+      (4, 4, 22);
+
+SELECT
+      *
+  FROM
+      person_discounts;
