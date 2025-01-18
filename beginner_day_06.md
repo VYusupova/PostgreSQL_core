@@ -76,13 +76,9 @@ So, there is a table `person_order` that stores the history of a person's orders
 
 </details>
 
-[D06_Exercise 00, 01](src/day06.sql)
-
 <details>
-<summary> Exercise 01 - Let’s set personal discounts </summary>
+<summary> Exercise 02 - Let’s recalculate a history of orders </summary>
 
-    
-## Exercise 02 - Let’s recalculate a history of orders
 
 | Exercise 02: Let’s recalculate a history of orders|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -99,8 +95,11 @@ Please write a SQL statement that returns orders with actual price and price wit
 | Andrey | mushroom pizza | 1100 | 858 | Dominos |
 | ... | ... | ... | ... | ... |
 
-## Chapter VII
-## Exercise 03 - Improvements are in a way
+</details>
+
+<details>
+<summary> Exercise 03 - Improvements are in a way </summary>
+
 
 | Exercise 03: Improvements are in a way |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -112,16 +111,21 @@ Please write a SQL statement that returns orders with actual price and price wit
 
 Actually, we have to make improvements to data consistency from one side and performance tuning from the other side. Please create a multicolumn unique index (with name `idx_person_discounts_unique`) that prevents duplicates of pair values person and pizzeria identifiers.
 
+> На самом деле, нам нужно улучшить согласованность данных с одной стороны и производительность с другой. Создайте уникальный индекс с несколькими столбцами (с именем idx_person_discounts_unique), который предотвращает дубликаты парных значений идентификаторов персон и пиццерий.
+> 
 After creation of a new index, please provide any simple SQL statement that shows proof of index usage (by using `EXPLAIN ANALYZE`).
 The example of “proof” is below
-    
+
+>После создания нового индекса предоставьте любой простой оператор SQL, который показывает доказательство использования индекса (с помощью EXPLAIN ANALYZE). Пример «доказательства» приведен ниже.
     ...
     Index Scan using idx_person_discounts_unique on person_discounts
     ...
 
 
-## Chapter VIII
-## Exercise 04 - We need more Data Consistency
+</details>
+
+<details>
+<summary> Exercise 04 - We need more Data Consistency </summary>
 
 
 | Exercise 04: We need more Data Consistency |                                                                                                                          |
@@ -138,9 +142,10 @@ Please add the following constraint rules for existing columns of the `person_di
 - discount column should be 0 percent by default
 - discount column should be in a range values from 0 to 100 (use constraint name `ch_range_discount`)
 
+</details>
 
-## Chapter IX
-## Exercise 05 - Data Governance Rules
+<details>
+<summary> Exercise 05 - Data Governance Rules </summary>
 
 
 | Exercise 05: Data Governance Rules|                                                                                                                          |
@@ -152,8 +157,12 @@ Please add the following constraint rules for existing columns of the `person_di
 
 To satisfy Data Governance Policies need to add comments for the table and table's columns. Let’s apply this policy for the `person_discounts` table. Please add English or Russian comments (it's up to you) that explain what is a business goal of a table and all included attributes. 
 
-## Chapter X
-## Exercise 06 - Let’s automate Primary Key generation
+> Для соответствия политикам управления данными необходимо добавить комментарии для таблицы и столбцов таблицы. Давайте применим эту политику для таблицы `person_discounts`. Пожалуйста, добавьте комментарии на английском или русском языке (на ваше усмотрение), которые объясняют, какова бизнес-цель таблицы и все включенные атрибуты.
+
+</details>
+
+<details>
+<summary> Exercise 06 - Let’s automate Primary Key generation </summary>
 
 
 | Exercise 06: Let’s automate Primary Key generation|                                                                                                                          |
@@ -164,7 +173,14 @@ To satisfy Data Governance Policies need to add comments for the table and table
 | Language                        | SQL, DML, DDL                                                                                              |
 | **Denied**                               |                                                                                                                          |
 | SQL Syntax Pattern                        | Don’t use hard-coded value for amount of rows to set a right value for sequence                                                                                              |
+| SQL Syntax Pattern                        | > Не используйте жестко заданное значение количества строк, чтобы задать правильное значение последовательности.                                                                                             |
 
 Let’s create a Database Sequence with the name `seq_person_discounts` (starting from 1 value) and set a default value for id attribute of `person_discounts` table to take a value from `seq_person_discounts` each time automatically. 
 Please be aware that your next sequence number is 1, in this case please set an actual value for database sequence based on formula “amount of rows in person_discounts table” + 1. Otherwise you will get errors about Primary Key violation constraint.
 
+> Давайте создадим последовательность базы данных с именем `seq_person_discounts` (начиная с 1 значения) и установим значение по умолчанию для атрибута id таблицы `person_discounts`, чтобы автоматически брать значение из `seq_person_discounts` каждый раз.
+Обратите внимание, что ваш следующий номер последовательности равен 1, в этом случае, пожалуйста, установите фактическое значение для последовательности базы данных на основе формулы «количество строк в таблице person_discounts» + 1. В противном случае вы получите ошибки о нарушении ограничения первичного ключа.
+
+</details>
+
+[D06_Exercise 00, 01, 02, 03, 04, 05](src/day06.sql)
