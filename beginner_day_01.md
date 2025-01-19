@@ -5,33 +5,6 @@
 Resume: Today you will see how to get needed data based on sets constructions and simple JOINs  
 >*(Сегодня вы увидите, как получить необходимые данные на основе наборов, конструкций и простых соединений)*
 
-## Contents
-
-1. [Chapter I](#chapter-i) [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) [Exercise 00 - Let’s make UNION dance](#exercise-00-lets-make-union-dance)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 - UNION dance with subquery](#exercise-01-union-dance-with-subquery)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 - Duplicates or not duplicates](#exercise-02-duplicates-or-not-duplicates)  
-7. [Chapter VII](#chapter-vii) [Exercise 03 - “Hidden” Insights](#exercise-03-hidden-insights)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 - Difference? Yep, let's find the difference between multisets](#exercise-04-difference-yep-lets-find-the-difference-between-multisets)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 - Did you hear about Cartesian Product?](#exercise-05-did-you-hear-about-cartesian-product)
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 - Lets see on “Hidden” Insights](#exercise-06-lets-see-on-hidden-insights)
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 - Just make a JOIN](#exercise-07-just-make-a-join)
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 - Migrate JOIN to NATURAL JOIN](#exercise-08-migrate-join-to-natural-join)
-13. [Chapter XIII](#chapter-xiii) \
-    13.1. [Exercise 09 - IN versus EXISTS](#exercise-09-in-versus-exists)
-14. [Chapter XIV](#chapter-xiv) \
-    14.1. [Exercise 10 - Global JOIN](#exercise-10-global-join)
-
-
 ## Chapter I
 ## Preamble
 
@@ -203,8 +176,11 @@ Please write a SQL statement which returns common rows for attributes order_date
 | 2022-01-04 | 3 |
 | ... | ... |
 [D01_ex03](src/day01_ex03.sql)
-## Chapter VIII
-## Exercise 04 - Difference? Yep, let's find the difference between multisets.
+
+</details>
+
+<details>
+<summary> Exercise 04: Difference? Yep, let's find the difference between multisets.</summary> 
 
 
 | Exercise 04: Difference? Yep, let's find the difference between multisets. |                                                                                                                          |
@@ -219,8 +195,11 @@ Please write a SQL statement which returns common rows for attributes order_date
 Please write a SQL statement which returns a difference (minus) of person_id column values with saving duplicates between `person_order` table and `person_visits` table for order_date and visit_date are for 7th of January of 2022  
 > вернуть разницу значения столбца  person_id с дублями  между  `person_order` и  `person_visits` таблицами дата заказа и дата визита 7  января 2022  
 [D01_ex04](src/day01_ex04.sql)
-## Chapter IX
-## Exercise 05 - Did you hear about Cartesian Product? (Вы слышали о Декартовом произведении)
+
+</details>
+
+<details>
+<summary>Exercise 05 - Did you hear about Cartesian Product? (Вы слышали о Декартовом произведении)</summary> 
 
 
 | Exercise 05: Декартово произведение |                                                                                                                          |
@@ -240,9 +219,11 @@ Please write a SQL statement which returns all possible combinations between `pe
 | ... | ... | ... | ... | ... | ... | ... | ... |
 
 [D01_ex05](src/day01_ex05.sql)
-## Chapter X
-## Exercise 06 - Lets see on “Hidden” Insights
 
+</details>
+
+<details>
+<summary> Exercise 06 - Lets see on “Hidden” Insights</summary> 
 
 | Exercise 06: Lets see on “Hidden” Insights |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -263,11 +244,12 @@ Let's return our mind back to exercise #03 and change our SQL statement to retur
 | 2022-01-01 | Andrey |
 | ... | ... |
 
-[D01_ex06 v1](src/day01_ex06_v1.sql)  
-[D01_ex06 v2](src/day01_ex06_v2.sql)
-## Chapter XI
-## Exercise 07 - Just make a JOIN
 
+
+</details>
+
+<details>
+<summary> Exercise 07 - Just make a JOIN</summary> 
 
 | Exercise 07: Just make a JOIN |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -287,11 +269,10 @@ Please write a SQL statement which returns the date of order from the `person_or
 | 2022-01-01 | Anna (age:16) |
 | ... | ... |
 
-[D01_ex07](src/day01_ex07.sql)  
+</details>
 
-## Chapter XII
-## Exercise 08 - Migrate JOIN to NATURAL JOIN
-
+<details>
+<summary>  Exercise 08 - Migrate JOIN to NATURAL JOIN </summary>
 
 | Exercise 08: Migrate JOIN to NATURAL JOIN |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -305,8 +286,11 @@ Please write a SQL statement which returns the date of order from the `person_or
 
 Please rewrite a SQL statement from exercise #07 by using NATURAL JOIN construction. The result must be the same like for exercise #07.  
 > Перепиши запрос из прошлого упражения используя  NATURAL JOIN конструкцию. Результат должен быть таким же как и в прошлом упражении
-[D01_ex08 v1](src/day01_ex08_v1.sql)  
-[D01_ex08 v2](src/day01_ex08_v2.sql)  
+
+</details>
+
+[D01_ex 06 07 08](src/day01_ex06_07_08.sql)
+
 ## Chapter XIII
 ## Exercise 09 - IN versus EXISTS
 
