@@ -1,7 +1,7 @@
 --Exercise 00 - Simple aggregated information
 --_________________________________________________________
 SELECT person_id,
-         COUNT(*) AS count_of_visits
+       COUNT(*) AS count_of_visits
     FROM person_visits 
     JOIN person ON person_id = person.id
 GROUP BY person_id
@@ -15,7 +15,7 @@ ORDER BY count_of_visits DESC, person_id ASC
     JOIN person ON person_id = person.id
 GROUP BY name
 ORDER BY count_of_visits DESC, name ASC
-limit 4
+LIMIT 4
 --Exercise 02 - Restaurants statistics
 --_________________________________________________________
  WITH orders AS 
@@ -27,17 +27,18 @@ limit 4
     JOIN pizzeria ON pizzeria_id = pizzeria.id
 GROUP BY name
 ORDER BY count DESC, name ASC
-limit 3
+LIMIT 3
  ),
 visit AS 
 (SELECT name,
          COUNT(*) AS count ,
-         'visits' AS action_type
+         'visit' AS action_type
     FROM person_visits 
     JOIN pizzeria ON pizzeria_id = pizzeria.id
 GROUP BY name
 ORDER BY count DESC, name ASC
-limit 3  )
+LIMIT 3  
+)
 
 SELECT * FROM orders
 UNION ALL
@@ -59,7 +60,7 @@ ORDER BY count DESC, name ASC
 visit AS 
 (SELECT name,
          COUNT(pizzeria_id) AS count ,
-         'visits' AS action_type
+         'visit' AS action_type
     FROM person_visits 
     RIGHT JOIN pizzeria ON pizzeria_id = pizzeria.id
 GROUP BY name
@@ -83,7 +84,7 @@ SELECT name, SUM(Count) AS total_count FROM
 (
 SELECT name, count FROM orders
 UNION ALL
-SELECT name, count from visit
+SELECT name, count FROM visit
 )
 GROUP BY name
 ORDER BY total_count DESC, 1 ASC
@@ -124,7 +125,8 @@ ORDER BY pizzeria.name
 --_________________________________________________________
 -- Exercise 07 - Average global rating
 --_________________________________________________________
-SELECT ROUND(AVG(rating),4) from pizzeria
+SELECT ROUND(AVG(rating),4) AS global_rating
+FROM pizzeria
          
 --_________________________________________________________
 -- Exercise 08 - Find pizzeria’s restaurant locations
@@ -134,26 +136,25 @@ SELECT person.address,
        pizzeria.name, 
       COUNT(*) AS count_of_orders
  FROM person_order 
-JOIN menu ON menu_id = menu.id
-JOIN pizzeria ON pizzeria_id = pizzeria.id
-JOIN person ON person_order.person_id = person.id
-
+ JOIN menu      ON menu_id = menu.id
+ JOIN pizzeria  ON pizzeria_id = pizzeria.id
+ JOIN person    ON person_order.person_id = person.id
 GROUP BY  person.address, pizzeria.name
-ORDER BY  person.address, pizzeria.name*/
+ORDER BY  person.address, pizzeria.name
 
 --_________________________________________________________
 -- Exercise 09 - Explicit type transformation
 --_________________________________________________________
 WITH formula AS (
-select  address,
+SELECT  address,
         round(MAX(age)-(min(age)::NUMERIC(4,2)/MAX(age)),2) AS formula,
         AVG(age)::NUMERIC(4,2) AS average
-   from person GROUP BY address ORDER BY address
+   FROM person GROUP BY address ORDER BY address
 )
 
 SELECT *, 
        CASE WHEN (formula > average) 
             THEN 'true'
             ELSE 'false'
-       end AS comparison
-from formula
+       END AS comparison
+FROM formula
