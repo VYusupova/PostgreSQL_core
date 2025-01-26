@@ -4,7 +4,13 @@
 
 Resume: Today you will see how database works with transactions and isolation levels.
 
-## Exercise 00 - Simple transaction
+Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
+
+Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
+
+<details>
+<summary>  Exercise 00 - Simple transaction </summary>
+
 
 | Exercise 00: Simple transaction |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -13,9 +19,6 @@ Resume: Today you will see how database works with transactions and isolation le
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL|
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users.
-
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
 
 Please provide a proof that your parallel session can’t see your changes until you will make a `COMMIT`;
 
@@ -51,8 +54,11 @@ So, take a look on example of our output for Session #2.
 
 You can see that the same query returns different results because the first query was run before publishing in Session#1 and the second query was run after Session#1 was finished.
 
-## Chapter V
-## Exercise 01 - Lost Update Anomaly
+</details>
+
+<details>
+<summary> Exercise 01 - Lost Update Anomaly </summary>
+
 
 | Exercise 01: Lost Update Anomaly|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -61,24 +67,31 @@ You can see that the same query returns different results because the first quer
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL                                                                                              |
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
 
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line). 
 
 Before running a task, make sure you are at a standard isolation level in your database. Just run the following statement `SHOW TRANSACTION ISOLATION LEVEL;` and the result should be "read committed".
 
 If not, please set the read committed isolation level explicitly on a session level.
+>Если нет, установите уровень изоляции `read commited` явно на уровне сеанса.
 
+
+    
 |  |  |
 | ------ | ------ |
-| Let's examine one of the famous "Lost Update Anomaly" database patterns. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all the sequential steps for both Sessions. | ![D08_06](misc/D08_06.png) |
+| Let's examine one of the famous "Lost Update Anomaly" database patterns. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all the sequential steps for both Sessions. | > Давайте рассмотрим один из известных шаблонов базы данных "Lost Update Anomaly". Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой конечные результаты после всех последовательных шагов для обоих сеансов.  |
+ | ![D08_06](misc/images/D08_06.png) |
+ |  | 
+|     
 
 Please check a rating for "Pizza Hut" in a transaction mode for both sessions and then make an `UPDATE` of the rating to a value of 4 in Session #1 and make an `UPDATE` of the rating to a value of 3.6 in Session #2 (in the same order as in the picture).
 
 
 
-## Chapter VI
-## Exercise 02 - Lost Update for Repeatable Read
+</details>
+
+<details>
+<summary>  Exercise 02 - Lost Update for Repeatable Read (Потерянное обновление для повторяющегося чтения)</summary>
+
 
 | Exercise 02: Lost Update for Repeatable Read|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -87,18 +100,20 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL                                                                                              |
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
 
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
 
 |  |  |
 | ------ | ------ |
-| Let's examine one of the famous "Lost Update Anomaly" database patterns, but under the `REPEATABLE READ` isolation level. You can see a graphical representation of this anomaly on a picture. Horizontal red line means the final results after all sequential steps for both Sessions. | ![D08_07](misc/D08_07.png) |
+| Let's examine one of the famous "Lost Update Anomaly" database patterns, but under the `REPEATABLE READ` isolation level. You can see a graphical representation of this anomaly on a picture. Horizontal red line means the final results after all sequential steps for both Sessions. | ![D08_07](misc/images/D08_07.png) |
 
 Please check a rating for "Pizza Hut" in a transaction mode for both sessions and then make an `UPDATE` of the rating to a value of 4 in Session #1 and make an `UPDATE` of the rating to a value of 3.6 in Session #2 (in the same order as in the picture).
 
-## Chapter VII
-## Exercise 03 - Non-Repeatable Reads Anomaly
+</details>
+
+<details>
+<summary> Exercise 03 - Non-Repeatable Reads Anomaly (Аномалия неповторяющихся чтений)</summary>
+
+
 
 | Exercise 03: Non-Repeatable Reads Anomaly |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -107,19 +122,20 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL                                                                                              |
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
 
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "Non-Repeatable Reads" database patterns, but under the `READ COMMITTED` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final result after all sequential steps for both Sessions. | ![D08_08](misc/D08_08.png) |
+| Let's check one of the famous "Non-Repeatable Reads" database patterns, but under the `READ COMMITTED` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final result after all sequential steps for both Sessions. | ![D08_08](misc/images/D08_08.png) |
 
 Please check a rating for "Pizza Hut" in a transaction mode for Session #1 and then make an `UPDATE` of the rating to a value of 3.6 in Session #2 (in the same order as in the picture).
 
 
-## Chapter VIII
-## Exercise 04 - Non-Repeatable Reads for Serialization
+</details>
+
+<details>
+<summary> Exercise 04 - Non-Repeatable Reads for Serialization (Неповторяющиеся чтения для сериализации)</summary>
+
 
 
 | Exercise 04: Non-Repeatable Reads for Serialization |                                                                                                                          |
@@ -129,20 +145,22 @@ Please check a rating for "Pizza Hut" in a transaction mode for Session #1 and t
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL                                                                                              |
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
 
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "Non-Repeatable Reads" database patterns, but under the `SERIALIZABLE` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_09](misc/D08_09.png) |
+| Let's check one of the famous "Non-Repeatable Reads" database patterns, but under the `SERIALIZABLE` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_09](misc/images/D08_09.png) |
 
 Please check a rating for "Pizza Hut" in a transaction mode for Session #1, and then make an `UPDATE` of the rating to a value of 3.0 in Session #2 (in the same order as in the picture).
 
 
 
-## Chapter IX
-## Exercise 05 - Phantom Reads Anomaly
+</details>
+
+<details>
+<summary> Exercise 05 - Phantom Reads Anomaly</summary>
+
+
 
 
 | Exercise 05: Phantom Reads Anomaly|                                                                                                                          |
@@ -152,20 +170,21 @@ Please check a rating for "Pizza Hut" in a transaction mode for Session #1, and 
 | **Allowed**                               |                                                                                                                          |
 | Language                        |   SQL                                                                                              |
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
 
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
+
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "phantom reads" database patterns, but under the `READ COMMITTED` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_10](misc/D08_10.png) |
+| Let's check one of the famous "phantom reads" database patterns, but under the `READ COMMITTED` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_10](misc/images/D08_10.png) |
 
 Please summarize all ratings for all pizzerias in one transaction mode for Session #1 and then `UPDATE` the rating to 1 value for "Pizza Hut" restaurant in Session #2 (in the same order as in the picture).
 
  
 
-## Chapter X
-## Exercise 06 - Phantom Reads for Repeatable Read
+</details>
+
+<details>
+<summary> Exercise 06 - Phantom Reads for Repeatable Read </summary>
 
 
 | Exercise 06: Phantom Reads for Repeatable Read|                                                                                                                          |
@@ -175,18 +194,21 @@ Please summarize all ratings for all pizzerias in one transaction mode for Sessi
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL                                                                                              |
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
 
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
+
+
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "Phantom Reads" database patterns, but under the isolation level `REPEATABLE READ`. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_11](misc/D08_11.png) |
+| Let's check one of the famous "Phantom Reads" database patterns, but under the isolation level `REPEATABLE READ`. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_11](misc/images/D08_11.png) |
 
 Please summarize all ratings for all pizzerias in one transaction mode for Session #1 and then `UPDATE` the rating to 5 value for "Pizza Hut" restaurant in Session #2 (in the same order as in the picture).
 
-## Chapter XI
-## Exercise 07 - Deadlock
+
+</details>
+
+<details>
+<summary>  Exercise 07 - Deadlock </summary>
 
 
 | Exercise 07: Deadlock|                                                                                                                          |
@@ -196,16 +218,20 @@ Please summarize all ratings for all pizzerias in one transaction mode for Sessi
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL                                                                                              |
 
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
-
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
 
 Let’s reproduce a deadlock situation in our database. 
 
 
 |  |  |
-| ------ | ------ |
-| You can see a graphical representation of the deadlock situation in a picture. It looks like a "Christ-lock" between parallel sessions. | ![D08_12](misc/D08_12.png) |
+| ------ | ------- |
+| You can see a graphical representation of the deadlock situation in a picture. It looks like a "Christ-lock" between parallel sessions.  |                       _                 |
+  |   ![D08_12](misc/images/D08_12.png)     |              _                     |
+  
+ 
 
 Please write any SQL statement with any isolation level (you can use the default setting) on the table `pizzeria` to reproduce this deadlock situation.
 
+
+</details>
+
+[D08_Exercise 01, 02, 03, 04, 05, 06, 07 ](src/day08.sql)
