@@ -1,3 +1,4 @@
+--- Exercise 00: Let’s find appropriate prices for Kate---
 WITH pp_visit(piz_id, date) AS
 (
 SELECT pizzeria_id,
@@ -14,4 +15,106 @@ SELECT pizza_name,
  JOIN pp_visit ON piz_id = id
  JOIN menu     ON pizzeria_id = pizzeria.id
 WHERE price BETWEEN '800' AND '1000'
-ORDER BY 1,2,3,4
+ORDER BY 1,2,3,4 --лиший последний столбик в ордербай 
+
+-- Exercise 01: Let’s find forgotten menus	--
+
+SELECT id 
+  FROM menu 
+ WHERE id NOT IN (SELECT menu_id 
+                    FROM person_order) 
+ORDER BY id
+
+-- Exercise 02: Let’s find forgotten pizza and pizzerias ----
+
+SELECT menu.pizza_name, 
+       menu.price, 
+       pizzeria.name AS pizzeria_name 
+  FROM menu
+ JOIN pizzeria ON pizzeria_id = pizzeria.id
+where menu.id NOT IN (SELECT menu_id 
+                        FROM person_order) 
+ORDER BY menu.pizza_name, 
+         menu.price
+
+-- Решения #2 без JOIN
+
+SELECT menu.pizza_name, 
+       menu.price, 
+       (SELECT pizzeria.name 
+          FROM pizzeria 
+         WHERE pizzeria_id = pizzeria.id )  AS pizzeria_name 
+  FROM menu
+where menu.id NOT IN (SELECT menu_id 
+                        FROM person_order) 
+ORDER BY menu.pizza_name, 
+         menu.price
+
+-- Exercise 03: Let’s compare visits -- -- --
+
+WITH 
+female_visit AS (
+	           SELECT pizzeria.name      AS pizzeria_name, 
+                         Count(pizzeria_id) AS cnt
+  	             FROM pizzeria
+                    JOIN person_visits ON pizzeria.id = person_visits.pizzeria_id
+                    JOIN person        ON person_id = person.id AND person.gender = 'female' 
+  GROUP BY 1
+  ),
+male_visit AS (
+    SELECT pizzeria.name AS pizzeria_name , 
+           Count(pizzeria_id) AS cnt 
+  	  FROM pizzeria
+      JOIN person_visits ON pizzeria.id = person_visits.pizzeria_id
+      JOIN person        ON person_id = person.id AND person.gender = 'male'
+  GROUP BY 1
+  )
+
+SELECT female_visit.pizzeria_name
+  FROM female_visit 
+  JOIN male_visit ON female_visit.pizzeria_name = male_visit.pizzeria_name 
+WHERE  female_visit.cnt > male_visit.cnt
+UNION ALL
+SELECT female_visit.pizzeria_name
+  FROM female_visit
+  JOIN male_visit ON female_visit.pizzeria_name = male_visit.pizzeria_name 
+WHERE female_visit.cnt < male_visit.cnt
+ORDER BY 1
+
+-- Exercise 04: Let’s compare orders -- -- -- --
+WITH orders (person_id, pizzeria_id) AS
+(
+	SELECT person_id,
+	       menu.pizzeria_id
+      FROM person_order
+	  JOIN menu ON menu_id = menu.id
+ ),
+ orders_only_female(pizzeria_id) AS
+ (
+	 SELECT DISTINCT pizzeria_id
+       FROM orders
+ 	   JOIN person ON person_id = person.id AND person.gender = 'female'
+ 	   EXCEPT
+ 	 SELECT DISTINCT  pizzeria_id
+ 	 FROM orders
+     JOIN person ON person_id = person.id AND person.gender = 'male'
+ ),
+ orders_only_male(pizzeria_id) AS
+ (
+	 SELECT DISTINCT pizzeria_id
+       FROM orders
+ 	   JOIN person ON person_id = person.id AND person.gender = 'male'
+ 	   EXCEPT
+ 	 SELECT DISTINCT  pizzeria_id
+ 	 FROM orders
+     JOIN person ON person_id = person.id AND person.gender = 'female'
+ )
+
+ SELECT NAME AS pizzeria_name
+   FROM pizzeria
+ JOIN (SELECT pizzeria_id
+         FROM  orders_only_female
+        UNION
+       SELECT pizzeria_id
+         FROM  orders_only_male
+) ON pizzeria_id = pizzeria.id
