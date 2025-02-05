@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS person_discounts
 ( id bigint primary key ,
   person_id bigint not null ,
   pizzeria_id bigint not null ,
-  discounts numeric default 0 not null ,
+  discount numeric default 0 not null ,
  constraint fk_person_discounts_person_id foreign key  (person_id) references person(id),
  constraint fk_person_discounts_pizzeria_id foreign key (pizzeria_id) references pizzeria(id),
- constraint ch_discounts check ( discounts  between 1 AND 25)
+ constraint ch_discounts check ( discount  between 1 AND 50)
   );
 
 -- ______________________________________________
@@ -39,7 +39,7 @@ SELECT
        person.name,
        menu.pizza_name,
        menu.price,
-       menu.price - CEIL(menu.price * pd.discounts / 100) AS discount_price,
+       menu.price - CEIL(menu.price * pd.discount / 100) AS discount_price,
        pizzeria.name
   from person_order
   JOIN person ON person.id = person_order.person_id
@@ -57,63 +57,53 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_person_discounts_unique ON person_discount
 SET ENABLE_SEQSCAN TO OFF;
 EXPLAIN ANALYSE
 
-SELECT person_id, pizzeria_id FROM person_discounts ORDER BY 1
+SELECT person_id, pizzeria_id FROM person_discounts ORDER BY 1;
+
+SET ENABLE_SEQSCAN TO ON;
 -- _______________________________________________
 -- |Exercise 04 - We need more Data Consistency  |
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 alter table person_discounts add constraint ch_nn_person_id CHECK (person_id is NOT NULL) ;
 alter table person_discounts add constraint ch_nn_pizzeria_id CHECK (pizzeria_id is NOT NULL) ;
-alter table person_discounts add constraint ch_nn_discount CHECK (discounts is NOT NULL) ;
-alter table person_discounts ALTER COLUMN  discounts SET DEFAULT 0;
-alter table person_discounts add constraint ch_range_discount  check ( discounts  between 0 AND 100);
+alter table person_discounts add constraint ch_nn_discount CHECK (discount is NOT NULL) ;
+alter table person_discounts ALTER COLUMN  discount SET DEFAULT 0;
+alter table person_discounts add constraint ch_range_discount  check ( discount  between 0 AND 100);
 
 -- _______________________________________________
 -- |         Exercise 05 - Data Governance Rules |
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 COMMENT ON TABLE person_discounts IS 'размер скидки клиента в пиццерии зависит от количетва сделанных заказов в пиццерии';
-
 COMMENT ON COLUMN person_discounts.id IS 'уникальный идентификатор скидки';
-
 COMMENT ON COLUMN person_discounts.person_id IS 'идентификатор клиента для которого есть скидка';
 COMMENT ON COLUMN person_discounts.pizzeria_id IS 'идентификатор пиццерии в которой у клиента скидка';
-COMMENT ON COLUMN person_discounts.discounts IS 'размер скидки клиента';
+COMMENT ON COLUMN person_discounts.discount IS 'размер скидки клиента';
 
 
+--что бы проверить что добавилось это срипт для себя
 SELECT obj_description(oid), relname
-FROM  pg_class WHERE   obj_description(oid) is not null
+FROM  pg_class WHERE   obj_description(oid) is not null;
 
-
-SELECT * FROM information_schema.tables where table_name like '%c%'
+SELECT * FROM information_schema.tables where table_name like '%c%';
 
 
 -- _____________________________________________________
 -- | Exercise 06: Let’s automate Primary Key generation |
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-CREATE SEQUENCE
+CREATE SEQUENCE IF NOT EXISTS
       seq_person_discounts AS INT
  OWNED BY
       person_discounts.id;
 
-
 SELECT
       SETVAL('seq_person_discounts', MAX(id))
-  FROM
-      person_discounts;
-
-
- ALTER TABLE
-      person_discounts
- ALTER COLUMN
-      id SET DEFAULT NEXTVAL('seq_person_discounts');
-
+FROM  person_discounts;
 
 INSERT INTO
       person_discounts (person_id, pizzeria_id, discount)
 VALUES
-      (4, 4, 22);
+      (2, 5, 22);
 
-SELECT
-      *
-  FROM
-      person_discounts;
+SELECT * FROM person_discounts;
+
+
