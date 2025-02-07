@@ -1,3 +1,4 @@
+--_________________________________________________________
 --Exercise 00 - Simple aggregated information
 --_________________________________________________________
 SELECT person_id,
@@ -6,7 +7,7 @@ SELECT person_id,
     JOIN person ON person_id = person.id
 GROUP BY person_id
 ORDER BY count_of_visits DESC, person_id ASC
-
+--_________________________________________________________
 --Exercise 01 - Let’s see real names
 --_________________________________________________________
   SELECT name,
@@ -16,6 +17,7 @@ ORDER BY count_of_visits DESC, person_id ASC
 GROUP BY name
 ORDER BY count_of_visits DESC, name ASC
 LIMIT 4
+--_________________________________________________________
 --Exercise 02 - Restaurants statistics
 --_________________________________________________________
  WITH orders AS 
@@ -45,40 +47,23 @@ ORDER by action_type ASC, count DESC
 --_________________________________________________________
 --Exercise 03 - Restaurants statistics #2
 --_________________________________________________________
+
  WITH orders AS 
  (SELECT name,
-         COUNT(pizzeria_id) AS count,
-         'orders' AS action_type
+         COUNT(pizzeria_id) AS count
     FROM person_order
     JOIN menu on menu_id = menu.id
     RIGHT JOIN pizzeria ON pizzeria_id = pizzeria.id
 GROUP BY name
-ORDER BY count DESC, name ASC
-
  ),
 visit AS 
 (SELECT name,
-         COUNT(pizzeria_id) AS count ,
-         'visit' AS action_type
+         COUNT(pizzeria_id) AS count 
     FROM person_visits 
     RIGHT JOIN pizzeria ON pizzeria_id = pizzeria.id
 GROUP BY name
-ORDER BY count DESC, name ASC
  )
 
---SELECT * FROM orders
---UNION ALL
---SELECT * FROM visit
-
-/* version #1 
-SELECT orders.name, 
-       orders.count + visit.count AS total_count
-  FROM orders
-  JOIN visit ON orders.name = visit.name
-ORDER BY total_count DESC, 1 ASC
-*/
-
-/* version #2 */ 
 SELECT name, SUM(Count) AS total_count FROM 
 (
 SELECT name, count FROM orders
@@ -87,7 +72,6 @@ SELECT name, count FROM visit
 )
 GROUP BY name
 ORDER BY total_count DESC, 1 ASC
-
 
 
 --_________________________________________________________
@@ -99,6 +83,8 @@ FROM person_visits
 JOIN person ON person_id = person.id
 GROUP BY name
 Having COUNT(*) > 3
+
+       
 --_________________________________________________________
 -- Exercise 05 - Person's uniqueness
 --_________________________________________________________
@@ -106,21 +92,25 @@ Having COUNT(*) > 3
 SELECT distinct name FROM person_order 
 JOIN  person ON person_id = person.id
 order by  1
+
+       
 --_________________________________________________________
 -- Exercise 06 - Restaurant metrics
 --_________________________________________________________
         /*name	count_of_orders	average_price	max_price	min_price*/
 SELECT pizzeria.name, 
-      COUNT(*) AS count_of_orders,
+      COUNT(*)            AS count_of_orders,
       ROUND(AVG(price),2) AS average_price,
-      MAX(PRICE) AS max_price,
-      min(PRICE) AS min_price
- FROM person_order 
-JOIN menu ON menu_id = menu.id
+      MAX(PRICE)          AS max_price,
+      min(PRICE)          AS min_price
+FROM person_order 
+JOIN menu     ON menu_id = menu.id
 JOIN pizzeria ON pizzeria_id = pizzeria.id
 
 GROUP BY pizzeria.name
 ORDER BY pizzeria.name
+
+       
 --_________________________________________________________
 -- Exercise 07 - Average global rating
 --_________________________________________________________
