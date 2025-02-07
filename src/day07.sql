@@ -26,7 +26,6 @@ LIMIT 4
     JOIN menu on menu_id = menu.id
     JOIN pizzeria ON pizzeria_id = pizzeria.id
 GROUP BY name
-ORDER BY count DESC, name ASC
 LIMIT 3
  ),
 visit AS 
@@ -36,13 +35,13 @@ visit AS
     FROM person_visits 
     JOIN pizzeria ON pizzeria_id = pizzeria.id
 GROUP BY name
-ORDER BY count DESC, name ASC
 LIMIT 3  
 )
 
 SELECT * FROM orders
 UNION ALL
 SELECT * FROM visit
+ORDER by action_type ASC, count DESC
 --_________________________________________________________
 --Exercise 03 - Restaurants statistics #2
 --_________________________________________________________
