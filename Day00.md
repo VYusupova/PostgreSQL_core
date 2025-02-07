@@ -4,35 +4,8 @@
 
 Resume: Today you will see how relational model works and how to get needed data based базовые конструкции SQL.
 
-
-## Contents \ Оглавление
-
-1. [Часть !](#chapter-i) \
-    1.1. [Преамбула](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [Главные правила](#general-rules)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) Exercise 00 
-5. [Chapter V](#chapter-v) Exercise 01  
-6. [Chapter VI](#chapter-vi) Exercise 02   
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 — First steps into SQL world]  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 — First steps into SQL world]  
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 — First steps into SQL world]  
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 — First steps into SQL world]  
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 — First steps into SQL world]  
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 — First steps into SQL world]  
-13. [Chapter XIII](#chapter-xiii) \
-    13.1. [Exercise 09 — First steps into SQL world]  
-
-## Chapter I
-## Preamble
+<details>
+<summary>  Preamble  </summary>
 
 ![D01_01](misc/images/D01_01.png)
 
@@ -48,8 +21,11 @@ Please take a look at some SQL standards below and try to think about the future
 | ![D01_05](misc/images/D01_05.png) | ![D01_06](misc/images/D01_06.png) |
 | ![D01_07](misc/images/D01_07.png) | ![D01_08](misc/images/D01_08.png) |
 
-## Chapter II
-## General Rules
+
+</details>
+
+<details>
+<summary> General Rules </summary>
 
 - Use this page as your only reference. Do not listen to rumors and speculations about how to prepare your solution.
 - Убедись что используешь последнюю версию PostgreSQL (Make sure you are using the latest version of PostgreSQL.)
@@ -63,8 +39,11 @@ Please take a look at some SQL standards below and try to think about the future
 - And may the SQL-Force be with you!
 - Absolutely anything can be represented in SQL!Давай начнем и повеселимся (Let's get started and have fun!)
 
-## Chapter III
-## Rules of the day
+</details>
+
+<details>
+<summary> Rules of the day </summary>
+
 
  Please make sure you have your own database and access to it on your PostgreSQL cluster.
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
@@ -102,8 +81,12 @@ Please take a look at some SQL standards below and try to think about the future
 
 People's visit(посещения) and people's order(заказы) are different entities and don't contain any correlation between data. For example, a customer can be in a restaurant (just looking at the menu) and at the same time place an order in another restaurant by phone or mobile application. Or another case, just be at home and again make a call with order without any visits.
 
-## Chapter IV
-## Exercise(Упражение) 00 — Первые шаги в мире SQL  
+</details>
+
+<details>
+<summary> Exercise(Упражение) 00 — Первые шаги в мире SQL  </summary>
+
+
 
 | Упражение 00: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -114,10 +97,13 @@ People's visit(посещения) and people's order(заказы) are differen
 
 Давай выполним наше первое задание. Создать выбоку через select в которой будет имена и возраст всех кто живет в городе Казань.
 Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.  
-[D00_ex00](src/day00_ex00.sql)
 
-## Chapter V
-## Exercise 01 — Первые шаги в мире SQL  
+
+</details>
+
+<details>
+<summary> Exercise 01 — Первые шаги в мире SQL   </summary> 
+
 
 | Упражение 01: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -128,10 +114,13 @@ Please make a select statement which returns all person's names and person's age
 
 Через оператор select  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени.  
 (statement - оператор, заявление)  
-[D00_ex01](src/day00_ex01.sql)
 
-## Chapter VI
-## Exercise 02 — Первые шаги в мире SQL  
+
+</details>
+
+<details>
+<summary>  Exercise 02 — Первые шаги в мире SQL     </summary> 
+
 
 | Упражение 02: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -143,9 +132,13 @@ Please make a select statement which returns all person's names and person's age
 Please make 2 syntax different select запроса которые вернет список из таблицы `pizzeria` (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
 - the 1st select должен бытть основан на неравенствах  (<=, >=);
 - the 2nd select с ключевым словом `BETWEEN`.  
-[D00_ex02](src/day00_ex02.sql)
-## Chapter VII
-## Exercise 03 — Первые шаги в мире SQL  
+
+
+</details>
+
+<details>
+<summary>  Exercise 03 — Первые шаги в мире SQL      </summary> 
+
 
 | Упражение 03: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -155,9 +148,12 @@ Please make 2 syntax different select запроса которые вернет
 | Language                        | ANSI SQL                                                                                              |
 
 Please make a select запрос который возвращает the person identifiers (без дублей) тех кто посетил пиццерию в период с 6 января 2022 по 9 января 2022 (включительно) или посетил пиццерию с индетификатором 2. Also включите сортировку clause by person identifier in **descending** mode(по убыванию).  
-[D00_01](src/day00_ex03.sql)
-## Chapter VIII
-## Exercise 04 — Первые шаги в мире SQL  
+
+
+</details>
+
+<details>
+<summary>  Exercise 04 — Первые шаги в мире SQL     </summary> 
 
 
 | Упражение 04: Первые шаги в мире SQL |                                                                                                                          |
@@ -173,9 +169,12 @@ Please make a select запрос который вернет одно вычи�
 
 Finally, please add the ordering clause by calculated column in **ascending** mode.
 Please pay attention to the **quotation** marks in your formula! (обратите внимание на то что в формуле должны быть кавычки)  
-[D00_ex04](src/day00_ex04.sql)
-## Chapter IX
-## Exercise 05 — Первые шаги в мире SQL  
+
+
+</details>
+
+<details>
+<summary> Exercise 05 — Первые шаги в мире SQL       </summary> 
 
 
 | Управжнение 05: Первые шаги в мире SQL |                                                                                                                          |
@@ -197,10 +196,13 @@ Please take a look at the pattern of internal query.
     FROM ...
     WHERE ...
     
-[D00_ex05](src/day00_ex05.sql)
 
-## Chapter X
-## Exercise 06 — Первые шаги в мире SQL  
+
+</details>
+
+<details>
+<summary> Exercise 06 — Первые шаги в мире SQL      </summary> 
+
 
 
 | Упражение 06:  |       First steps into SQL world                                                                                                                   |
@@ -218,10 +220,12 @@ Use the SQL construction from Exercise 05 and add a new calculated column (use c
     if (person_name == 'Denis') then return true
         else return false
 
-[D00_ex06](src/day00_ex06.sql)
 
-## Chapter XI
-## Exercise 07 — Первые шаги в мире SQL  
+</details>
+
+<details>
+<summary>  Exercise 07 — Первые шаги в мире SQL    </summary> 
+
 
 
 | Упражение 07: First steps into SQL world |                                                                                                                          |
@@ -243,10 +247,12 @@ Please make an SQL statement that returns the identifiers of a person, the perso
 
 And yes... please sort a result by ‘interval_info’ column in ascending mode.
 И да... пожалуйтса отсортируй результат по столбцу ‘interval_info’ по возрастанию
-[D00_ex07](src/day00_ex07.sql)
 
 
-## Chapter XII
+</details>
+
+<details>
+<summary> Упражение 08: Первые шаги в мире SQL   </summary> 
 
 | Упражение 08: Первые шаги в мире SQL |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -258,9 +264,12 @@ And yes... please sort a result by ‘interval_info’ column in ascending mode.
 Create an SQL statement that returns all columns from the `person_order` table with rows whose identifier is an even number. The result must be ordered by the returned identifier.  
 
 Создать запрос который вернет все столбцы из таблицы `person_order` в чьих строках identifier это четное число.  Рузультат должен быть отсортирован по возрвращаемуму идентификатору
-[D00_ex08](src/day00_ex08.sql)
 
-## Chapter XIII
+
+</details>
+
+<details>
+<summary> Упражение 09: Первые шаги в мире SQL   </summary> 
 
 | Exercise 09: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -278,10 +287,15 @@ Please make a select statement that returns person names and pizzeria names base
 
 Please take a look at the pattern of the final query.
 
+```
     SELECT (...) AS person_name ,  -- this is an internal query in a main SELECT clause
             (...) AS pizzeria_name  -- this is an internal query in a main SELECT clause
     FROM (SELECT … FROM person_visits WHERE …) AS pv -- this is an internal query in a main FROM clause
     ORDER BY ...
+```
 
 Please add a **ordering** clause by person name in ascending mode and by pizzeria name in descending mode.
 
+</details>
+
+[D00_ex00](src/day00.sql)
