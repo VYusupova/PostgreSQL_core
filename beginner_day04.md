@@ -7,25 +7,6 @@ Resume: Today you will see how to use a virtual view and physical snapshot of da
 >Резюме: Сегодня вы увидите, как использовать виртуальное представление и физический снимок данных
 
 <details>
-<summary>Contents</summary>
-    
-1. [Chapter I](#chapter-i) \ [Preamble]
-2. [Chapter II](#chapter-ii) \ [General Rules]
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
-4. [Exercise 00 - Let’s create separated views for persons](#exercise-00-lets-create-separated-views-for-persons)  
-5. [Exercise 01 - From parts to common view](#exercise-01-from-parts-to-common-view)  
-6. [Exercise 02 - “Store” generated dates in one place](#exercise-02-store-generated-dates-in-one-place)  
-7.  [Exercise 03 - Find missing visit days with Database View](#exercise-03-find-missing-visit-days-with-database-view)  
-8. [Exercise 04 - Let’s find something from Set Theory](#exercise-04-lets-find-something-from-set-theory)
-9.  [Exercise 05 - Let’s calculate a discount price for each person](#exercise-05-lets-calculate-a-discount-price-for-each-person)
-10. [Exercise 06 - Materialization from virtualization](#exercise-06-materialization-from-virtualization)
-11.[Exercise 07 - Refresh our state](#exercise-07-refresh-our-state)
-12.  [Exercise 08 - Just clear our database](#exercise-08-just-clear-our-database)
-
-</details>
-
-<details>
 <summary>Preamble</summary>
     
 ![D04_02](misc/images/D04_02.png)
@@ -73,44 +54,6 @@ Also, there are “a few” additional differences between View and Materialized
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 </details>
 
-<details>
-<summary>Rules of the day</summary>
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
-
-![schema](misc/images/schema.png)
-
-
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
-
-Persons' visit and persons' order are different(другой) entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different(другой) one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
-</details>
 
 
 <details>
@@ -126,9 +69,9 @@ Persons' visit and persons' order are different(другой) entities and don't
 Please create 2 Database Views (with similar attributes like the original table) based on simple filtering of gender of persons. Set the corresponding(соответствующий) names for the database views: `v_persons_female` and `v_persons_male`.
 >Создайте 2 представления базы данных (с похожими атрибутами, как у исходной таблицы) на основе простой фильтрации пола лиц. Задайте соответствующие имена для представлений базы данных: `v_persons_female` и `v_persons_male`.
 
->**"теория"** https://translated.turbopages.org/proxy_u/en-ru.ru.1650019b-675ef6a7-2b33a928-74722d776562/https/www.geeksforgeeks.org/postgresql-managing-views/
 
-[D04_ex00](src/day04_ex00.sql)
+
+
 </details>
 
 <details>
@@ -150,6 +93,8 @@ Please use 2 Database Views from Exercise #00 and write SQL to get female and ma
 | Anna |
 | ... |
 
+
+[D04_ex00](src/day04_ex00.sql)
 [D04_ex01](src/day04_ex01.sql)
 </details>
 
