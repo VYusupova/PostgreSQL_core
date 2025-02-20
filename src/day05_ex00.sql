@@ -53,7 +53,7 @@ SET ENABLE_SEQSCAN TO ON;
 -- Exercise 03 - Multicolumn index for our goals (Индекс на основе нескольких столбцов наша цель)
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 --idx_person_order_multi
-CREATE INDEX if not EXISTS idx_person_order_multi ON person_order (person_id, menu_id);
+CREATE INDEX if not EXISTS idx_person_order_multi ON person_order (person_id, menu_id); -- добавить надо бы в чек листе это есть order_date
 
 --DROP INDEX idx_person_order_multi;
 
