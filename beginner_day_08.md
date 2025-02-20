@@ -8,6 +8,47 @@ Please use the command line for PostgreSQL database (psql) for this task. You ne
 
 Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
 
+Пожалуйста, используйте командную строку для базы данных PostgreSQL (psql) для этой задачи. Вам необходимо проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
+На самом деле нам нужны два активных сеанса (т.е. 2 параллельных сеанса в командной строке).
+
+<details>
+<summary>  Preamble </summary>
+
+
+![D08_01](misc/images/D08_01.png)
+
+Лестница Пенроуза или ступени Пенроуза, также называемая невозможной лестницей, — невозможный объект, созданный Лайонелом Пенроузом и его сыном Роджером Пенроузом. Разновидность треугольника Пенроуза, это двумерное представление лестницы, в которой ступени делают четыре поворота на 90 градусов по мере подъема или спуска, но при этом образуют непрерывную петлю, так что человек может подниматься по ним вечно и никогда не подниматься выше. Это явно невозможно в трех измерениях. «Непрерывная лестница» была впервые представлена ​​в статье, написанной Пенроузами в 1959 году, на основе так называемого «треугольника Пенроуза», опубликованного Роджером Пенроузом в British Journal of Psychology в 1958 году.
+«Лестница Пенроуза» — это математическая аномалия, на самом деле теория баз данных имеет 4 фундаментальные аномалии данных (физические аномалии).
+
+Аномалия потерянного обновления;
+Аномалия грязных показаний;
+Аномалия неповторяющихся показаний;
+Аномалия фантомного чтения.
+
+Поэтому в стандарте ANSI SQL предусмотрены различные уровни изоляции, которые предотвращают известные аномалии.
+
+![D08_02](misc/images/D08_02.png)
+
+С одной точки зрения, эта матрица должна быть стандартом для любой реляционной базы данных, но реальность... выглядит немного иначе.
+
+|  |  | |
+| ------ | ------ | ------ |
+| PostgreSQL | ![D08_03](misc/images/D08_03.png) |
+| Oracle | ![D08_04](misc/images/D08_04.png) |
+| MySQL | ![D08_05](misc/images/D08_05.png) |
+
+В настоящее время ИТ-сообщество обнаружило ряд новых аномалий, основанных на модели базы данных (логическое представление):
+
+Прочитайте Аномалию перекоса;
+Запись аномалии перекоса;
+Аномалия сериализации;
+Аномалия «Веерные ловушки»;
+Аномалия «Пропасть ловушек»;
+Аномалия циклов модели данных;
+и т. д.
+
+</details>
+
 <details>
 <summary>  Exercise 00 - Simple transaction </summary>
 
@@ -20,25 +61,26 @@ Actually, we need two active sessions (i.e. 2 parallel sessions in the command l
 | Language                        |  SQL|
 
 
-Please provide a proof that your parallel session can’t see your changes until you will make a `COMMIT`;
+Предоставьте доказательство того, что ваш параллельный сеанс не сможет увидеть ваши изменения, пока вы не сделаете COMMIT;
+См. шаги ниже.
+Сессия №1
 
-See the steps below.
+Обновление рейтинга «Pizza Hut» до 5 баллов в транзакционном режиме.
+Проверьте, видны ли изменения в сеансе №1.
 
-**Session #1**
-- Update of rating for "Pizza Hut" to 5 points in a transaction mode.
-- Check that you can see a changes in session #1.
+Сессия №2
 
-**Session #2**
-- Check that you can’t see a changes in session #2.
+Убедитесь, что вы не видите изменений в сеансе №2.
 
-**Session #1**
-- Publish your changes for all parallel sessions.
+Сессия №1
 
-**Session #2**
-- Check that you can see a changes in session #2.
+Опубликуйте свои изменения для всех параллельных сеансов.
 
+Сессия №2
 
-So, take a look on example of our output for Session #2.
+Проверьте, видны ли изменения в сеансе №2.
+
+Итак, взгляните на пример нашего вывода для сеанса №2.
 
     pizza_db=> select * from pizzeria where name  = 'Pizza Hut';
     id |   name    | rating
@@ -52,7 +94,7 @@ So, take a look on example of our output for Session #2.
     1 | Pizza Hut |      5
     (1 row)
 
-You can see that the same query returns different results because the first query was run before publishing in Session#1 and the second query was run after Session#1 was finished.
+Вы можете видеть, что один и тот же запрос возвращает разные результаты, поскольку первый запрос был выполнен до публикации в сеансе №1, а второй запрос был выполнен после завершения сеанса №1.
 
 </details>
 
@@ -69,22 +111,23 @@ You can see that the same query returns different results because the first quer
 
 
 
-Before running a task, make sure you are at a standard isolation level in your database. Just run the following statement `SHOW TRANSACTION ISOLATION LEVEL;` and the result should be "read committed".
+Перед запуском задачи убедитесь, что вы находитесь на стандартном уровне изоляции в своей базе данных. Просто запустите следующий оператор SHOW TRANSACTION ISOLATION LEVEL;, и результатом должно быть "read commited".
+Если нет, установите уровень изоляции read commited явно на уровне сеанса.
 
-If not, please set the read committed isolation level explicitly on a session level.
->Если нет, установите уровень изоляции `read commited` явно на уровне сеанса.
+
+
+
 
 
     
 |  |  |
 | ------ | ------ |
-| Let's examine one of the famous "Lost Update Anomaly" database patterns. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all the sequential steps for both Sessions. | > Давайте рассмотрим один из известных шаблонов базы данных "Lost Update Anomaly". Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой конечные результаты после всех последовательных шагов для обоих сеансов.  |
+| Давайте рассмотрим один из известных шаблонов базы данных "Lost Update Anomaly", но под REPEATABLE READуровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обоих сеансов.  |
  | ![D08_06](misc/images/D08_06.png) |
  |  | 
 |     
 
-Please check a rating for "Pizza Hut" in a transaction mode for both sessions and then make an `UPDATE` of the rating to a value of 4 in Session #1 and make an `UPDATE` of the rating to a value of 3.6 in Session #2 (in the same order as in the picture).
-
+Проверьте рейтинг «Pizza Hut» в режиме транзакции для обоих сеансов, а затем измените UPDATEрейтинг на значение 4 в сеансе № 1 и измените UPDATEрейтинг на значение 3,6 в сеансе № 2 (в том же порядке, что и на рисунке).
 
 
 </details>
@@ -104,7 +147,8 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 
 |  |  |
 | ------ | ------ |
-| Let's examine one of the famous "Lost Update Anomaly" database patterns, but under the `REPEATABLE READ` isolation level. You can see a graphical representation of this anomaly on a picture. Horizontal red line means the final results after all sequential steps for both Sessions. | ![D08_07](misc/images/D08_07.png) |
+| Давайте рассмотрим один из известных шаблонов базы данных `"Lost Update Anomaly"`, но под `REPEATABLE READ` уровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обоих сеансов.| ![D08_07](misc/images/D08_07.png) |
+| ![D08_07](misc/images/D08_07.png)  | |
 
 Please check a rating for "Pizza Hut" in a transaction mode for both sessions and then make an `UPDATE` of the rating to a value of 4 in Session #1 and make an `UPDATE` of the rating to a value of 3.6 in Session #2 (in the same order as in the picture).
 
@@ -126,9 +170,10 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "Non-Repeatable Reads" database patterns, but under the `READ COMMITTED` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final result after all sequential steps for both Sessions. | ![D08_08](misc/images/D08_08.png) |
+|Давайте проверим один из известных шаблонов базы данных `"Non-Repeatable Reads"`, но под `READ COMMITTED` уровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой конечный результат после всех последовательных шагов для обоих сеансов.| ![D08_08](misc/images/D08_08.png) |
+| ![D08_08](misc/images/D08_08.png)  | |
 
-Please check a rating for "Pizza Hut" in a transaction mode for Session #1 and then make an `UPDATE` of the rating to a value of 3.6 in Session #2 (in the same order as in the picture).
+Проверьте рейтинг «Pizza Hut» в режиме транзакции для сеанса №1, а затем измените UPDATEрейтинг до значения 3,6 в сеансе №2 (в том же порядке, что и на рисунке).
 
 
 </details>
@@ -149,9 +194,10 @@ Please check a rating for "Pizza Hut" in a transaction mode for Session #1 and t
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "Non-Repeatable Reads" database patterns, but under the `SERIALIZABLE` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_09](misc/images/D08_09.png) |
+| Давайте проверим один из известных шаблонов базы данных `"Non-Repeatable Reads"`, но под `SERIALIZABLE` уровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой окончательные результаты после всех последовательных шагов для обоих сеансов. | ![D08_09](misc/images/D08_09.png) |
+| ![D08_09](misc/images/D08_09.png)  | |
 
-Please check a rating for "Pizza Hut" in a transaction mode for Session #1, and then make an `UPDATE` of the rating to a value of 3.0 in Session #2 (in the same order as in the picture).
+Проверьте рейтинг «Pizza Hut» в режиме транзакции для сеанса №1, а затем измените UPDATEрейтинг до значения 3,0 в сеансе №2 (в том же порядке, что и на рисунке).
 
 
 
@@ -175,9 +221,10 @@ Please check a rating for "Pizza Hut" in a transaction mode for Session #1, and 
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "phantom reads" database patterns, but under the `READ COMMITTED` isolation level. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_10](misc/images/D08_10.png) |
+| Давайте проверим один из известных шаблонов базы данных "фантомных чтений", но под READ COMMITTEDуровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой окончательные результаты после всех последовательных шагов для обоих сеансов.| ![D08_10](misc/images/D08_10.png) |
+| ![D08_10](misc/images/D08_10.png)  | |
 
-Please summarize all ratings for all pizzerias in one transaction mode for Session #1 and then `UPDATE` the rating to 1 value for "Pizza Hut" restaurant in Session #2 (in the same order as in the picture).
+Пожалуйста, суммируйте все рейтинги для всех пиццерий в одном транзакционном режиме для сеанса №1, а затем создайте INSERTновый ресторан «Казань Пицца» с рейтингом 5 и ID=10 в сеансе №2 (в том же порядке, что и на рисунке).
 
  
 
@@ -200,9 +247,10 @@ Please summarize all ratings for all pizzerias in one transaction mode for Sessi
 
 |  |  |
 | ------ | ------ |
-| Let's check one of the famous "Phantom Reads" database patterns, but under the isolation level `REPEATABLE READ`. You can see a graphical representation of this anomaly on a picture. The horizontal red line represents the final results after all sequential steps for both Sessions. | ![D08_11](misc/images/D08_11.png) |
+| Давайте проверим один из известных шаблонов базы данных "Phantom Reads", но под уровнем изоляции REPEATABLE READ. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой окончательные результаты после всех последовательных шагов для обоих сеансов. | ![D08_11](misc/images/D08_11.png) |
+| ![D08_11](misc/images/D08_11.png)|  |
 
-Please summarize all ratings for all pizzerias in one transaction mode for Session #1 and then `UPDATE` the rating to 5 value for "Pizza Hut" restaurant in Session #2 (in the same order as in the picture).
+Пожалуйста, суммируйте все рейтинги всех пиццерий в одном транзакционном режиме для сеанса №1, а затем создайте INSERTновый ресторан «Казань Пицца 2» с рейтингом 4 и ID=11 в сеансе №2 (в том же порядке, что и на рисунке).
 
 
 </details>
@@ -224,12 +272,12 @@ Let’s reproduce a deadlock situation in our database.
 
 |  |  |
 | ------ | ------- |
-| You can see a graphical representation of the deadlock situation in a picture. It looks like a "Christ-lock" between parallel sessions.  |                       _                 |
+| Графическое представление тупиковой ситуации можно увидеть на рисунке. Это похоже на «Christ-lock» между параллельными сессиями.  |                       _                 |
   |   ![D08_12](misc/images/D08_12.png)     |              _                     |
   
  
 
-Please write any SQL statement with any isolation level (you can use the default setting) on the table `pizzeria` to reproduce this deadlock situation.
+Пожалуйста, напишите любой оператор SQL с любым уровнем изоляции (можно использовать настройку по умолчанию) в таблице, pizzeriaчтобы воспроизвести эту ситуацию взаимоблокировки.
 
 
 </details>
