@@ -20,7 +20,7 @@ Please create a simple BTree index for every foreign key in our database. The na
 
 >Пожалуйста, создайте простой индекс BTree для каждого внешнего ключа в нашей базе данных. Шаблон имени должен удовлетворять следующему правилу «idx_{table_name}_{column_name}». Например, индекс имени BTree для столбца pizzeria_id в таблице меню — idx_menu_pizzeria_id.
 
-[D05_ex00](src/day05_ex00.sql)
+
 
 </details>
 
@@ -58,7 +58,6 @@ Please take a look at the sample output command.
 **Hint**: please think why your indexes are not working in a direct way and what should we do to enable it?
 >**Подсказка**: подумайте, почему ваши индексы не работают напрямую и что нам нужно сделать, чтобы это включить?
 
-[D05_ex01](src/day05_ex01.sql)
 
 </details>
 
@@ -80,7 +79,7 @@ Please create a functional B-Tree index with name `idx_person_name` for the colu
 Please write and provide any SQL with proof (`EXPLAIN ANALYZE`) that index idx_person_name is working. 
 > Пожалуйста, напишите и предоставьте любой SQL-код с доказательством (`EXPLAIN ANALYZE`) того, что индекс idx_person_name работает.
 
-[D05_ex02](src/day05_ex02.sql)
+
 
 </details>
 
@@ -113,7 +112,6 @@ Please provide any SQL with proof (`EXPLAIN ANALYZE`) that index `idx_person_ord
 > Пожалуйста, предоставьте любой SQL-код с доказательством (`EXPLAIN ANALYZE`) того, что индекс `idx_person_order_multi` работает.
 
 
-[D05_ex03](src/day05_ex03.sql)
 
 </details>
 
@@ -132,7 +130,6 @@ Please write and provide any SQL with proof (`EXPLAIN ANALYZE`) that index `idx_
 > Создайте уникальный индекс BTree с именем `idx_menu_unique` в таблице `menu` для столбцов `pizzeria_id` и `pizza_name`.
 > напишите и предоставьте любой SQL с доказательством (`EXPLAIN ANALYZE`) того, что индекс `idx_menu_unique` работает.
 
-[D05_ex04](src/day05_ex04.sql)
 
 </details>
 
@@ -155,7 +152,7 @@ The `EXPLAIN ANALYZE` command should return  the next pattern
 
     Index Only Scan using idx_person_order_order_date on person_order …
 
-[D05_ex05](src/day05_ex05.sql)
+
 
 </details>
 
@@ -218,6 +215,8 @@ Sample of my improvement:
     Planning Time: 0.338 ms
     Execution Time: 0.203 ms
 
-[D05_ex06](src/day05_ex06.sql)
+
 
 </details>
+
+[D05_ex00_01_02_03_04_05_06](src/day05_ex00.sql)
