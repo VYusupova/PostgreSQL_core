@@ -3,13 +3,10 @@
 ## _Isolation is one of ACID properties_
 
 Resume: Today you will see how database works with transactions and isolation levels.
-
-Please use the command line for PostgreSQL database (psql) for this task. You need to check how your changes will be published to the database for other database users. 
-
-Actually, we need two active sessions (i.e. 2 parallel sessions in the command line).
-
-Пожалуйста, используйте командную строку для базы данных PostgreSQL (psql) для этой задачи. Вам необходимо проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
+> Пожалуйста, используйте командную строку для базы данных PostgreSQL (psql) для этой задачи. Вам необходимо проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 На самом деле нам нужны два активных сеанса (т.е. 2 параллельных сеанса в командной строке).
+
+
 
 <details>
 <summary>  Preamble </summary>
@@ -63,22 +60,22 @@ Actually, we need two active sessions (i.e. 2 parallel sessions in the command l
 
 Предоставьте доказательство того, что ваш параллельный сеанс не сможет увидеть ваши изменения, пока вы не сделаете COMMIT;
 См. шаги ниже.
-Сессия №1
+**Session #1**
 
 Обновление рейтинга «Pizza Hut» до 5 баллов в транзакционном режиме.
-Проверьте, видны ли изменения в сеансе №1.
+Проверьте, видны ли изменения в session #1.
 
-Сессия №2
+**Session #2**
 
-Убедитесь, что вы не видите изменений в сеансе №2.
+Убедитесь, что вы не видите изменений в session #2.
 
-Сессия №1
+**Session #1**
 
 Опубликуйте свои изменения для всех параллельных сеансов.
 
-Сессия №2
+**Session #2**
 
-Проверьте, видны ли изменения в сеансе №2.
+Проверьте, видны ли изменения в session #2.
 
 Итак, взгляните на пример нашего вывода для сеанса №2.
 
@@ -94,7 +91,10 @@ Actually, we need two active sessions (i.e. 2 parallel sessions in the command l
     1 | Pizza Hut |      5
     (1 row)
 
-Вы можете видеть, что один и тот же запрос возвращает разные результаты, поскольку первый запрос был выполнен до публикации в сеансе №1, а второй запрос был выполнен после завершения сеанса №1.
+Вы можете видеть, что один и тот же запрос возвращает разные результаты, поскольку первый запрос был выполнен до публикации в session #1, а второй запрос был выполнен после завершения сеанса №1.
+
+**== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex00.png)
 
 </details>
 
@@ -129,6 +129,8 @@ Actually, we need two active sessions (i.e. 2 parallel sessions in the command l
 
 Проверьте рейтинг «Pizza Hut» в режиме транзакции для обоих сеансов, а затем измените UPDATEрейтинг на значение 4 в сеансе № 1 и измените UPDATEрейтинг на значение 3,6 в сеансе № 2 (в том же порядке, что и на рисунке).
 
+**== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex01.png)
 
 </details>
 
@@ -152,6 +154,9 @@ Actually, we need two active sessions (i.e. 2 parallel sessions in the command l
 
 Please check a rating for "Pizza Hut" in a transaction mode for both sessions and then make an `UPDATE` of the rating to a value of 4 in Session #1 and make an `UPDATE` of the rating to a value of 3.6 in Session #2 (in the same order as in the picture).
 
+**== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex02.png)
+
 </details>
 
 <details>
@@ -173,8 +178,10 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 |Давайте проверим один из известных шаблонов базы данных `"Non-Repeatable Reads"`, но под `READ COMMITTED` уровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой конечный результат после всех последовательных шагов для обоих сеансов.| ![D08_08](misc/images/D08_08.png) |
 | ![D08_08](misc/images/D08_08.png)  | |
 
-Проверьте рейтинг «Pizza Hut» в режиме транзакции для сеанса №1, а затем измените UPDATEрейтинг до значения 3,6 в сеансе №2 (в том же порядке, что и на рисунке).
+Проверьте рейтинг «Pizza Hut» в режиме транзакции для сеанса №1, а затем измените UPDATEрейтинг до значения 3,6 в session #2 (в том же порядке, что и на рисунке).
 
+**== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex03.png)
 
 </details>
 
@@ -197,9 +204,10 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 | Давайте проверим один из известных шаблонов базы данных `"Non-Repeatable Reads"`, но под `SERIALIZABLE` уровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой окончательные результаты после всех последовательных шагов для обоих сеансов. | ![D08_09](misc/images/D08_09.png) |
 | ![D08_09](misc/images/D08_09.png)  | |
 
-Проверьте рейтинг «Pizza Hut» в режиме транзакции для сеанса №1, а затем измените UPDATEрейтинг до значения 3,0 в сеансе №2 (в том же порядке, что и на рисунке).
+Проверьте рейтинг «Pizza Hut» в режиме транзакции для сеанса №1, а затем измените UPDATEрейтинг до значения 3,0 в session #2 (в том же порядке, что и на рисунке).
 
-
+**== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex04.png)
 
 </details>
 
@@ -215,7 +223,7 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 | Files to turn-in                      | `day08_ex05.sql`  with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
 | **Allowed**                               |                                                                                                                          |
 | Language                        |   SQL                                                                                              |
-
+0
 
 
 
@@ -224,9 +232,10 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 | Давайте проверим один из известных шаблонов базы данных "фантомных чтений", но под READ COMMITTEDуровнем изоляции. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой окончательные результаты после всех последовательных шагов для обоих сеансов.| ![D08_10](misc/images/D08_10.png) |
 | ![D08_10](misc/images/D08_10.png)  | |
 
-Пожалуйста, суммируйте все рейтинги для всех пиццерий в одном транзакционном режиме для сеанса №1, а затем создайте INSERTновый ресторан «Казань Пицца» с рейтингом 5 и ID=10 в сеансе №2 (в том же порядке, что и на рисунке).
+Пожалуйста, суммируйте все рейтинги для всех пиццерий в одном транзакционном режиме для сеанса №1, а затем создайте INSERTновый ресторан «Казань Пицца» с рейтингом 5 и ID=10 в session #2 (в том же порядке, что и на рисунке).
 
- 
+ **== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex05.png)
 
 </details>
 
@@ -250,8 +259,10 @@ Please check a rating for "Pizza Hut" in a transaction mode for both sessions an
 | Давайте проверим один из известных шаблонов базы данных "Phantom Reads", но под уровнем изоляции REPEATABLE READ. Графическое представление этой аномалии вы можете увидеть на рисунке. Горизонтальная красная линия представляет собой окончательные результаты после всех последовательных шагов для обоих сеансов. | ![D08_11](misc/images/D08_11.png) |
 | ![D08_11](misc/images/D08_11.png)|  |
 
-Пожалуйста, суммируйте все рейтинги всех пиццерий в одном транзакционном режиме для сеанса №1, а затем создайте INSERTновый ресторан «Казань Пицца 2» с рейтингом 4 и ID=11 в сеансе №2 (в том же порядке, что и на рисунке).
+Пожалуйста, суммируйте все рейтинги всех пиццерий в одном транзакционном режиме для сеанса №1, а затем создайте INSERTновый ресторан «Казань Пицца 2» с рейтингом 4 и ID=11 в session #2 (в том же порядке, что и на рисунке).
 
+**== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex06.png)
 
 </details>
 
@@ -279,6 +290,8 @@ Let’s reproduce a deadlock situation in our database.
 
 Пожалуйста, напишите любой оператор SQL с любым уровнем изоляции (можно использовать настройку по умолчанию) в таблице, pizzeriaчтобы воспроизвести эту ситуацию взаимоблокировки.
 
+**== скриншот выполнения == **
+![D08_02](misc/images/psql_day_08_ex07.png)
 
 </details>
 
