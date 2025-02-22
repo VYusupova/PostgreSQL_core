@@ -1,121 +1,41 @@
 # Day 09 — SQL Bootcamp
 
-## _RDBMS is not just a tables_
+## _RDBMS is not just a tables_(СУБД — это не просто таблицы)
 
-Resume: Today you will see how to create and use functional blocks in Databases.
+Resume: Today you will see how to create and use functional blocks in Databases.  
+Резюме: Сегодня вы увидите, как создавать и использовать функциональные блоки в базах данных.
 
-💡 [Tap here](https://new.oprosso.net/p/4cb31ec3f47a4596bc758ea1861fb624) **to leave your feedback on the project**. It's anonymous and will help our team make your educational experience better. We recommend completing the survey immediately after the project.
-
-## Contents
-
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 — Audit of incoming inserts](#exercise-00-audit-of-incoming-inserts)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 — Audit of incoming updates](#exercise-01-audit-of-incoming-updates)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 — Audit of incoming deletes](#exercise-02-audit-of-incoming-deletes)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 — Generic Audit](#exercise-03-generic-audit)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 — Database View VS Database Function](#exercise-04-database-view-vs-database-function)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 — Parameterized Database Function](#exercise-05-parameterized-database-function)
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 — Function like a function-wrapper](#exercise-06-function-like-a-function-wrapper)
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 — Different view to find a Minimum](#exercise-07-different-view-to-find-a-minimum)
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 — Fibonacci algorithm is in a function](#exercise-08-fibonacci-algorithm-is-in-a-function)    
-      
 
 ## Chapter I
 ## Preamble
 
 ![D09_01](misc/images/D09_01.png)
 
-There are many functional programming languages in the RDBMS world. We can mainly talk about a "one-to-one" dependency between a particular RDBMS engine and the functional language inside it. Please take a look at a sample of these languages:
+В мире СУРБД существует множество функциональных языков программирования. В основном мы можем говорить о зависимости "один к одному" между конкретным движком СУРБД и функциональным языком внутри него. Пожалуйста, взгляните на пример этих языков:
+
 - T-SQL,
 - PL/SQL,
 - SQL,
 - PL/PGSQL,
 - PL/R,
 - PL/Python,
-- etc.
+- и т. д.
 
-Actually, there are two opposing opinions in the IT world about where business logic should be located. The first opinion is on Application Level, the second one is in RDBMS directly based on set UDF (User Defined Functions / Procedures / Packages). 
-Everyone chooses their own way to implement business logic. From our point of view, business logic should be in both places and we can tell you why.  
-Please take a look at the 2 simple architectures below. 
+На самом деле, в мире ИТ существует два противоположных мнения о том, где должна располагаться бизнес-логика. Первое мнение — на уровне приложений, второе — в СУБД, напрямую основанной на наборе UDF (User Defined Functions/Procedures/Packages). Каждый выбирает свой собственный способ реализации бизнес-логики. С нашей точки зрения, бизнес-логика должна находиться в обоих местах, и мы можем объяснить вам, почему. 
+Пожалуйста, взгляните на 2 простые архитектуры ниже.
 
 |  |  |
 | ------ | ------ |
-| ![D09_02](misc/images/D09_02.png) | Everything is clear, frontends and backends work through a special REST API layer that implements all the business logic. It's a really ideal application world. |
-| But there are always some privileged people / applications (like IDE) that work directly with our databases and... our pattern can be broken. | ![D09_03](misc/images/D09_03.png) |
+| ![D09_02](misc/images/D09_02.png) | Все понятно, фронтенды и бэкенды работают через специальный слой REST API, который реализует всю бизнес-логику. Это действительно идеальный мир приложений. |
+|    Но всегда есть некоторые привилегированные люди/приложения (вроде IDE), которые работают напрямую с нашими базами данных и... наш шаблон может быть нарушен. | ![D09_03](misc/images/D09_03.png) |
 
-Just think about it and try to create a clean architecture :-)
+> Just think about it and try to create a clean architecture :-)
 
-
-## Chapter II
-## General Rules
-
-- Use this page as your only reference. Do not listen to rumors and speculations about how to prepare your solution.
-- Make sure you are using the latest version of PostgreSQL.
-- It is perfectly fine if you use the IDE to write source code (aka SQL script).
-- To be evaluated, your solution must be in your GIT repository.
-- Your solutions will be evaluated by your peers.
-- You should not leave any files in your directory other than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Got a question? Ask your neighbor to the right. Otherwise, try your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. You may need things not specified in the topic.
-- And may the SQL-Force be with you!
-Absolutely anything can be represented in SQL! Let's get started and have fun!
-
-## Chapter III
 ## Rules of the day
 
-- Please make sure you have your own database and access to it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during Exercises 07-13 and in Day04 during Exercise 07 should be on place (its similar like in real world, when we applied a release and need to be consistency with data for new changes).**
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
-
-![schema](misc/images/schema.png)
+ **Наш путь знаний является инкрементальным и линейным, поэтому, пожалуйста, имейте в виду, что все изменения, которые вы внесли в Day03 во время упражнений 07-13 и в Day04 во время упражнения 07, должны быть на месте (это похоже на реальный мир, когда мы применили релиз и должны быть согласованы с данными для новых изменений)**
 
 
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id — primary key
-- field name — name of pizzeria
-- field rating — average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id — primary key
-- field name — name of person
-- field age — age of person
-- field gender — gender of person
-- field address — address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id — primary key
-- field pizzeria_id — foreign key to pizzeria
-- field pizza_name — name of pizza in pizzeria
-- field price — price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id — primary key
-- field person_id — foreign key to person
-- field pizzeria_id — foreign key to pizzeria
-- field visit_date — date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id — primary key
-- field person_id — foreign key to person
-- field menu_id — foreign key to menu
-- field order_date — date (for example 2022-01-01) of person order 
-
-People's visit and people's order are different entities and don't contain any correlation between data. For example, a customer can be in a restaurant (just looking at the menu) and in that time place an order in another restaurant by phone or mobile application. Or another case, just be at home and again make a call with order without any visits.
-
-
-## Chapter IV
 ## Exercise 00 — Audit of incoming inserts
 
 | Exercise 00: Audit of incoming inserts |                                                                                                                          |
@@ -128,27 +48,33 @@ People's visit and people's order are different entities and don't contain any c
 We want to be stronger with data, and we don't want to lose any change events. Let's implement an audit function for the incoming changes of INSERT. 
 Please create a table `person_audit` with the same structure as a person table, but please add some additional changes. Take a look at the table below with descriptions for each column.
 
+Мы хотим устойчивые данные, и мы не хотим терять никаких событий изменения. Давайте реализуем функцию аудита для входящих изменений `INSERT`. Cоздайте таблицу `person_audit` с той же структурой, что и таблица `person`, но добавьте некоторые дополнительные изменения. Взгляните на таблицу ниже с описаниями для каждого столбца.
+
 | Column | Type | Description |
 | ------ | ------ | ------ |
-| created | timestamp with time zone | timestamp when a new event has been created.  Default value is a current timestamp and NOT NULL |
-| type_event | char(1) | possible values I (insert), D (delete), U (update). Default value is ‘I’. NOT NULL. Add check constraint `ch_type_event` with possible values ‘I’, ‘U’ and ‘D’ |
+| created | timestamp with time zone | временная метка, когда было создано новое событие. Значение по умолчанию — текущая временная метка и NOT NULL |
+| type_event | char(1) | возможные значения I (вставка), D (удаление), U (обновление). Значение по умолчанию — «I». NOT NULL. Добавить проверочное ограничение NOT NULL. Добавить проверочное ограничение `ch_type_event` возможными значениями ‘I’, ‘U’ and ‘D’ |
 | row_id |bigint | copy of person.id. NOT NULL |
-| name |varchar | copy of person.name (no any constraints) |
-| age |integer | copy of person.age (no any constraints) |
-| gender |varchar | copy of person.gender (no any constraints) |
-| address |varchar | copy of person.address (no any constraints) |
+| name |varchar | copy of person.name (no any constraints) (без каких-либо ограничений) |
+| age |integer | copy of person.age (no any constraints)(без каких-либо ограничений) |
+| gender |varchar | copy of person.gender (no any constraints)(без каких-либо ограничений) |
+| address |varchar | copy of person.address (no any constraints)(без каких-либо ограничений) |
 
-Actually, let’s create a Database Trigger Function with the name `fnc_trg_person_insert_audit` that should process `INSERT` DML traffic and make a copy of a new row in the person_audit table.
+- давайте создадим функцию триггера базы данных с именем `fnc_trg_person_insert_audit` которая должна обрабатывать `INSERT` DML traffic и создавать копию новой строки в таблице `person_audit`.
 
-Just a hint, if you want to implement a PostgreSQL trigger (please read it in PostgreSQL documentation), you need to create 2 objects: Database Trigger Function and Database Trigger. 
+> подсказка: если вы хотите реализовать триггер PostgreSQL (подробнее см. в документации PostgreSQL), вам необходимо создать 2 объекта: функцию триггера базы данных( Database Trigger Function) и триггер базы данных( Database Trigger).
 
-So, please define a Database Trigger with the name `trg_person_insert_audit` with the following options:
-- trigger with "FOR EACH ROW" option;
-- trigger with "AFTER INSERT";
-- trigger calls fnc_trg_person_insert_audit trigger function.
+- определите триггер базы данных с именем `trg_person_insert_audit` и следующими параметрами:
+    - trigger with "FOR EACH ROW" option; (триггер с опцией «ДЛЯ КАЖДОЙ СТРОКИ»;)
+    - trigger with "AFTER INSERT"; (триггер с "AFTER INSERT";)
+    - trigger calls `fnc_trg_person_insert_audit` trigger function. (триггер вызывает функцию триггера `fnc_trg_person_insert_audit`)
 
-When you are done with the trigger objects, please issue an `INSERT` statement into the person table. 
-`INSERT INTO person(id, name, age, gender, address) VALUES (10,'Damir', 22, 'male', 'Irkutsk');`
+Когда вы закончите с объектами-триггерами введите `INSERT`. 
+
+```sql
+INSERT INTO person(id, name, age, gender, address)
+VALUES (10,'Damir', 22, 'male', 'Irkutsk');
+```
 
 
 ## Chapter V
