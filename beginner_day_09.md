@@ -112,7 +112,7 @@ DELETE FROM person WHERE id = 10;
 ```
 
 
-</details>
+
 
 ## Exercise 03 — Generic Audit
 
@@ -142,7 +142,6 @@ UPDATE person SET name = 'Damir' WHERE id = 10;
 DELETE FROM person WHERE id = 10;
 ```
 
-## Chapter VIII
 ## Exercise 04 — Database View VS Database Function
 
 
@@ -153,21 +152,23 @@ DELETE FROM person WHERE id = 10;
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML                                                                                              |
 
-As you recall, we created 2 database views to separate data from the person tables by gender attribute. 
-Please define 2 SQL functions (note, not pl/pgsql functions) with the names:
-- `fnc_persons_female` (should return female persons),
-- `fnc_persons_male` (should return male persons).
+Как вы помните, мы создали 2 представления базы данных для разделения данных из таблиц person по признаку пола. Пожалуйста, определите 2 функции SQL (обратите внимание, не функции pl/pgsql) с именами:
 
-To check yourself and call a function, you can make a statement like this (Amazing! You can work with a function like a virtual table!):
+- `fnc_persons_female` (следует вернуть лиц женского пола),
+- `fnc_persons_male` (следует вернуть лиц мужского пола).
 
+Чтобы проверить себя и вызвать функцию, вы можете сделать следующее выражение (Удивительно! Вы можете работать с функцией как с виртуальной таблицей!):
+
+```sql
     SELECT *
     FROM fnc_persons_male();
 
     SELECT *
     FROM fnc_persons_female();
+```
 
+</details>
 
-## Chapter IX
 ## Exercise 05 — Parameterized Database Function
 
 
@@ -178,17 +179,17 @@ To check yourself and call a function, you can make a statement like this (Amazi
 | **Allowed**                               |                                                                                                                          |
 | Language                        |  SQL, DDL, DML                                                                                               |
 
-Looks like 2 functions from Exercise 04 need a more generic approach. Please remove these functions from the database before proceeding. 
-Write a generic SQL function (note, not pl/pgsql-function) called `fnc_persons`. This function should have an `IN` parameter pgender with the default value = 'female'. 
+Похоже, что 2 функции из упражнения 04 требуют более общего подхода. Пожалуйста, удалите эти функции из базы данных перед продолжением. Напишите общую функцию SQL (обратите внимание, не pl/pgsql-function) с именем `fnc_persons`.Эта функция должна иметь  `IN` параметр pgender со значением по умолчанию = 'female'.
 
-To check yourself and call a function, you can make a statement like this (Wow! You can work with a function like with a virtual table, but with more flexibility!):
+Чтобы проверить себя и вызвать функцию, вы можете сделать такое выражение 
 
+ ```sql  
     select *
     from fnc_persons(pgender := 'male');
 
     select *
     from fnc_persons();
-
+```
 
 ## Chapter X
 ## Exercise 06 — Function like a function-wrapper
@@ -201,18 +202,19 @@ To check yourself and call a function, you can make a statement like this (Wow! 
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML                                                                                              |
 
-Now let's look at pl/pgsql functions. 
+Теперь давайте рассмотрим функции pl/pgsql.  
 
-Please create a pl/pgsql function `fnc_person_visits_and_eats_on_date` based on an SQL statement that will find the names of pizzerias that a person (`IN` pperson parameter with default value 'Dmitriy') visited and where he could buy pizza for less than the given amount in rubles (`IN` pprice parameter with default value 500) on the given date (`IN` pdate parameter with default value January 8, 2022).
+Создайте функцию pl/pgsql `fnc_person_visits_and_eats_on_date`на основе оператора SQL, которая найдет названия пиццерий, которые (`IN` pperson parameter with default value 'Dmitriy') vи где он мог купить пиццу по цене ниже указанной суммы в рублях (`IN` pprice parameter with default value 500) на указанную дату  (`IN` pdate parameter with default value January 8, 2022).
 
-To check yourself and call a function, you can make a statement like the one below.
+Чтобы проверить себя и вызвать функцию, вы можете сделать следующее выражение.
 
+ ```sql  
     select *
     from fnc_person_visits_and_eats_on_date(pprice := 800);
 
     select *
     from fnc_person_visits_and_eats_on_date(pperson := 'Anna',pprice := 1300,pdate := '2022-01-01');
-
+```
 
 ## Chapter XI
 ## Exercise 07 — Different view to find a Minimum
@@ -225,12 +227,13 @@ To check yourself and call a function, you can make a statement like the one bel
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML                                                                                              |
 
-Please write an SQL or pl/pgsql function `func_minimum` (it is up to you) that has an input parameter that is an array of numbers and the function should return a minimum value. 
+Напишите функцию SQL или pl/pgsql `func_minimum` (it is up to you) (на ваше усмотрение), которая имеет входной параметр, представляющий собой массив чисел, и функция должна возвращать минимальное значение. 
 
-To check yourself and call a function, you can make a statement like the one below.
+Чтобы проверить себя и вызвать функцию, вы можете сделать следующее выражение.
 
+```sql  
     SELECT func_minimum(VARIADIC arr => ARRAY[10.0, -1.0, 5.0, 4.4]);
-
+```
 
 ## Chapter XII
 ## Exercise 08 — Fibonacci algorithm is in a function
@@ -243,10 +246,11 @@ To check yourself and call a function, you can make a statement like the one bel
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML                                                                                              |
 
-Write an SQL or pl/pgsql function `fnc_fibonacci` (it's up to you) that has an input parameter pstop of type integer (default is 10) and the function output is a table of all Fibonacci numbers less than pstop.
+Напишите функцию SQL или pl/pgsql  `fnc_fibonacci` (на ваше усмотрение), которая имеет входной параметр pstop типа integer (по умолчанию 10), а выход функции представляет собой таблицу всех чисел Фибоначчи, меньших pstop.
 
-To check yourself and call a function, you can make a statement like the one below.
+Чтобы проверить себя и вызвать функцию, вы можете сделать следующее выражение.
 
+```sql  
     select * from fnc_fibonacci(100);
     select * from fnc_fibonacci();
-
+```
