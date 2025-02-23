@@ -6,8 +6,8 @@ Resume: Today you will see how to create and use functional blocks in Databases.
 Резюме: Сегодня вы увидите, как создавать и использовать функциональные блоки в базах данных.
 
 
-## Chapter I
-## Preamble
+<details>
+<summary> Preamble </summary>
 
 ![D09_01](misc/images/D09_01.png)
 
@@ -45,9 +45,6 @@ Resume: Today you will see how to create and use functional blocks in Databases.
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML|
 
-We want to be stronger with data, and we don't want to lose any change events. Let's implement an audit function for the incoming changes of INSERT. 
-Please create a table `person_audit` with the same structure as a person table, but please add some additional changes. Take a look at the table below with descriptions for each column.
-
 Мы хотим устойчивые данные, и мы не хотим терять никаких событий изменения. Давайте реализуем функцию аудита для входящих изменений `INSERT`. Cоздайте таблицу `person_audit` с той же структурой, что и таблица `person`, но добавьте некоторые дополнительные изменения. Взгляните на таблицу ниже с описаниями для каждого столбца.
 
 | Column | Type | Description |
@@ -77,7 +74,7 @@ VALUES (10,'Damir', 22, 'male', 'Irkutsk');
 ```
 
 
-## Chapter V
+
 ## Exercise 01 — Audit of incoming updates
 
 | Exercise 01: Audit of incoming updates|                                                                                                                          |
@@ -87,15 +84,16 @@ VALUES (10,'Damir', 22, 'male', 'Irkutsk');
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML                                                                                              |
 
-Let’s continue to implement our audit pattern for the person table. Just define a trigger `trg_person_update_audit` and corresponding trigger function `fnc_trg_person_update_audit` to handle all `UPDATE` traffic on the person table. We should save the OLD states of all attribute values.
+Давайте продолжим реализацию нашего шаблона аудита для таблицы `person`. Просто определим триггер `trg_person_update_auditи` соответствующую функцию триггера `fnc_trg_person_update_audit` для обработки всего `UPDATE` трафика в таблице `person` . Нам следует сохранить **СТАРЫЕ** состояния всех значений атрибутов.
 
-When you are ready, apply the UPDATE statements below.
+Когда закончите, примените приведенные ниже операторы ОБНОВЛЕНИЯ.  
 
-`UPDATE person SET name = 'Bulat' WHERE id = 10;`
-`UPDATE person SET name = 'Damir' WHERE id = 10;`
+```sql
+UPDATE person SET name = 'Bulat' WHERE id = 10;
+UPDATE person SET name = 'Damir' WHERE id = 10;
+```
 
 
-## Chapter VI
 ## Exercise 02 — Audit of incoming deletes
 
 | Exercise 02: Audit of incoming deletes|                                                                                                                          |
@@ -105,13 +103,17 @@ When you are ready, apply the UPDATE statements below.
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML                                                                                              |
 
-Finally, we need to handle `DELETE` statements and make a copy of the OLD states for all attribute’s values. Please create a trigger `trg_person_delete_audit` and corresponding trigger function `fnc_trg_person_delete_audit`. 
+Наконец, нам нужно обработать `DELETE` и сделать копию СТАРЫХ состояний для всех значений атрибута.создайте триггер  `trg_person_delete_audit` и соответствующую функцию триггера `fnc_trg_person_delete_audit`. 
 
-When you are ready, use the SQL statement below.
+Когда закончите, примените приведенные ниже операторы
 
-`DELETE FROM person WHERE id = 10;`
+```sql
+DELETE FROM person WHERE id = 10;
+```
 
-## Chapter VII
+
+</details>
+
 ## Exercise 03 — Generic Audit
 
 | Exercise 03: Generic Audit |                                                                                                                          |
@@ -121,21 +123,24 @@ When you are ready, use the SQL statement below.
 | **Allowed**                               |                                                                                                                          |
 | Language                        | SQL, DDL, DML                                                                                              |
 
-Actually, there are 3 triggers for one `person` table. Let's merge all our logic into one main trigger called `trg_person_audit` and a new corresponding trigger function `fnc_trg_person_audit`.
+На самом деле, есть 3 триггера для одной `person`таблицы. Давайте объединим всю нашу логику в один основной триггер с названием `trg_person_audit` и новую соответствующую функцию триггера `fnc_trg_person_audit`.
 
-In other words, all DML traffic (`INSERT`, `UPDATE`, `DELETE`) should be handled by the one function block. Please explicitly define a separate IF-ELSE block for each event (I, U, D)!
+Другими словами, весь трафик DML  (`INSERT`, `UPDATE`, `DELETE`) олжен обрабатываться одним функциональным блоком. Пожалуйста, явно определите отдельный блок IF-ELSE для каждого события (I, U, D)!  
 
-Additionally, please follow the steps below .
-- to remove 3 old triggers from the person table;
-- to remove 3 old trigger functions;
-- to do a `TRUNCATE` (or `DELETE`) of all rows in our `person_audit` table.
+Кроме того, пожалуйста, следуйте инструкциям ниже.
 
-When you are ready, reapply the set of DML statements.
-`INSERT INTO person(id, name, age, gender, address)  VALUES (10,'Damir', 22, 'male', 'Irkutsk');`
-`UPDATE person SET name = 'Bulat' WHERE id = 10;`
-`UPDATE person SET name = 'Damir' WHERE id = 10;`
-`DELETE FROM person WHERE id = 10;`
+- удалить 3 старых триггера;
+- удалить 3 старые функции триггера;
+- для выполнения  `TRUNCATE` (или `DELETE`) oвсех строк в нашей  `person_audit` таблице.
 
+Когда закончите, примените приведенные ниже операторы
+
+```sql
+INSERT INTO person(id, name, age, gender, address)  VALUES (10,'Damir', 22, 'male', 'Irkutsk');
+UPDATE person SET name = 'Bulat' WHERE id = 10;
+UPDATE person SET name = 'Damir' WHERE id = 10;
+DELETE FROM person WHERE id = 10;
+```
 
 ## Chapter VIII
 ## Exercise 04 — Database View VS Database Function
