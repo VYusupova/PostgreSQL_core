@@ -135,3 +135,94 @@ insert into person_order values (18,8, 14, '2022-01-07');
 insert into person_order values (19,9, 18, '2022-01-09');
 insert into person_order values (20,9, 6, '2022-01-10');
 
+
+----------------- ----------------- ----------------- ----------------- 
+----------------- DAY 03 EX 07 - 13 -------------------------------
+----------------- ----------------- ----------------- ----------------- 
+           
+;
+INSERT INTO menu (id, pizzeria_id, pizza_name, price)  
+VALUES ((SELECT MAX(id)+1 FROM menu),
+        (SELECT id FROM pizzeria WHERE name = 'Dominos'), 
+        'sicilian pizza', 
+        900)
+;
+
+INSERT INTo person_visits (id, person_id, pizzeria_id, visit_date)
+VALUES(
+  (SELECT MAX(id)+1 FROM person_visits),
+  (SELECT id FROM person WHERE name = 'Denis'),
+  (SELECT id FROM pizzeria WHERE name = 'Dominos'),
+  '2022-02-24'
+  ),
+  (
+  (SELECT MAX(id)+2 FROM person_visits),
+  (SELECT id FROM person WHERE name = 'Irina'),
+  (SELECT id FROM pizzeria WHERE name = 'Dominos'),
+  '2022-02-24'
+  )
+
+  ;
+
+  INSERT INTo person_order (id, person_id, menu_id, order_date)
+VALUES(
+  (SELECT MAX(id)+1 FROM person_order),
+  (SELECT id FROM person WHERE name = 'Denis'),
+  (SELECT id FROM menu WHERE pizza_name = 'sicilian pizza'),
+  '2022-02-24'
+  ),
+  (
+  (SELECT MAX(id)+2 FROM person_order),
+  (SELECT id FROM person WHERE name = 'Irina'),
+  (SELECT id FROM menu WHERE pizza_name = 'sicilian pizza'),
+  '2022-02-24'
+  )
+;
+
+
+
+CREATE MATERIALIZED VIEW mv_dmitriy_visits_and_eats AS
+SELECT DISTINCT pizzeria.name 
+  FROM person_visits
+  JOIN person   ON person.id = person_id
+  JOIN pizzeria ON pizzeria.id = pizzeria_id
+  JOIN menu     ON menu.pizzeria_id = pizzeria.id
+ WHERE person.name = 'Dmitriy'
+   AND visit_date = '2022-01-08'
+   AND price < 800;
+
+INSERt INTO person_visits  (id, person_id, pizzeria_id, visit_date)
+VALUES (
+  (SELECT MAX(id)+1 FROM person_visits),
+  (SELECT id FROM person WHERe name =  'Dmitriy'),
+  (SELECT pizzeria.id FROM pizzeria 
+   JOIN menu ON pizzeria_id = pizzeria.id
+   WHERE name not in (SELECT name FROM  mv_dmitriy_visits_and_eats) 
+   AND price < 800 
+   LIMIT 1),
+  '2022-01-08'
+  )
+  ;
+
+ REFRESH MATERIALIZED VIEW   mv_dmitriy_visits_and_eats;
+  
+----------------- ----------------- ----------------- ----------------- 
+----------------- DAY 04 EX 01 -------------------------------
+----------------- ----------------- ----------------- ----------------- 
+           
+
+CREATE VIEW v_persons_female AS 
+SELECT id, 
+       name, 
+       age, 
+       gender, 
+       address 
+  FROM person 
+ WHERE gender = 'female'
+;
+CREATE VIEW v_persons_male AS 
+SELECT *
+  FROM person
+ WHERE gender = 'male'
+
+
