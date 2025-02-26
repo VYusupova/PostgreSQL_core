@@ -7,95 +7,95 @@ SELECT name,
   SELECT name, 
          age
     FROM person 
-   WHERE gender = 'female' 
+   WHERE gENDer = 'female' 
      AND address = 'Kazan'
 ORDER BY name
 ----------------  (Упражение) 02 — Первые шаги в мире SQL ----------------
    SELECT name,
-          rating
+          ratINg
      FROM pizzeria
-    WHERE rating >= 3.5
-      AND rating <= 5
- ORDER BY rating;
+    WHERE ratINg >= 3.5
+      AND ratINg <= 5
+ ORDER BY ratINg;
   
    SELECT name,
-          rating
+          ratINg
      FROM pizzeria
-    WHERE rating BETWEEN 3.5 AND 5
- ORDER BY rating;
+    WHERE ratINg BETWEEN 3.5 AND 5
+ ORDER BY ratINg;
 ----------------  (Упражение) 03  — Первые шаги в мире SQL ----------------
-  SELECT distinct person_id 
+  SELECT DISTINCT person_id 
     FROM person_visits  
    WHERE visit_date BETWEEN '2022-01-06' AND '2022-01-09' 
       OR pizzeria_id = 2
 ORDER BY person_id DESC
 ----------------  (Упражение) 04  — Первые шаги в мире SQL ----------------
---`Anna (age:16,gender:'female',address:'Moscow')`
+--`Anna (age:16,gENDer:'female',address:'Moscow')`
 
 SELECT CONCAT(name, ' (', 
               'age:', age , 
-              ',gender:''', gender, 
+              ',gENDer:''', gENDer, 
               ''',address:''', address, 
-              ''')') as person_information
+              ''')') AS person_INformation
   FROM person
 ORDER BY 1
 ----------------  (Упражение) 05  — Первые шаги в мире SQL ----------------
 SELECT 
        ( SELECT name 
-           From person 
-          where id = person_id 
-       ) as name
-  from person_order 
- where menu_id in (13,14,18)
-   and order_date = '2022-01-07';
+           FROM person 
+          WHERE id = person_id 
+       ) AS name
+  FROM person_order 
+ WHERE menu_id IN (13,14,18)
+   AND order_date = '2022-01-07';
 
 ----------------  (Упражение) 06  — Первые шаги в мире SQL ----------------
 SELECT 
        ( SELECT name 
-           From person 
-          where id = person_id 
-       ) as name,
+           FROM person 
+          WHERE id = person_id 
+       ) AS name,
        
-        case when person_id = (select id 
-                                 from person 
-                                where name = 'Denis')
-        then 'true'
-        else 'false'
-        end as check_name
+        CASE when person_id = (SELECT id 
+                                 FROM person 
+                                WHERE name = 'Denis')
+        THEN 'true'
+        ELSE 'false'
+        END AS check_name
           
-  from person_order 
- where menu_id in (13,14,18)
-   and order_date = '2022-01-07';
+  FROM person_order 
+ WHERE menu_id IN (13,14,18)
+   AND order_date = '2022-01-07';
 ----------------  (Упражение) 07  — Первые шаги в мире SQL ----------------
-    --if (age >= 10 and age <= 20) then return 'interval #1'
-    --else if (age > 20 and age < 24) then return 'interval #2'
-    --else return 'interval #3'
+    --if (age >= 10 AND age <= 20) THEN return 'INterval #1'
+    --ELSE if (age > 20 AND age < 24) THEN return 'INterval #2'
+    --ELSE return 'INterval #3'
     
-    select id,
+    SELECT id,
     	   name,
-           case WHEN age >= 10 and age <= 20 
-           then 'interval #1'
-           else CASE WHEN age > 20 and age < 24 
-                THEN 'interval #2'
-                else 'interval #3'
+           CASE WHEN age >= 10 AND age <= 20 
+           THEN 'INterval #1'
+           ELSE CASE WHEN age > 20 AND age < 24 
+                THEN 'INterval #2'
+                ELSE 'INterval #3'
                 END
-           end AS interval_info
-      from person
-      order by interval_info
+           END AS INterval_INfo
+      FROM person
+      ORDER BY INterval_INfo
 ----------------  (Упражение) 08  — Первые шаги в мире SQL ----------------
 SELECT *
-  from person_order
-  where id%2=0
-  order by id
+  FROM person_order
+  WHERE id%2=0
+  ORDER BY id
 ----------------  (Упражение) 09  — Первые шаги в мире SQL ----------------
 SELECT (SELECT name 
-          from person 
-         where id = pv.person_id) AS person_name ,  
+          FROM person 
+         WHERE id = pv.person_id) AS person_name ,  
        (SELECT name 
-          from pizzeria
-         where id = pv.pizzeria_id) AS pizzeria_name  
+          FROM pizzeria
+         WHERE id = pv.pizzeria_id) AS pizzeria_name  
     FROM (SELECT person_id, 
                  pizzeria_id 
             FROM person_visits
-           Where visit_date BETWEEN '2022-01-07' and '2022-01-09') AS pv 
-    ORDER BY 1 asc, 2 DESC
+           WHERE visit_date BETWEEN '2022-01-07' AND '2022-01-09') AS pv 
+    ORDER BY 1 ASC, 2 DESC
