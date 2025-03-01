@@ -5,8 +5,9 @@
 Resume: Today you will see how to get needed data based on sets constructions and simple JOINs  
 >*(Сегодня вы увидите, как получить необходимые данные на основе наборов, конструкций и простых соединений)*
 
-## Chapter I
-## Preamble
+
+<details>
+<summary> Введение </summary> 
 
 ![D01_01](misc/images/D01_01.png)
 
@@ -30,8 +31,12 @@ The main rules to work with sets are below (основные правила дл
 Moreover, SQL sets are useful  to calculate some specific Data Science metrics, for example Jaccard distance between 2 objects based on existing data features.
 
 
-## Chapter II
-## General Rules
+
+</details>
+
+<details>
+<summary>## General Rules</summary> 
+
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
 - Please make sure you are using the latest version of PostgreSQL.
@@ -45,8 +50,12 @@ Moreover, SQL sets are useful  to calculate some specific Data Science metrics, 
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 
-## Chapter III
-## Rules of the day
+
+</details>
+
+<details>
+<summary>## Rules of the day</summary> 
+
 
 - Please make sure you have an own(собственный) database and access for it on your PostgreSQL cluster. 
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
@@ -88,9 +97,11 @@ For example, a client can be in one restraunt (just looking at menu) and in this
 >в заданиях клиенты могут быть в одном ресторане (только посмотреть меню) и в это время делать заказ в другом по телефону или из мобильного приложения.
 Or another case,  just be at home and again make a call with order without any visits.
 
-## Chapter IV
-## Exercise 00 - Let’s make UNION dance
+</details>
 
+<details>
+<summary>Exercise 00: Let’s make UNION dance  </summary> 
+  
 | Exercise 00: Let’s make UNION dance |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex00                                                                                                                     |
@@ -108,10 +119,10 @@ Please write a SQL statement which returns menu’s identifier and pizza names f
 | 1 | cheese pizza |
 | ... | ... |
 
-[D01_ex01](src/day01_ex00.sql)
+</details>
 
-## Chapter V
-## Exercise 01 - UNION dance with subquery (с подзапросом) 
+<details>
+<summary> Exercise 01: UNION dance with subquery</summary> 
 
 | Exercise 01: UNION dance with subquery|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -133,10 +144,12 @@ Please modify a SQL statement from “exercise 00” by removing the object_id c
 | cheese pizza |
 | ... |
 
-[D01_ex01](src/day01_ex01.sql)
 
-## Chapter VI
-## Exercise 02 - Duplicates or not duplicates
+
+</details>
+
+<details>
+<summary> Exercise 02: Duplicates or not duplicates</summary> 
 
 | Exercise 02: Duplicates or not duplicates|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -151,9 +164,11 @@ Please write a SQL statement which returns unique pizza names from the `menu` ta
 
 (напишите SQL запрос который возвращает только уникальные названия пицц из таблицы `menu` и сортирует по названию пицц в убывающем порядке. обратите внимание некоторые конструкции запрещены )
 
-[D01_ex02](src/day01_ex02.sql)
-## Chapter VII
-## Exercise 03 - “Hidden” Insights
+</details>
+
+<details>
+<summary> Exercise 03 - “Hidden” Insights</summary> 
+
 
 | Exercise 03: “Hidden” Insights |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -165,7 +180,7 @@ Please write a SQL statement which returns unique pizza names from the `menu` ta
 | SQL Syntax Construction                        |  any type of `JOINs`                                                                                              |
 
 Please write a SQL statement which returns common rows for attributes order_date, person_id from `person_order` table from one side and visit_date, person_id from `person_visits` table from the other side (please see a sample below). In other words, let’s find identifiers of persons, who visited and ordered some pizza on the same day. Actually, please add ordering by action_date in ascending mode and then by person_id in descending mode.  
-который возвращает строки из атрибутов даты заказа, персон_ид из таблицы `person_order` с одной стороны и дата визита из `person_visits` таблицы из сдругой сторовны (пожалуйста смотрите пример ниже). в других словах, давай найдем идентификаторы людей, кто посещал и заказывал 
+который возвращает строки из атрибутов даты заказа, персон_ид из таблицы `person_order` с одной стороны и дата визита из `person_visits` таблицы из сдругой стороны (пожалуйста смотрите пример ниже). в других словах, давай найдем идентификаторы людей, кто посещал и заказывал 
 
 | action_date | person_id |
 | ------ | ------ |
@@ -175,7 +190,6 @@ Please write a SQL statement which returns common rows for attributes order_date
 | 2022-01-03 | 7 |
 | 2022-01-04 | 3 |
 | ... | ... |
-[D01_ex03](src/day01_ex03.sql)
 
 </details>
 
@@ -194,7 +208,6 @@ Please write a SQL statement which returns common rows for attributes order_date
 
 Please write a SQL statement which returns a difference (minus) of person_id column values with saving duplicates between `person_order` table and `person_visits` table for order_date and visit_date are for 7th of January of 2022  
 > вернуть разницу значения столбца  person_id с дублями  между  `person_order` и  `person_visits` таблицами дата заказа и дата визита 7  января 2022  
-[D01_ex04](src/day01_ex04.sql)
 
 </details>
 
@@ -218,7 +231,6 @@ Please write a SQL statement which returns all possible combinations between `pe
 | 1 | Anna | 16 | female | Moscow | 2 | Dominos | 4.3 |
 | ... | ... | ... | ... | ... | ... | ... | ... |
 
-[D01_ex05](src/day01_ex05.sql)
 
 </details>
 
@@ -289,10 +301,9 @@ Please rewrite a SQL statement from exercise #07 by using NATURAL JOIN construct
 
 </details>
 
-[D01_ex 06 07 08](src/day01_ex06_07_08.sql)
 
-## Chapter XIII
-## Exercise 09 - IN versus EXISTS
+<details>
+<summary>Exercise 09 - IN versus EXISTS</summary> 
 
 
 | Exercise 09: IN versus EXISTS |                                                                                                                          |
@@ -304,10 +315,13 @@ Please rewrite a SQL statement from exercise #07 by using NATURAL JOIN construct
 
 Please write 2 SQL statements which return a list of pizzerias names which have not been visited by persons by using IN for 1st one and EXISTS for the 2nd one.  
 > напиши 2 запросв которые вернуть список названий пиццерий в которые никто не приходил с использованием IN для первого и EXISTS для второго запроса. 
-[D01_ex09](src/day01_ex09.sql)  
-## Chapter XIV
-## Exercise 10 - Global JOIN
 
+
+</details>
+
+
+<details>
+<summary>Exercise 10: Global JOIN</summary> 
 
 | Exercise 10: Global JOIN |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -326,3 +340,6 @@ Please write a SQL statement which returns a list of the person names which made
 | Anna | cheese pizza | Pizza Hut |
 | ... | ... | ... |
 
+</details>
+
+[D01_задания](src/day01.sql)
