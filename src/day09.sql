@@ -156,6 +156,24 @@ SELECT * FROM  fnc_persons_female();
 SELECT * FROM  fnc_persons_male();
 
 
+/*********************** EX 05 ****************************/
+CREATE OR REPLACE FUNCTION fnc_persons(pgender varchar='female')
+RETURNS TABLE (
+        id bigint,
+        name varchar,
+        age integer,
+        gender varchar,
+        address varchar
+) AS $$
+        (SELECT * FROM person P WHERE P.gender = pgender);
+$$ LANGUAGE sql;
+SELECT *
+FROM fnc_persons(pgender:='male');
+SELECT *
+FROM fnc_persons();
+
+
+
 /*********************** EX 06 ****************************/
 /***Создайте функцию pl/pgsql fnc_person_visits_and_eats_on_date**/
 /**айдет названия пиццерий, которые (IN pperson parameter with default value 'Dmitriy') 
