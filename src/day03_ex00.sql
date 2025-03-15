@@ -1,4 +1,6 @@
 --- Exercise 00: Let’s find appropriate prices for Kate---
+-----------вернуть список наименование пиццы, цена, название пиццерии и в дату визита Кати и цена пиццы от 800 до 1000. 
+-----------Отсоритируйте по названию цены и названию пиццерии. 
 WITH pp_visit(piz_id, date) AS
 (
 SELECT pizzeria_id,
@@ -15,10 +17,10 @@ SELECT pizza_name,
  JOIN pp_visit ON piz_id = id
  JOIN menu     ON pizzeria_id = pizzeria.id
 WHERE price BETWEEN '800' AND '1000'
-ORDER BY 1,2,3,4 --лиший последний столбик в ордербай 
+ORDER BY 1,2,3
 
 -- Exercise 01: Let’s find forgotten menus	--
-
+-----------найдите все идентификаторы в меню? которые никто не заказывал. Результат должен быть отсортирован.
 SELECT id 
   FROM menu 
  WHERE id NOT IN (SELECT menu_id 
@@ -26,7 +28,7 @@ SELECT id
 ORDER BY id
 
 -- Exercise 02: Let’s find forgotten pizza and pizzerias ----
-
+----------- Используя запрос из упраженния 1 и покажите названия пицц из пиццерий которые никто никогда не заказывал, включая соответвующую цену. 
 SELECT menu.pizza_name, 
        menu.price, 
        pizzeria.name AS pizzeria_name 
@@ -51,7 +53,7 @@ ORDER BY menu.pizza_name,
          menu.price
 
 -- Exercise 03: Let’s compare visits -- -- --
-
+----------- найти пиццерии которые часто посещали мужчины или женщины. для любого оператора множестово вывода должно сохранять дубликаты
 WITH 
 female_visit AS (
 	           SELECT pizzeria.name      AS pizzeria_name, 
