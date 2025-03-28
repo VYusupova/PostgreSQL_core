@@ -1,11 +1,11 @@
 # Day 02 - Piscine SQL
 
-## _Deep diving into JOINs in SQL_
+## _Deep diving into JOINs in SQL_ (Глубокое погружение в JOIN)
 
 Resume: Today you will see how to get needed data based on different structures JOINs
 
-## Chapter I
-## Preamble
+<details>
+<summary> Preamble </summary> 
 
 ![D02_01](misc/images/D02_01.png)
 
@@ -37,11 +37,10 @@ But what does a join operation between 2 tables mean? Let me present a part of p
 
 It’s just a set of loops ... Not magic at all
 
+</details>
 
-
-
-## Chapter II
-## General Rules
+<details>
+<summary> General Rules </summary> 
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
 - Please make sure you are using the latest version of PostgreSQL.
@@ -55,8 +54,10 @@ It’s just a set of loops ... Not magic at all
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 
-## Chapter III
-## Rules of the day
+</details>
+
+<details>
+<summary> Rules of the day </summary> 
 
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
 - Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
@@ -93,8 +94,10 @@ It’s just a set of loops ... Not magic at all
 
 Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
-## Chapter IV
-## Exercise 00 - Move to the LEFT, move to the RIGHT
+</details>
+
+<details>
+<summary> Exercise 00 - Move to the LEFT, move to the RIGHT </summary>  
 
 | Exercise 00: Move to the LEFT, move to the RIGHT |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -108,6 +111,7 @@ Persons' visit and persons' order are different entities and don't contain any c
 Please write a SQL statement which returns a list of pizzerias names with corresponding rating value which have not been visited by persons. 
 >необходимо вернуть список названий пиццерий с рейтингом которые никто не посещал
 
+</details>
 
 <details>
 <summary> Exercise 01 - Find data gaps</summary>
@@ -334,6 +338,7 @@ Please find the names of all females who ordered both pepperoni and cheese pizza
 | Language                        | ANSI SQL                                                                                              |
 
 Please find the names of persons who live on the same address. Make sure that the result is ordered by 1st person, 2nd person's name and common address. The  data sample is presented below. Please make sure your column names are corresponding column names below.
+> Найти все людей, которые живут по одному адресу. Результат должен быть отсортирован по имени первого человека, затем по имени второго человека  и затем по адресу. Пример ниже , названия столбцов должны быть такиме же как ниже в примере
 
 | person_name1 | person_name2 | common_address | 
 | ------ | ------ | ------ |
