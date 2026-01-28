@@ -27,6 +27,7 @@ ORDER BY name
   SELECT DISTINCT person_id 
     FROM person_visits  
    WHERE visit_date BETWEEN '2022-01-06' AND '2022-01-09' 
+         -- BETWEEN CAST('2022-01-06'AS date) AND  CAST('2022-01-09'AS date)  
       OR pizzeria_id = 2
 ORDER BY person_id DESC
 ----------------  (Упражение) 04  — Первые шаги в мире SQL ----------------
@@ -48,6 +49,7 @@ SELECT
   FROM person_order 
  WHERE menu_id IN (13,14,18)
    AND order_date = '2022-01-07';
+--CAST('2022-01-07' AS date)
 
 ----------------  (Упражение) 06  — Первые шаги в мире SQL ----------------
 SELECT 
@@ -66,6 +68,7 @@ SELECT
   FROM person_order 
  WHERE menu_id IN (13,14,18)
    AND order_date = '2022-01-07';
+--CAST('2022-01-07' AS date)
 ----------------  (Упражение) 07  — Первые шаги в мире SQL ----------------
     --if (age >= 10 AND age <= 20) THEN return 'INterval #1'
     --ELSE if (age > 20 AND age < 24) THEN return 'INterval #2'
