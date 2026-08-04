@@ -3,13 +3,8 @@
 ----------Задайте соответствующие имена для представлений базы данных: `v_persons_female` и `v_persons_male`.
 
 CREATE VIEW v_persons_female AS 
-SELECT id, 
-       name, 
-       age, 
-       gender, 
-       address 
-  FROM person 
- WHERE gender = 'female'
+SELECT id,        name,        age,        gender,        address 
+  FROM person  WHERE gender = 'female'
 ;
 CREATE VIEW v_persons_male AS 
 SELECT *
@@ -17,7 +12,7 @@ SELECT *
  WHERE gender = 'male'
 ;
 
--- ex01 --Используя 2 представления данных из ex#00 напишите SQL-скрипт 
+-- ex01 --Используя 2 представления данных из ex00 напишите SQL-скрипт 
 	--который вернет имена мужчин и женщин в одном списке. 
 	--Отсортируйте список по именам. 
 SELECT name FROM v_persons_female
@@ -76,7 +71,9 @@ JOIN person ON person.id = person_id
 JOIN menu   ON menu.id = menu_id
 ORDER BY person.name, menu.pizza_name
 ;
---ex06 Создайте материализованное представление `mv_dmitriy_visits_and_eats` (с включенными данными) на основе оператора SQL, который находит название пиццерии, которую Дмитрий посетил 8 января 2022 года и мог съесть пиццу менее чем за 800 рублей (этот SQL вы можете найти в упражнении № 02 дня № 07).
+--ex06 Создайте материализованное представление `mv_dmitriy_visits_and_eats` (с включенными данными) на основе оператора SQL, 
+ --который находит название пиццерии, которую Дмитрий посетил 8 января 2022 года и мог съесть пиццу менее чем за 800 рублей 
+-- (этот SQL вы можете найти в упражнении № 02 дня № 07).
 CREATE MATERIALIZED VIEW mv_dmitriy_visits_and_eats AS
 SELECT DISTINCT pizzeria.name 
   FROM person_visits
