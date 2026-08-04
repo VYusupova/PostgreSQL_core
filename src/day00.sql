@@ -1,28 +1,11 @@
 ---------------- (Упражение) 00 — Первые шаги в мире SQL  ----------------
-SELECT name, 
-       age
-  FROM person 
- WHERE address = 'Kazan'
+SELECT name,  age  FROM person  WHERE address = 'Kazan'
 ---------------- (Упражение) 01 — Первые шаги в мире SQL  ----------------
-  SELECT name, 
-         age
-    FROM person 
-   WHERE gENDer = 'female' 
-     AND address = 'Kazan'
-ORDER BY name
-----------------  (Упражение) 02 — Первые шаги в мире SQL ----------------
-   SELECT name,
-          ratINg
-     FROM pizzeria
-    WHERE ratINg >= 3.5
-      AND ratINg <= 5
- ORDER BY ratINg;
+  SELECT name,          age    FROM person    WHERE gENDer = 'female'      AND address = 'Kazan'  ORDER BY name
+----------------  (Упражение) 02 — Первые шаги в  SQL ----------------
+   SELECT name,          ratINg     FROM pizzeria    WHERE ratINg >= 3.5      AND ratINg <= 5 ORDER BY ratINg;
   
-   SELECT name,
-          ratINg
-     FROM pizzeria
-    WHERE ratINg BETWEEN 3.5 AND 5
- ORDER BY ratINg;
+   SELECT name,           ratINg     FROM pizzeria    WHERE ratINg BETWEEN 3.5 AND 5 ORDER BY ratINg;
 ----------------  (Упражение) 03  — Первые шаги в мире SQL ----------------
   SELECT DISTINCT person_id 
     FROM person_visits  
@@ -58,9 +41,7 @@ SELECT
           WHERE id = person_id 
        ) AS name,
        
-        CASE when person_id = (SELECT id 
-                                 FROM person 
-                                WHERE name = 'Denis')
+        CASE WHEN person_id = (SELECT id  FROM person WHERE name = 'Denis')
         THEN 'true'
         ELSE 'false'
         END AS check_name
@@ -77,19 +58,16 @@ SELECT
     SELECT id,
     	   name,
            CASE WHEN age >= 10 AND age <= 20 
-           THEN 'INterval #1'
-           ELSE CASE WHEN age > 20 AND age < 24 
-                THEN 'INterval #2'
-                ELSE 'INterval #3'
+                THEN 'INterval #1'
+                ELSE CASE WHEN age > 20 AND age < 24 
+                     THEN 'INterval #2'
+                     ELSE 'INterval #3'
                 END
            END AS INterval_INfo
       FROM person
       ORDER BY INterval_INfo
 ----------------  (Упражение) 08  — Первые шаги в мире SQL ----------------
-SELECT *
-  FROM person_order
-  WHERE id%2=0
-  ORDER BY id
+SELECT * FROM person_order WHERE id%2=0 ORDER BY id
 ----------------  (Упражение) 09  — Первые шаги в мире SQL ----------------
 SELECT (SELECT name 
           FROM person 
