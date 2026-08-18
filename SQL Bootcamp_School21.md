@@ -24,17 +24,40 @@ Please take a look at some SQL standards below and try to think about the future
 <summary> General Rules </summary>
 
 - Убедись что используешь последнюю версию PostgreSQL (Make sure you are using the latest version of PostgreSQL.)
+- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
+- That is completely OK if you are using IDE to write a source code (aka SQL script).
+- To be assessed your solution must be in your GIT repository.
+- Your solutions will be evaluated by your piscine mates.
+- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
+- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
+- Your reference manual: mates / Internet / Google. 
+- Read the examples carefully. They may require things that are not otherwise specified in the subject.
+- And may the SQL-Force be with you!
+- Absolutely everything can be presented in SQL! Let’s start and have fun!
+
+
+</details>
+
+</details>
+
+
+<details>
+<summary>## Rules of the day</summary> 
+
+
+
+
+![schema](misc/images/schema.png)
 
 </details>
 
 <details>
 <summary> Rules of the day </summary>
 
-
- Please make sure you have your own database and access to it on your PostgreSQL cluster.
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
+ Please make sure you have an own(собственный) database and access to it on your PostgreSQL cluster.
+- Please download a [script](model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please have a look at the Logical View of our Database Model. 
+- посмотрите логическое представление модели базы данных ниже 
 
 ![schema](misc/images/schema.png)
 
@@ -65,17 +88,16 @@ Please take a look at some SQL standards below and try to think about the future
 - field menu_id — foreign key to menu
 - field order_date — date (for example 2022-01-01) of person order 
 
-People's visit(посещения) and people's order(заказы) are different entities and don't contain any correlation between data. For example, a customer can be in a restaurant (just looking at the menu) and at the same time place an order in another restaurant by phone or mobile application. Or another case, just be at home and again make a call with order without any visits.
-
+People's visit(посещения) and people's order(заказы) are different entities and don't contain any correlation between data. 
+>в заданиях клиенты могут быть в одном ресторане (только посмотреть меню) и в это время делать заказ в другом по телефону или из мобильного приложения.
+Or another case,  just be at home and again make a call with order without any visits.
 </details>
 
 <details>
 	
 <summary> day 00 - базовые конструкции SQL.  </summary>
 
-
-
-| Упражение 00:  Создать выбоку через select в которой будет имена и возраст всех кто живет в городе Казань.
+[] Упражение 00:  Создать выбоку через select в которой будет имена и возраст всех кто живет в городе Казань.
 | Упражение 01: Через оператор select  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени.  
 | Упражение 02:
 Please make 2 syntax different select запроса которые вернет список из таблицы `pizzeria` (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
@@ -152,13 +174,9 @@ Please add a **ordering** clause by person name in ascending mode and by pizzeri
 
 [D00_ex00](src/day00.sql)
 
-# Day 01 - Piscine SQL
-
-## _First steps working with sets and JOINs in SQL(начало работы с наборами и JOIN в SQL)_
-
-Resume: Today you will see how to get needed data based on sets constructions and simple JOINs  
->*(Сегодня вы увидите, как получить необходимые данные на основе наборов, конструкций и простых соединений)*
-
+<details>
+	
+<summary> day 01 - UNION  </summary>
 
 <details>
 <summary> Введение </summary> 
@@ -172,10 +190,9 @@ There are the next set operators in PostgreSQL.
 - UNION [ALL]
 - EXCEPT [ALL] 
 - INTERSECT [ALL]
-
-Keyword “ALL” means to save duplicates of rows in the result.  
+ 
 > ключевое слово “ALL” выведет в результат строки с дублями  
-The main rules to work with sets are below (основные правила для работы с множествами) :
+основные правила для работы с множествами :
 - The main SQL provides a final names of attributes for whole query
 > 
 - The attributes of controlled SQL should satisfied number of columns and corresponding family types of main SQL
@@ -184,74 +201,10 @@ The main rules to work with sets are below (основные правила дл
 
 Moreover, SQL sets are useful  to calculate some specific Data Science metrics, for example Jaccard distance between 2 objects based on existing data features.
 
-
-
 </details>
 
-<details>
-<summary>## General Rules</summary> 
 
 
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
-
-
-</details>
-
-<details>
-<summary>## Rules of the day</summary> 
-
-
-- Please make sure you have an own(собственный) database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. (посмотрите логическое представление модели базы данных ниже)
-
-![schema](misc/images/schema.png)
-
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field **id** — primary key 
-- field **name** — название пиццерии  
-- field **rating** — average(средний) рейтинг пицерии (от 0 до 5)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field **id** — primary key
-- field **name** — Имя  
-- field **age** — возраст  
-- field **gender** — пол  
-- field **address** — адресс  
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field  **id** - primary key
-- field **pizzeria_id** - foreign key to pizzeria
-- field **pizza_name** - название пиццы в пицерии
-- field **price** - цена пиццы
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field **id** - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field  **id** - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
-
-
-
-Persons' visit and persons' order are different entities and don't contain any correlation between data.  
-For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application.  
->в заданиях клиенты могут быть в одном ресторане (только посмотреть меню) и в это время делать заказ в другом по телефону или из мобильного приложения.
-Or another case,  just be at home and again make a call with order without any visits.
-
-</details>
 
 <details>
 <summary>Exercise 00: Let’s make UNION dance  </summary> 
@@ -263,8 +216,7 @@ Or another case,  just be at home and again make a call with order without any v
 | **Allowed**                               |                                                                                                                          |
 | Language                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns menu’s identifier and pizza names from `menu` table and person’s identifier and person name from `person` table in one global list (with column names as presented on a sample below) ordered by object_id and then by object_name columns.  
-  
+
 (Напишите SQL запрос который вернет id меню и название пицы из таблицы `menu` и id человека и его имя из таблицы `person` в одном списке вывода (с названием столбцов как показано ниже) отсортируйте сначала по object_id а затем по object_name
 
 | object_id | object_name |
