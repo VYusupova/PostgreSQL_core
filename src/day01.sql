@@ -28,7 +28,7 @@ SELECT pizza_name AS object_name
 
 SELECT order_date as action_date, person_id from person_order 
 INTERSECT
-select visit_date as action_date, person_id from person_visits
+SELECT visit_date as action_date, person_id from person_visits
 order by 1 ASC, 2 DESC
 
   
@@ -37,7 +37,7 @@ order by 1 ASC, 2 DESC
 
 SELECT person_id from person_order where order_date = '2022-01-07'
 EXCEPT all
-select person_id from person_visits where visit_date = '2022-01-07'
+SELECT person_id from person_visits where visit_date = '2022-01-07'
 
 ----------------  (Упражение) 05 CROSS JOIN ----------------------
 -- person.id | person.name | age | gender | address | pizzeria.id | pizzeria.name | rating |
@@ -53,6 +53,9 @@ SELECT  person.id as "person.id",
 ORDER BY person.id, pizzeria.id 
 
 ----------------  (Упражение) 06 INTERSECT ----------------------
+----------------  вернемся к нашему решению из упражнения #03 ---------------- 
+----------------          и изменим запрос так что бы он возвращал имена вместо идентификаторов персон и изменим сортирувоку ---------------- 
+----------------          по action_date в возрастающем порядке а затем по именам в убывающем порядке. посмотри на данные из примера ниже. ---------------- 
 --version 1
 SELECT order_date AS action_date, (SELECT name FROM person where id = person_id) AS person_name FROM person_order 
 INTERSECT
@@ -74,15 +77,19 @@ SELECT action_date,
 ORDER BY 1 ASC, 2 DESC
 
 ----------------  (Упражение) 07 Just make a JOIN ----------------------
+----------------          вернуть дату заказа из таблицы `person_order` и  имена персон ---------------- 
+----------------          сделай сортирвку в таблице персон.  добавь сортирвку по возрастанию ---------------- 
   --Andrey (age:21) 
 
 SELECT order_date,
        CONCAT(person.NAME, ' (age:', person.age, ')') AS  person_information 
  FROM person_order
  JOIN person  ON person.id = person_id
-ORDER BY 1,2
+ORDER BY 1,2 ASC
 
-----------------  (Упражение) 08 NATURAL JOIN ----------------------------------
+----------------  (Упражение) 08 Migrate JOIN to NATURAL JOIN ----------------------------------
+----------------   Перепиши запрос из прошлого упражения используя  NATURAL JOIN конструкцию.  ----------------
+---------------- Результат должен быть таким же как и в прошлом упражении       ----------------
 --version 1
   --Andrey (age:21) 
 
@@ -104,15 +111,16 @@ ORDER BY 1,2
                  FROM person)
  ORDER BY 1,2
 
+----------------  (Упражение)  09 IN versus EXISTS ----------------
+----------------    напиши 2 запроса которые вернуть список названий пиццерий в которые никто ----------------
+---------------- не приходил с использованием IN для первого и EXISTS для второго запроса ----------------
+SELECT name from pizzeria where id not in (SELECT pizzeria_id from person_visits)
 
-----------------  (Упражение)  09 EXISTS ON not in ----------------
-  -- version 1
-Select name from pizzeria where id not in (SELECT pizzeria_id from person_visits)
---ex 09 version 2
-Select name from pizzeria where not EXISTS (SELECT pizzeria_id from person_visits where pizzeria.id = pizzeria_id)
+SELECT name from pizzeria where not EXISTS (SELECT pizzeria_id from person_visits where pizzeria.id = pizzeria_id)
 
-----------------  (Упражение) 10  cписок имен кто делал заказ пиццы в пиццерии ----------------
-  Select person.name,
+----------------  (Упражение) 10  Global JOIN cписок имен кто делал заказ пиццы в пиццерии ----------------
+---------------- верни список имен кто делал заказ пиццы в пиццерии. Пример рузультат (с названиями столбцов) есть ---------------- 
+  SELECT person.name,
   	     menu.pizza_name,
          pizzeria.name
     FROM person
