@@ -97,17 +97,17 @@ Or another case,  just be at home and again make a call with order without any v
 	
 <summary> day 00 - базовые конструкции SQL.  </summary>
 
-[] Упражение 00:  Создать выбоку через `SELECT` в которой будет имена и возраст всех кто живет в городе Казань.  
-[]  Упражение 01: Через оператор `SELECT`  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени.  
-[] Упражение 02:
+[]  **Упражение 00:**  Создать выбоку через `SELECT` в которой будет имена и возраст всех кто живет в городе Казань.  
+[]  **Упражение 01:** Через оператор `SELECT`  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени.  
+[]  **Упражение 02:**
 Please make 2 syntax different `SELECT` запроса которые вернет список из таблицы `pizzeria` (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
 - the 1st `SELECT` должен бытть основан на неравенствах  (<=, >=);
 - the 2nd `SELECT` с ключевым словом `BETWEEN`.  
 
-[] Упражение 03: 
+[]  **Упражение 03:**
 Please make a `SELECT` запрос который возвращает the person identifiers (без дублей) тех кто посетил пиццерию в период с 6 января 2022 по 9 января 2022 (включительно) или посетил пиццерию с индетификатором 2. Also включите сортировку clause by person identifier in **descending** mode(по убыванию).  
 
-[] Упражение 04: 
+[] **Упражение 04:** 
 Please make a `SELECT` запрос который вернет одно вычисленное поле которые называется   ‘person_information’ in one string like described (описываемый) in the next sample:
 
 `Anna (age:16,gender:'female',address:'Moscow')`
@@ -115,7 +115,7 @@ Please make a `SELECT` запрос который вернет одно выч�
 Finally, please add the ordering clause by calculated column in **ascending** mode.
 Please pay attention to the **quotation** marks in your formula! (обратите внимание на то что в формуле должны быть кавычки)  
 
-[]  Управжнение 05: 
+[] **Упражнение 05:** 
 Напиши селект запрос который вернет имена людей () которые сделали заказ из меню с идентификаторами 13, 14 и 18, дата заказа должна быть 7 января 2022 года. 
 Write a `SELECT` statement that returns the names of people (based on an internal query in the ``SELECT`` clause) who placed orders for the menu with identifiers 13, 14, and 18, and the date of the orders should be January 7, 2022. Be careful with "Denied Section"(запрещенный раздел) before your work.
 
@@ -127,14 +127,14 @@ Please take a look at the pattern of internal query.
     WHERE ...
     
 
-| Упражение 06: 
+**Упражение 06:** 
 Используя SQL-конструкцию из упражениия 05 и добавь новый вычисляемый столбец (назови его ‘check_name’) проверяющий запрос в пвсевдокоде в предложении ``SELECT``   
 Use the SQL construction from Exercise 05 and add a new calculated column (use column name ‘check_name’) with a check statement a pseudocode for this check is given below(ниже)) in the ``SELECT`` clause(предложении).
 
     if (person_name == 'Denis') then return true
         else return false
 
-| Управжнение 07: 
+**Управжнение 07:** 
 Let's apply data intervals to the `person` table.  
 ((*apply*)применение интервалов к таблице `person`  )
 Please make an SQL statement that returns the identifiers of a person, the person's names, and the interval of the person's ages (set a name of a new calculated column as 'interval_info') based on the pseudo code below(базовый псевдокод представлен ниже).
@@ -148,7 +148,7 @@ Please make an SQL statement that returns the identifiers of a person, the perso
 And yes... please sort a result by ‘interval_info’ column in ascending mode.
 И да... пожалуйтса отсортируй результат по столбцу ‘interval_info’ по возрастанию
 
-| Упражение 08: 
+**Упражение 08:** 
 Create an SQL statement that returns all columns from the `person_order` table with rows whose identifier is an even number. The result must be ordered by the returned identifier.  
 
 Создать запрос который вернет все столбцы из таблицы `person_order` в чьих строках identifier это четное число.  Рузультат должен быть отсортирован по возрвращаемуму идентификатору
@@ -418,64 +418,38 @@ Actually, “Cross Join” is a primitive operator and it is an ancestor for oth
 
 But what does a join operation between 2 tables mean? Let me present a part of pseudo code, how join operation works without indexing. 
 
+```sql
     FOR r in R LOOP
         FOR s in S LOOP
         if r.id = s.r_id then add(r,s)
         …
         END;
     END;
-
-It’s just a set of loops ... Not magic at all
-
-</details>
+```
+Это просто множество циклов ... Никакой магии
 
 
+| Упражение 00: |       [D02_Exercise](src/day02.sql)   |
+| ------ | ------ |
+| **Упражение 01:** | **вернуть потерянные даты с 1 по 10  января 2022 (включительно) посещений с идентификатором 1 или 2 (это значит дней дней утеряно оба) отсортируйте дни посещений по возрастанию. Пример с названием поля ниже.**|
+|--- |   использовать конструкцию `generate_series(...)` |
+|--- |  [Нельзя использовать `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`]                                                                                              |
+|--- |  |
+|**Упражение 02:** | **вернуть весь список имен посетителей( или не посетителей) пиццерий за период с 1 по 3 января 2022 с одной стороны и весь список названий пиццерий который имеет и не имет посетителй с другой стороны. Пример с нужными названими колонок представлен ниже. Обратите внимание на замену ‘-’ for `NULL` значений в столбцах.**|
+|--- |  [Нельзя использовать  `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`]                                                                                              |
+| **Упражение 03** | **вернемся к упраженению 1 перепешите SQL-запрос с использованием СТЕ паттерна. перемести в часть СТЕ ваш "генератор дней". Вывод должен быть таким же как в упражнениии 1** |
+|--- |   использовать конструкцию `generate_series(...)` |
+|--- |  [Нельзя использовать  `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`]    
 
-<details>
-<summary> Exercise 00 - Move to the LEFT, move to the RIGHT </summary>  
-
-| Exercise 00 |       необходимо вернуть список названий пиццерий с рейтингом которые никто не посещал                                                                                                                  |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| | [Нельзя использовать `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`] |
-
-
-
-| Exercise 01: Find data gaps|                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex01                                                                                                                     |
-| Files to turn-in                      | `day02_ex01.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
-
-Please write a SQL statement which returns the missing days from 1st to 10th of January 2022 (including all days) for visits  of persons with identifiers 1 or 2 (it means days missed by both). Please order by visiting days in ascending mode. The sample of data with column name is presented below.  
-> вернуть потерянные даты с 1 по 10  января 2022 (включительно) посещений с идентификатором 1 или 2 (это значит дней дней утеряно оба) отсортируйте дни посещений по возрастанию. Пример с названием поля ниже.
-
+Пример результата упражнения 01
 | missing_date |
 | ------ |
 | 2022-01-03 |
 | 2022-01-04 |
 | 2022-01-05 |
-| ... |
+| ... | 
 
-
-
-
-
-| Exercise 02: FULL means ‘completely filled’|                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex02                                                                                                                     |
-| Files to turn-in                      | `day02_ex02.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
-
-Please write a SQL statement that returns a whole list of person names visited (or not visited) pizzerias during(в течении) the period from 1st to 3rd of January 2022 from one side and the whole list of pizzeria names which have been visited (or not visited) from the other side. The data sample with needed column names is presented below. Please pay attention to (рьпатите внимание на) the substitution value ‘-’ for `NULL` values in `person_name` and `pizzeria_name` columns. Please also add ordering for all 3 columns.  
-> вернуть весь список имен посетителей( или не посетителей) пиццерий за период с 1 по 3 января 2022 с одной стороны и весь список названий пиццерий который имеет и не имет посетителй с другой стороны. Пример с нужными названими колонок представлен ниже. Обратите внимание на замену ‘-’ for `NULL` значений в столбцах.
-
+Пример результата упражнения 02
 | person_name | visit_date | pizzeria_name |
 | ------ | ------ | ------ |
 | - | null | DinoPizza |
@@ -488,39 +462,7 @@ Please write a SQL statement that returns a whole list of person names visited (
 | ... | ... | ... |
 
 
-
-| Exercise 03: Reformat to CTE |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex03                                                                                                                     |
-| Files to turn-in                      | `day02_ex03.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
-
-Let’s return back to Exercise #01, please rewrite your SQL by using the CTE (Common Table Expression) pattern. Please move into the CTE part of your "day generator". The result should be similar like in Exercise #01  
-> вернемся к упраженению 1 перепешите ваш SQL с использованием СТЕ паттерна. перемести в часть СТЕ ваш "генератор дней". Вывод должен быть таким же как в упражнениии 1
-
-| missing_date | 
-| ------ | 
-| 2022-01-03 | 
-| 2022-01-04 | 
-| 2022-01-05 | 
-| ... |
-
-
-
-
-
-
-| Exercise 04: Find favourite pizzas |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex04                                                                                                                     |
-| Files to turn-in                      | `day02_ex04.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
+[ ] **Упражение 04**:
 Find full information about all possible pizzeria names and prices to get mushroom or pepperoni pizzas. Please sort the result by pizza name and pizzeria name then. The result of sample data is below (please use the same column names in your SQL statement).
 
 | pizza_name | pizzeria_name | price |
@@ -530,15 +472,7 @@ Find full information about all possible pizzeria names and prices to get mushro
 | pepperoni pizza | Best Pizza | 800 |
 | ... | ... | ... |
 
-
-
-
-| Exercise 05: Investigate Person Data |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex05                                                                                                                     |
-| Files to turn-in                      | `day02_ex05.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+[ ] **Упражение 05**:                                                                                     |
 
 Find names of all female persons older than 25 and order the result by name. The sample of output is presented below.
 
@@ -547,18 +481,7 @@ Find names of all female persons older than 25 and order the result by name. The
 | Elvira | 
 | ... |
 
-
-
-
-
-
-| Exercise 06: favourite pizzas for Denis and Anna |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex06                                                                                                                     |
-| Files to turn-in                      | `day02_ex06.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
+[ ] **Упражение 06**:
 Please find all pizza names (and corresponding pizzeria names using `menu` table) that Denis or Anna ordered. Sort a result by both columns. The sample of output is presented below.
 
 | pizza_name | pizzeria_name |
@@ -567,71 +490,24 @@ Please find all pizza names (and corresponding pizzeria names using `menu` table
 | cheese pizza | Pizza Hut |
 | ... | ... |
 
-
-
-
-
-| Exercise 07: Cheapest pizzeria for Dmitriy |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex07                                                                                                                     |
-| Files to turn-in                      | `day02_ex07.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
+[ ] **Упражение 07**:
 Please find the name of pizzeria Dmitriy visited on January 8, 2022 and could eat pizza for less than 800 rubles.
 
-
-
-
-
-
-| Exercise 08: Continuing to research data |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex08                                                                                                                     |
-| Files to turn-in                      | `day02_ex08.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |           
-
-
-Please find the names of all males from Moscow or Samara cities who orders either pepperoni or mushroom pizzas (or both) . Please order the result by person name in descending mode. The sample of output is presented below.
+[ ] **Упражение 08**: Please find the names of all males from Moscow or Samara cities who orders either pepperoni or mushroom pizzas (or both) . Please order the result by person name in descending mode. The sample of output is presented below.
 
 | name | 
 | ------ | 
 | Dmitriy | 
 | ... |
 
-
-
-
-
-
-| Exercise 09: Who loves cheese and pepperoni? |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex09                                                                                                                     |
-| Files to turn-in                      | `day02_ex09.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
-Please find the names of all females who ordered both pepperoni and cheese pizzas (at any time and in any pizzerias). Make sure that the result is ordered by person name. The sample of data is presented below.
+[ ] **Упражение 09**: Please find the names of all females who ordered both pepperoni and cheese pizzas (at any time and in any pizzerias). Make sure that the result is ordered by person name. The sample of data is presented below.
 
 | name | 
 | ------ | 
 | Anna | 
 | ... |
 
-
-
-
-
-| Exercise 10: Find persons from one city |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex10                                                                                                                     |
-| Files to turn-in                      | `day02_ex10.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
-Please find the names of persons who live on the same address. Make sure that the result is ordered by 1st person, 2nd person's name and common address. The  data sample is presented below. Please make sure your column names are corresponding column names below.
-> Найти все людей, которые живут по одному адресу. Результат должен быть отсортирован по имени первого человека, затем по имени второго человека  и затем по адресу. Пример ниже , названия столбцов должны быть такиме же как ниже в примере
+[ ] **Упражение 10**: Найти всех людей, которые живут по одному адресу. Результат должен быть отсортирован по имени первого человека, затем по имени второго человека  и затем по адресу. Пример ниже , названия столбцов должны быть такие же как ниже в примере
 
 | person_name1 | person_name2 | common_address | 
 | ------ | ------ | ------ |
@@ -642,4 +518,474 @@ Please find the names of persons who live on the same address. Make sure that th
 
 </details>
 
-[D02_Exercise](src/day02.sql)
+
+# Day 03 - Piscine SQL
+
+## _Continuing to JOIN and make change in data_
+
+Resume: Today you will see how to change data based on DML language
+
+<details>
+<summary>Contents</summary>
+1. [Chapter I](#chapter-i) \[Preamble](#preamble)
+2. [Chapter II](#chapter-ii) \ [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) \ [Rules of the day](#rules-of-the-day)  
+4. [Chapter IV](#chapter-iv) [Exercise 00 - Let’s find appropriate prices for Kate](#exercise-00-lets-find-appropriate-prices-for-kate)  
+[Exercise 01 - Let’s find forgotten menus](#exercise-01-lets-find-forgotten-menus)  
+ [Exercise 02 - Let’s find forgotten pizza and pizzerias](#exercise-02-lets-find-forgotten-pizza-and-pizzerias)  
+ [Exercise 03 - Let’s compare visits](#exercise-03-lets-compare-visits)  
+[Exercise 04 - Let’s compare orders](#exercise-04-lets-compare-orders)
+[Exercise 05 - Visited but did not make any order (*Посетили но не сделали ни один заказ*)](#exercise-05-visited-but-did-not-make-any-order)
+[Exercise 06 - Find price-similarity pizzas](#exercise-06-find-price-similarity-pizzas)
+[Exercise 07 - Let’s cook a new type of pizza](#exercise-07-lets-cook-a-new-type-of-pizza)
+[Exercise 08 - Let’s cook a new type of pizza with more dynamics](#exercise-08-lets-cook-a-new-type-of-pizza-with-more-dynamics)
+[Exercise 09 - New pizza means new visits](#exercise-09-new-pizza-means-new-visits)
+[Exercise 10 - New visits means new orders](#exercise-10-new-visits-means-new-orders)
+15. [Chapter XV](#chapter-xv) \ [Exercise 11 - “Improve” a price for clients](#exercise-11-improve-a-price-for-clients)    
+16. [Chapter XVI](#chapter-xvi) \[Exercise 12 - New orders are coming!](#exercise-12-new-orders-are-coming)
+17. [Chapter XVII](#chapter-xvii) \ [Exercise 13 - Money back to our customers](#exercise-13-money-back-to-our-customers)
+  </details>
+  
+
+
+<details>
+<summary> ## Chapter I Preamble</summary>
+    
+![D03_01](misc/images/D03_01.png)
+
+Relation Theory is a mathematical foundation for modern(современный) Relational Databases. Every databases’ aspect has corresponding mathematical and logical justification(обоснование). Including INSERT / UPDATE / DELETE operators. (Dr. Edgar Frank Codd is on the picture).
+
+> Реляционная теория это математическая основа для соверменных реляционной базы данных. Любой аспект базы данных имеет соответсвующую математичесое и логическое обоснование. Включая операторы вставки / обновления / удаления.  ( доктор Эдгар Франк Кодд на снимке) 
+
+How the INSERT operator works from a mathematical point of view.
+
+|  |  |
+| ------ | ------ |
+|`INSERT rel RELATION {TUPLE {A INTEGER(4),B INTEGER(4),C STRING ('Hello') }};` | You can use mathematical INSERT statements and integrate “tuple”(кортеж) construction to convert an incoming data to row. |
+| From the other side, you can use explicit assignment(явное присвоение) with the UNION operator. | `rel:=rel UNION RELATION {TUPLE {A INTEGER(4), B INTEGER (7), C STRING ('Hello')}};` |
+
+What’s about the DELETE statement?
+
+|  |  |
+| ------ | ------ |
+|`DELETE rel WHERE A = 1;` | If you want to delete a row for A = 1, you can do it in a direct way. |
+| ... or by using a new assignment without key A = 1 | `rel:=rel WHERE NOT (A = 1);` |
+
+... and finally UPDATE statement. Also there are 2 cases.
+
+|  |  |
+| ------ | ------ |
+|`UPDATE rel WHERE A = 1 {B:= 23*A, C:='String #4'};` | Update statement from mathematical point of view |
+| New assignment for relation variable rel based on CTE and working with Sets | `rel:=WITH (rel WHERE A = 1) AS T1, (EXTEND T1 ADD (23*A AS NEW_B, 'String #4' AS NEW_C)) AS T2, T2 {ALL BUT B,C} AS T3, (T3 RENAME (NEW _B AS B, NEW _C AS C)) AS T4: (S MINUS T1) UNION T4;` |
+
+The last case with UPDATE statement is really interesting, because in other words you add a new tuple and after that make a MINUS of the old row. The same behavior in physical implementation! Actually, `UPDATE = DELETE + INSERT` and there is a special term “Tombstone” status for a particular deleted/updated row.  Then if you have a lot of Tombstones then you have a bad TPS metric and you need to control your dead data!
+
+![D03_02](misc/images/D03_02.png)
+
+Let’s make a cheese of our data! :-)
+
+  </details>
+  
+
+
+<details>
+<summary> ## Chapter II General Rules</summary>
+
+- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
+ > Используйте эту страницу как единственную ссылку. Не слушайте никаких слухов и домыслов о том, как подготовить свое решение.  
+- Please make sure you are using the latest version of PostgreSQL.
+- That is completely OK if you are using IDE to write a source code (aka SQL script).
+- To be assessed your solution must be in your GIT repository.
+  > Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Your solutions will be evaluated(оценивается) by your piscine mates.
+ >  Ваши решения будут оценены вашими товарищами по бассейну
+- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
+- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
+- Your reference manual: mates / Internet / Google. 
+- Read the examples carefully. They may require things that are not otherwise specified in the subject.
+- And may the SQL-Force be with you!
+- Absolutely everything can be presented in SQL! Let’s start and have fun!
+  </details>
+  
+ 
+
+<details>
+<summary> ## Chapter III Rules of the day</summary>
+
+- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
+- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
+- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
+- Please take a look at the Logical View of our Database Model. 
+
+![schema](misc/images/schema.png)
+
+
+1. **pizzeria** table (Dictionary Table with available pizzerias)
+- field id - primary key
+- field name - name of pizzeria
+- field rating - average rating of pizzeria (from 0 to 5 points)
+2. **person** table (Dictionary Table with persons who loves pizza)
+- field id - primary key
+- field name - name of person
+- field age - age of person
+- field gender - gender of person
+- field address - address of person
+3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
+- field id - primary key
+- field pizzeria_id - foreign key to pizzeria
+- field pizza_name - name of pizza in pizzeria
+- field price - price of concrete pizza
+4. **person_visits** table (Operational Table with information about visits of pizzeria)
+- field id - primary key
+- field person_id - foreign key to person
+- field pizzeria_id - foreign key to pizzeria
+- field visit_date - date (for example 2022-01-01) of person visit 
+5. **person_order** table (Operational Table with information about persons orders)
+- field id - primary key
+- field person_id - foreign key to person
+- field menu_id - foreign key to menu
+- field order_date - date (for example 2022-01-01) of person order 
+
+Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+  </details>
+  
+
+<details>
+<summary>Exercise 00 - Let’s find appropriate(Подходящий) prices for Kate</summary>
+
+
+| Exercise 00: Let’s find appropriate prices for Kate |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex00                                                                                                                     |
+| Files to turn-in                      | `day03_ex00.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please write a SQL statement which returns a list of pizza names, pizza prices, pizzerias names and dates of visit for Kate and for prices in range from 800 to 1000 rubles. Please sort by pizza, price and pizzeria names. Take a look at the sample of data below.
+
+> вернуть список наименование пиццы, цена, название пиццерии и в дату визита Кати и цена пиццы от 800 до 1000. Отсоритируйте по названию цены и названию пиццерии. Посмотрите на пример данных ниже
+> В дни когда Катя посещала пиццерию, вывести список пицц, их цену и названия пиццерий с ценой от 800 до 1000. Результат должен быть отсортирован сначала по названию пиццы потом по цене и затем по названию пиццерий. Ниже представлен вывод
+
+| pizza_name | price | pizzeria_name | visit_date |
+| ------ | ------ | ------ | ------ |
+| cheese pizza | 950 | DinoPizza | 2022-01-04 |
+| pepperoni pizza | 800 | Best Pizza | 2022-01-03 |
+| pepperoni pizza | 800 | DinoPizza | 2022-01-04 |
+| ... | ... | ... | ... |
+
+[D03_ex00](src/day03_ex00.sql)
+
+  </details>
+
+
+<details>
+<summary>Exercise 01 - Let’s find forgotten(забытый) menus</summary>
+
+
+| Exercise 01: Let’s find forgotten menus|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex01                                                                                                                     |
+| Files to turn-in                      | `day03_ex01.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Construction                        | any type of `JOINs`                                                                                              |
+
+Please find all menu identifiers which are not ordered by anyone. The result should be sorted by identifiers. The sample of output data is presented below.
+
+> найдите все идентификаторы в меню? которые никто не заказывал. Результат должен быть отсортирован. Простой вывод представлен ниже. 
+ 
+| menu_id |
+| ------ |
+| 5 |
+| 10 |
+| ... |
+
+[D03_ex01](src/day03_ex01.sql)
+  </details>
+  
+
+
+<details>
+<summary>Exercise 02 - Let’s find forgotten pizza and pizzerias</summary>
+
+
+| Exercise 02: Let’s find forgotten pizza and pizzerias|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex02                                                                                                                     |
+| Files to turn-in                      | `day03_ex02.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please use SQL statement from Exercise #01 and show pizza names from pizzeria which are not ordered by anyone, including corresponding prices also. The result should be sorted by pizza name and price. The sample of output data is presented below.
+
+> Используя запрос из упраженния 1 и покажите названия пицц из пиццерий которые никто никогда не заказывал, включая соответвующую цену. Результат должен быть отсортирован по названию пиццы и цене. Простой вывод данных представлен ниже.
+
+| pizza_name | price | pizzeria_name |
+| ------ | ------ | ------ |
+| cheese pizza | 700 | Papa Johns |
+| cheese pizza | 780 | DoDo Pizza |
+| ... | ... | ... |
+
+[D03_ex02](src/day03_ex02.sql)
+
+</details>
+  
+<details>
+<summary> Exercise 03 - Let’s compare(сравнивать) visits</summary>
+
+| Exercise 03: Let’s compare visits |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex03                                                                                                                     |
+| Files to turn-in                      | `day03_ex03.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please find pizzerias that have been visited more often(часто) by women or by men. For any SQL operators with sets save duplicates (UNION ALL, EXCEPT ALL, INTERSECT ALL constructions). Please sort a result by the pizzeria name. The data sample is provided below.
+
+> найти пиццерии которые часто посещали мужчины или женщины. для любого оператора множестово вывода должно сохранять дубликаты (UNION ALL, EXCEPT ALL, INTERSECT ALL constructions). Результат отсортируйте по назанию пиццерий. пример вывода : 
+
+| pizzeria_name | 
+| ------ | 
+| Best Pizza | 
+| Dominos |
+| ... |
+
+[D03_ex03](src/day03_ex03.sql)
+  </details>
+  
+
+<details>
+<summary>Exercise 04 - Let’s compare orders</summary>
+
+| Exercise 04: Let’s compare orders |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex04                                                                                                                     |
+| Files to turn-in                      | `day03_ex04.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please find a union of pizzerias that have orders either from women or  from men. Other words, you should find a set of pizzerias names have been ordered by females only and make "UNION" operation with set of pizzerias names have been ordered by males only. Please be aware(осведомленный) with word “only” for both genders. For any SQL operators with sets don’t save duplicates (`UNION`, `EXCEPT`, `INTERSECT`).  Please sort a result by the pizzeria name. The data sample is provided below.
+
+> найти пиццерий в которыйх были заказы как мужчин так и женщин. Другими словами, вам надо найти множество названий пиццерий в который заказывали только женщины и обеденить с множеством пиццерий где заказывали только мужчины. Пожалуйста убедитесь со словом "только" для обеих полов. Для любых операторова SQL в множестве не должно быть дублей  (`UNION`, `EXCEPT`, `INTERSECT`). Результат отсортируйте. Пример  вывода ниже :
+
+| pizzeria_name | 
+| ------ | 
+| Papa Johns | 
+
+[D03_ex04](src/day03_ex04.sql)
+  </details>
+
+
+<details>
+<summary>Exercise 05 - Visited but did not make any order</summary>
+
+
+| Exercise 05: Visited but did not make any order |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex05                                                                                                                     |
+| Files to turn-in                      | `day03_ex05.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please write a SQL statement which returns a list of pizzerias which Andrey visited but did not make any orders. Please order by the pizzeria name. The sample of data is provided below.
+
+> Вернуть список пиццерй с визитом Андрея но в которых он не сделал заказ. Сортируйте по названию. пример вывода ниже :
+
+| pizzeria_name | 
+| ------ | 
+| Pizza Hut | 
+
+
+[D03_ex05](src/day03_ex05.sql)
+
+  </details>
+
+
+<details>
+<summary>Exercise 06 - Find price-similarity pizzas</summary>
+
+
+| Exercise 06: Find price-similarity pizzas |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex06                                                                                                                     |
+| Files to turn-in                      | `day03_ex06.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please find the same pizza names who have the same price, but from different pizzerias. Make sure that the result is ordered by pizza name. The sample of data is presented below. Please make sure your column names are corresponding column names below.
+
+> Найти несколько пиц названия которых имеют одинаковую стоимость но в разных пицериях. Убедитесь что результат отсортирован по названию пицц. Простоой вывод представлен ниже. Пожалуйста проверьте что названия столбцов такие же как ниже. 
+
+| pizza_name | pizzeria_name_1 | pizzeria_name_2 | price |
+| ------ | ------ | ------ | ------ |
+| cheese pizza | Best Pizza | Papa Johns | 700 |
+| ... | ... | ... | ... |
+ 
+  [D03_ex06](src/day03_ex06.sql)
+  
+  </details>
+
+
+<details>
+<summary>Exercise 07 - Let’s cook a new type of pizza</summary>
+
+
+| Exercise 07: Let’s cook a new type of pizza |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex07                                                                                                                     |
+| Files to turn-in                      | `day03_ex07.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+
+Please register a new pizza with name “greek pizza” (use id = 19) with price 800 rubles in “Dominos” restaurant (pizzeria_id = 2).  
+**Warning**: this exercise will probably(вероятно) be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section.
+
+> ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня”.
+
+ 
+  [D03_ex07](src/day03_ex07.sql)
+  
+  </details>
+
+
+<details>
+<summary>Exercise 08 - Let’s cook a new type of pizza with more dynamics</summary>
+
+| Exercise 08: Let’s cook a new type of pizza with more dynamics |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex08                                                                                                                     |
+| Files to turn-in                      | `day03_ex08.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |           
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria  
+>Не используйте прямые цифры для идентификаторов первичного ключа и меню|       
+
+Please register a new pizza with name “sicilian pizza” (whose id should be calculated by formula is “maximum id value + 1”) with a price of 900 rubles in “Dominos” restaurant (please use internal query to get identifier of pizzeria).  
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercise 07.
+
+> Пожалуйста, зарегистрируйте новую пиццу с названием “сицилийская пицца” (идентификатор которой должен быть рассчитан по формуле “максимальное значение идентификатора + 1”) стоимостью 900 рублей в ресторане “Доминос” (пожалуйста, используйте внутренний запрос для получения идентификатора пиццерии).
+>** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+  [D03_ex08](src/day03_ex08.sql)
+
+  </details>
+
+
+<details>
+<summary>Exercise 09 - New pizza means new visits</summary>
+
+| Exercise 09: New pizza means new visits |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex09                                                                                                                     |
+| Files to turn-in                      | `day03_ex09.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria                                                                                               |       
+
+Please register new visits into Dominos restaurant from Denis and Irina on 24th of February 2022.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 and 08..
+
+> ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07 и 08 .  
+
+[D03_ex09](src/day03_ex09.sql)
+
+  </details>
+
+
+<details>
+<summary>Exercise 10 - New visits means new orders</summary>
+
+
+| Exercise 10: New visits means new orders |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex10                                                                                                                     |
+| Files to turn-in                      | `day03_ex10.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria                                                                                               |     
+
+
+Please register new orders from Denis and Irina on 24th of February 2022 for the new menu with “sicilian pizza”.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 and 09.
+
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+[D03_ex10](src/day03_ex10.sql)
+
+  </details>
+
+
+<details>
+<summary>Exercise 11 - “Improve” a price for clients</summary>
+## 
+
+
+| Exercise 11: “Improve” a price for clients|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex11                                                                                                                     |
+| Files to turn-in                      | `day03_ex11.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+    
+Please change the price for “greek pizza” on -10% from the current value.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 and 10.
+
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+[D03_ex11](src/day03_ex11.sql)
+
+  </details>
+
+
+<details>
+<summary>Exercise 12 - New orders are coming!</summary>
+
+
+
+| Exercise 12: New orders are coming!|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex12                                                                                                                     |
+| Files to turn-in                      | `day03_ex12.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+| SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
+| SQL Syntax Patten                        | Please use “insert-select” pattern
+`INSERT INTO ... SELECT ...`|
+| **Denied**                               |                                                                                                                          |
+| SQL Syntax Patten                        | - Don’t use direct numbers for identifiers of Primary Key, and menu 
+- Don’t use window functions like `ROW_NUMBER( )`
+- Don’t use atomic `INSERT` statements |
+
+Please register new orders from all persons for “greek pizza” on 25th of February 2022.
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 and 11.
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
+
+[D03_ex12](src/day03_ex12.sql)
+
+  </details>
+
+
+
+<details>
+<summary>Exercise 13 - Money back to our customers</summary>
+
+
+| Exercise 13: Money back to our customers|                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Turn-in directory                     | ex13                                                                                                                     |
+| Files to turn-in                      | `day03_ex13.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL                                                                                              |
+    
+Please write 2 SQL (DML) statements that delete all new orders from exercise #12 based on order date. Then delete “greek pizza” from the menu. 
+**Warning**: this exercise will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Exercises 07 , 08 ,09 , 10 , 11, 12 and 13.
+** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07 , 08 ,09 , 10 , 11, 12 and 13.
+
+  [D03_ex13](src/day03_ex13.sql)
+  
+  </details>
+
