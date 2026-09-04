@@ -1,6 +1,6 @@
-/************** EX 00 ****************************/
-/**Cоздайте таблицу person_audit с той же структурой, что и таблица person**/
- /**  функцию  триггера базы данных с именем fnc_trg_person_insert_audit которая должна обрабатывать INSERT создавать копию новой строки в таблице person_audit.**/
+-------------- Exercise  00 ----------------
+-------------- Cоздайте таблицу person_audit с той же структурой, что и таблица person -------------- 
+--  функцию  триггера базы данных с именем fnc_trg_person_insert_audit которая должна обрабатывать INSERT создавать копию новой строки в таблице person_audit  -------------- 
 
 CREATE TABLE IF NOT EXISTS person_audit
 ( created timestamp NOT NULL DEFAULT current_date,
@@ -37,9 +37,9 @@ INSERT INTO person VALUES (10, 'Damir', 22, 'male', 'Irkutsk');
 SELECT * FROM person_audit ;
 
 
-/************** EX 01 ****************************/
-/**** Давайте продолжим реализацию нашего шаблона аудита для таблицы person.***/
-/****Просто определим триггер trg_person_update_audit ***/
+-------------- Exercise  01 ----------------
+---------------- Давайте продолжим реализацию нашего шаблона аудита для таблицы person ----------------
+---------------- Просто определим триггер trg_person_update_audit ----------------
 
 CREATE FUNCTION fnc_trg_person_update_audit ()
 RETURNS TRIGGER AS $person_audit$
@@ -64,8 +64,8 @@ UPDATE person SET name = 'Damir' WHERE id = 10;
 
 SELECT * FROM person_audit ;
 
-/***************** EX 02 ****************************/
-/**нужно обработать DELETE и сделать копию СТАРЫХ состояний для всех значений атрибута**/
+-------------- Exercise  02 ----------------
+---------------- нужно обработать DELETE и сделать копию СТАРЫХ состояний для всех значений атрибута ----------------
 
 CREATE FUNCTION fnc_trg_person_delete_audit ()
 RETURNS TRIGGER AS $person_audit$
@@ -89,13 +89,12 @@ CREATE TRIGGER trg_person_delete_audit
 SELECT * FROM person_audit ;
 SELECT * FROM person;
 
-/********************* EX 03 ****************************/
-/***объединим всю нашу логику в один основной триггер***/
-/***трафик DML должен обрабатываться одним функциональным блоком.***/
+-------------- Exercise  03 ----------------
+---------------- объединим всю нашу логику в один основной триггер ----------------
+----------------трафик DML должен обрабатываться одним функциональным блоком ----------------
 DROP FUNCTION IF EXISTS fnc_trg_person_insert_audit CASCADE;;
 DROP FUNCTION IF EXISTS fnc_trg_person_update_audit CASCADE;
 DROP FUNCTION IF EXISTS fnc_trg_person_delete_audit CASCADE;
-
 
 DROP TRIGGER IF EXISTS trg_person_insert_audit ON person ;
 DROP TRIGGER IF EXISTS trg_person_update_audit ON person ;
@@ -133,10 +132,10 @@ UPDATE person SET name = 'Damir' WHERE id = 10;
 DELETE FROM person WHERE id = 10;
 SELECT * FROM person_audit ;
 
-/*********************** EX 04 ****************************/
-/***Как вы помните, мы создали 2 представления базы данных для разделения данных из таблиц person по признаку пола.****/
-/**определите 2 функции SQL (обратите внимание, не функции pl/pgsql) */
-/**fnc_persons_female & fnc_persons_male ***/
+-------------- Exercise  04 ----------------
+---------------- Как вы помните, мы создали 2 представления базы данных для разделения данных из таблиц person по признаку пола.----------------
+---------------- определите 2 функции SQL (обратите внимание, не функции pl/pgsql) ----------------
+---------------- fnc_persons_female & fnc_persons_male ----------------
 CREATE FUNCTION fnc_persons_female()  
 RETURNS TABLE(name varchar) 
 AS
@@ -156,7 +155,7 @@ SELECT * FROM  fnc_persons_female();
 SELECT * FROM  fnc_persons_male();
 
 
-/*********************** EX 05 ****************************/
+-------------- Exercise  05 ----------------
 CREATE OR REPLACE FUNCTION fnc_persons(pgender varchar='female')
 RETURNS TABLE (
         id bigint,
@@ -174,12 +173,12 @@ FROM fnc_persons();
 
 
 
-/*********************** EX 06 ****************************/
-/***Создайте функцию pl/pgsql fnc_person_visits_and_eats_on_date**/
-/**айдет названия пиццерий, которые (IN pperson parameter with default value 'Dmitriy') 
-**и где он мог купить пиццу по цене ниже указанной суммы в рублях (IN pprice parameter with default value 500) 
-**на указанную дату (IN pdate parameter with default value January 8, 2022).****/
-/******************** EX 06 ****************************/
+-------------- Exercise  06 ----------------
+----------------Создайте функцию pl/pgsql fnc_person_visits_and_eats_on_date ----------------
+--найдет названия пиццерий, которые (IN pperson parameter with default value 'Dmitriy') 
+----------------и где он мог купить пиццу по цене ниже указанной суммы в рублях (IN pprice parameter with default value 500) 
+----------------на указанную дату (IN pdate parameter with default value January 8, 2022).---------------- 
+----------------
 
 CREATE OR REPLACE FUNCTION fnc_person_visits_and_eats_on_date (pperson VARCHAR(6) DEFAULT 'Dmitriy' ,
                                                                pprice NUMERIC DEFAULT 800,
@@ -206,10 +205,9 @@ SELECT * FROM fnc_person_visits_and_eats_on_date();
 SELECT * FROM fnc_person_visits_and_eats_on_date(pprice := 800);
 SELECT * FROM fnc_person_visits_and_eats_on_date(pperson := 'Anna',pprice := 1300,pdate := '2022-01-01');
    
-   /*********************** EX 07 ****************************/
-/***Напишите функцию SQL или pl/pgsql func_minimum ***/
-/***которая имеет входной параметр, представляющий собой массив чисел, ****/
-/***и функция должна возвращать минимальное значение.***/
+-------------- Exercise 07 ----------------
+---------------- Напишите функцию SQL или pl/pgsql func_minimum ----------------
+---------------- которая имеет входной параметр, представляющий собой массив чисел, и функция должна возвращать минимальное значение.---------------- 
 
 CREATE OR REPLACE FUNCTION func_minimum (VARIADIC arr numeric[]) 
 RETURNS NUMERIC
@@ -222,11 +220,11 @@ LANGUAGE sql;
 SELECT func_minimum(VARIADIC arr => ARRAY[-1.1, 10.0, -1.0, 5.0, 4.4]);
   
   
-/*********************** EX 08 ****************************/
-/***Напишите функцию SQL или pl/pgsql fnc_fibonacci  **/
-/**которая имеет входной параметр pstop типа integer (по умолчанию 10),  ***/
-/***а выход функции представляет собой таблицу всех чисел Фибоначчи, меньших pstop. ***/
-/*********************** EX 08 ****************************/
+-------------- Exercise  08 ----------------
+----------------Напишите функцию SQL или pl/pgsql fnc_fibonacci  ----------------
+---------------- которая имеет входной параметр pstop типа integer (по умолчанию 10),  ----------------
+---------------- а выход функции представляет собой таблицу всех чисел Фибоначчи, меньших pstop. ----------------
+
 CREATE OR REPLACE FUNCTION fnc_fibonacci (pstop numeric DEFAULT 10) 
 RETURNS TABLE(val numeric)
 AS
