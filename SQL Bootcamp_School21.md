@@ -9,7 +9,7 @@ Standards are everywhere, and Relational Databases are also under control as wel
 
 ![D01_02](misc/images/D01_02.png)
 
-Please take a look at some SQL standards below and try to think about the future of Relational Databases.
+Посмотри на некоторые стандарты SQL представленные ниже  и попробуй подумать о будущем реляционных базах данных.
 
 |  |  |
 | ------ | ------ |
@@ -21,21 +21,19 @@ Please take a look at some SQL standards below and try to think about the future
 </details>
 
 <details>
-<summary> General Rules </summary>
+<summary>Главные правила </summary>
 
 - Убедись что используешь последнюю версию PostgreSQL (Make sure you are using the latest version of PostgreSQL.)
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
+- Используйте эту страницу как единственную ссылку. Не слушайте никаких слухов и домыслов о том, как подготовить свое решение.
 - That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по бассейну
 - You should not leave in your directory any other file than those explicitly specified by the Упражнение instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
 - Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
 - Your reference manual: mates / Internet / Google. 
 - Read the examples carefully. They may require things that are not otherwise specified in the subject.
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
-
-</details>
 
 </details>
 
@@ -84,18 +82,17 @@ Please take a look at some SQL standards below and try to think about the future
 Or another case,  just be at home and again make a call with order without any visits.
 </details>
 
-
-
 <details>
 	
 <summary> day 00 - базовые конструкции SQL.  </summary>
 
-[]  **Упражнение 00:**  Создать выбоку через `SELECT` в которой будет имена и возраст всех кто живет в городе Казань.  
-[]  **Упражнение 01:** Через оператор `SELECT`  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени.  
-[]  **Упражнение 02:**
-Please make 2 syntax different `SELECT` запроса которые вернет список из таблицы `pizzeria` (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.
-- the 1st `SELECT` должен бытть основан на неравенствах  (<=, >=);
-- the 2nd `SELECT` с ключевым словом `BETWEEN`.  
+| Номер задания |    Текст задания  |
+| ------ | ------ |
+| **Упражнение 00:** |  Создать выбоку через `SELECT` в которой будут имена и возраст всех кто живет в городе Казань. |
+| **Упражнение 01:** | Через оператор `SELECT`  который должен вернуть names, ages всех женщин из города ‘Kazan’. Результат должен быть **отсортирован** по имени. |
+| **Упражнение 02:** | Создать 2 синтаксически разных `SELECT` запроса которые вернет список из таблицы `pizzeria` (pizzeria name and rating) с рейтингом от 3.5 до 5 (включительно) и **отсортировать результат** по рейтингу.  |
+| ------ | - the 1st `SELECT` должен бытть основан на неравенствах  (<=, >=); |
+| ------ | - the 2nd `SELECT` с ключевым словом `BETWEEN`. |
 
 []  **Упражнение 03:**
 Please make a `SELECT` запрос который возвращает the person identifiers (без дублей) тех кто посетил пиццерию в период с 6 января 2022 по 9 января 2022 (включительно) или посетил пиццерию с индетификатором 2. Also включите сортировку clause by person identifier in **descending** mode(по убыванию).  
@@ -171,8 +168,7 @@ Please add a **ordering** clause by person name in ascending mode and by pizzeri
 	
 <summary> day 01 - UNION  </summary>
 
-<details>
-<summary> Введение </summary> 
+
 
 ![D01_01](misc/images/D01_01.png)
 
@@ -193,10 +189,32 @@ There are the next set operators in PostgreSQL.
 
 Moreover, SQL sets are useful  to calculate some specific Data Science metrics, for example Jaccard distance between 2 objects based on existing data features.
 
+<details>
+<summary> *ТЕОРИЯ* NATURAL JOIN </summary> 
+
+|NATURAL JOIN  |                                                                                                                          |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Описание                   | NATURAL JOIN (естественное соединение) — автоматически объединяет таблицы на основе столбцов с одинаковыми именами и совместимыми типами данных   |
+| Как работает                    | Идентифицирует все столбцы, которые есть в обеих таблицах и имеют одинаковые имена и типы данных Для каждой такой пары выполняет проверку на равенство значений. В результирующей таблице каждый из этих общих столбцов появляется только один раз (дубликаты имён устраняются).                                                                                 |
+| Опасность 1    |   Неявность — это риск. Главная опасность NATURAL JOIN в том, что он сопоставляет столбцы только по имени, а не по смыслу (например, если в обеих таблицах есть столбец id, это не значит, что их нужно объединять   |
+| Опасность 2    | Изменение схемы ломает запрос. Если позже в одну из таблиц добавят новый столбец с именем, которое уже есть в другой таблице, NATURAL JOIN начнёт соединять и этот новый столбец, даже если он не имеет отношения к задаче  |
+| Опасность 3    | Не все СУБД поддерживают. Например, SQL Server не поддерживает синтаксис NATURAL JOIN                                                                                              |
+| Когда использовать     |   Я рекомендую прибегать к NATURAL JOIN только в очень специфических, хорошо продуманных сценариях, когда вы абсолютно уверены, что столбцы с одинаковыми именами действительно логически связаны (например, это первичные и внешние ключи в чётко спроектированной схеме)    |
+| SQL Syntax Construction                        |                                                                                        |
+ ```sql
+      SELECT order_date,
+              person_information 
+         FROM person_order
+ NATURAL JOIN (SELECT id AS person_id,
+                      CONCAT(person.NAME, ' (age:', person.age, ')') AS  person_information 
+                 FROM person)
+ ORDER BY 1,2
+```  
+</details>
 
 | Номер задания |    Текст задания  |
 | ------ | ------ |
-| **Упражнение 00:**  UNION |    **Напишите SQL запрос который вернет id меню и название пицы из таблицы `menu` и id человека и его имя из таблицы `person` в одном списке вывода (с названием столбцов как показано ниже) отсортируйте сначала по object_id а затем по object_name**  |
+| **Упражнение 00:**  UNION |    Напишите SQL запрос который вернет id меню и название пиццы из таблицы `menu` и id человека и его имя из таблицы `person` в одном списке вывода (с названием столбцов как показано ниже) отсортируйте сначала по object_id а затем по object_name  |
 | **Упражнение 01:**  UNION с подзапросом |    **Измените SQL запрос из прошлого упражнения уберите столбец object_id. Затем измените сортировку по object_name сначало сортируйте значения из таблицы  `person` и затем только из таблицы `menu`(как поаказано ниже). Записи могут дублироваться!**  |
 | **Упражнение 02:**  UNION вывод без дублей |    **напишите SQL запрос который возвращает только уникальные названия пицц из таблицы `menu` и сортирует по названию пицц в убывающем порядке. обратите внимание некоторые конструкции запрещены**  |
 | **Упражнение 03:**  UNION “Hidden” Insights |   возвращает строки из атрибутов даты заказа, персон_ид из таблицы `person_order` с одной стороны и дата визита из `person_visits` таблицы из сдругой стороны (пожалуйста смотрите пример ниже). в других словах, давай найдем идентификаторы людей, кто посещал и заказывал   |
@@ -205,13 +223,20 @@ Moreover, SQL sets are useful  to calculate some specific Data Science metrics, 
 |--- |  [Нельзя использовать any type of `JOINs`  ]                                                                                              |
 | **Упражнение 05:**  Декартово произведение  |  вернуть все возможные комбинации между таблицами `person` и `pizzeria` и отсортируйте по идентификатору персоны и затем по идентификатору пиццерии. посмотрите на пример результата ниже. Ознакомьтесь с названиями столбцов  |
 |--- |  [Нельзя использовать any type of `JOINs`  ]                                                                                              |
+| **Упражнение 06:** - Lets see on “Hidden” Insights | Давай вернемся к нашему решению из упражнения 03 и изменим запрос так что бы он возвращал имена вместо идентификаторов персон и изменим сортировку по action_date в возрастающем порядке а затем по именам в убывающем порядке. посмотри на данные из примера ниже.   |
+| ------ | ------ |
+| **Упражнение 08:** Migrate JOIN to NATURAL JOIN  | [D01_задания](src/day01.sql) |
 
-Пример вывода упражнения 00
+<details>
+<summary> Пример вывода упражнения 00 </summary> 
+
 | object_id | object_name |
 | ------ | ------ |
 | 1 | Anna |
 | 1 | cheese pizza |
 | ... | ... |
+
+</details>
 
 Пример вывода упражнения 01
 | object_name |
@@ -240,59 +265,13 @@ Moreover, SQL sets are useful  to calculate some specific Data Science metrics, 
 | 1 | Anna | 16 | female | Moscow | 2 | Dominos | 4.3 |
 | ... | ... | ... | ... | ... | ... | ... | ... |
 
-
-</details>
-
-<details>
-<summary> Упражнение 06 - Lets see on “Hidden” Insights</summary> 
-
-| Упражнение 06: Lets see on “Hidden” Insights |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex06                                                                                                                     |
-| Files to turn-in                      | `day01_ex06.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-
-Let's return our mind back to Упражнение #03 and change our SQL statement to return person names instead(вместо) of person identifiers and change ordering by action_date in ascending(возрастающем) mode and then by person_name in descending mode. Please take a look at a data sample below.
-
-> Давай вернемся к нашему решению из упражнения #03 и изменим запрос так что бы он возвращал имена вместо идентификаторов персон и изменим сортирувоку по action_date в возрастающем порядке а затем по именам в убывающем порядке. посмотри на данные из примера ниже.  
-
-
+Пример вывода упражнения 06
 | action_date | person_name |
 | ------ | ------ |
 | 2022-01-01 | Irina |
 | 2022-01-01 | Anna |
 | 2022-01-01 | Andrey |
 | ... | ... |
-
-
-
-</details>
-
-
-| Упражнение 08: Migrate JOIN to NATURAL JOIN |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Описание                   | NATURAL JOIN (естественное соединение) — это тип соединения в SQL, который автоматически объединяет таблицы на основе столбцов с одинаковыми именами и совместимыми типами данных                                                                                                                  |
-| Как работает                    | Идентифицирует все столбцы, которые есть в обеих таблицах и имеют одинаковые имена и типы данных Для каждой такой пары выполняет проверку на равенство значений. В результирующей таблице каждый из этих общих столбцов появляется только один раз (дубликаты имён устраняются).                                                                                 |
-| Опасность 1                               |   Неявность — это риск. Главная опасность NATURAL JOIN в том, что он сопоставляет столбцы только по имени, а не по смыслу (например, если в обеих таблицах есть столбец id, это не значит, что их нужно объединять                                                                                                                       |
-| Опасность 2                        |Изменение схемы ломает запрос. Если позже в одну из таблиц добавят новый столбец с именем, которое уже есть в другой таблице, NATURAL JOIN начнёт соединять и этот новый столбец, даже если он не имеет отношения к задаче                                                                                          |
-| Опасность 3                        |Не все СУБД поддерживают. Например, SQL Server не поддерживает синтаксис NATURAL JOIN                                                                                              |
-| Когда использовать                             |   Я рекомендую прибегать к NATURAL JOIN только в очень специфических, хорошо продуманных сценариях, когда вы абсолютно уверены, что столбцы с одинаковыми именами действительно логически связаны (например, это первичные и внешние ключи в чётко спроектированной схеме)                                                                                                                       |
-| SQL Syntax Construction                        |                                                                                        |
- ```sql
-      SELECT order_date,
-              person_information 
-         FROM person_order
- NATURAL JOIN (SELECT id AS person_id,
-                      CONCAT(person.NAME, ' (age:', person.age, ')') AS  person_information 
-                 FROM person)
- ORDER BY 1,2
-```  
-
-
-
-
-[D01_задания](src/day01.sql)
 
 </details>
 
@@ -415,44 +394,18 @@ But what does a join operation between 2 tables mean? Let me present a part of p
 
 </details>
 
-
-# Day 03 - Piscine SQL
-
-## _Continuing to JOIN and make change in data_
-
-Resume: Today you will see how to change data based on DML language
-
 <details>
-<summary>Contents</summary>
-1. [Chapter I](#chapter-i) \[Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \ [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) \ [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) [Упражнение 00 - Let’s find appropriate prices for Kate](#Упражнение-00-lets-find-appropriate-prices-for-kate)  
-[Упражнение 01 - Let’s find forgotten menus](#Упражнение-01-lets-find-forgotten-menus)  
- [Упражнение 02 - Let’s find forgotten pizza and pizzerias](#Упражнение-02-lets-find-forgotten-pizza-and-pizzerias)  
- [Упражнение 03 - Let’s compare visits](#Упражнение-03-lets-compare-visits)  
-[Упражнение 04 - Let’s compare orders](#Упражнение-04-lets-compare-orders)
-[Упражнение 05 - Visited but did not make any order (*Посетили но не сделали ни один заказ*)](#Упражнение-05-visited-but-did-not-make-any-order)
-[Упражнение 06 - Find price-similarity pizzas](#Упражнение-06-find-price-similarity-pizzas)
-[Упражнение 07 - Let’s cook a new type of pizza](#Упражнение-07-lets-cook-a-new-type-of-pizza)
-[Упражнение 08 - Let’s cook a new type of pizza with more dynamics](#Упражнение-08-lets-cook-a-new-type-of-pizza-with-more-dynamics)
-[Упражнение 09 - New pizza means new visits](#Упражнение-09-new-pizza-means-new-visits)
-[Упражнение 10 - New visits means new orders](#Упражнение-10-new-visits-means-new-orders)
-15. [Chapter XV](#chapter-xv) \ [Упражнение 11 - “Improve” a price for clients](#Упражнение-11-improve-a-price-for-clients)    
-16. [Chapter XVI](#chapter-xvi) \[Упражнение 12 - New orders are coming!](#Упражнение-12-new-orders-are-coming)
-17. [Chapter XVII](#chapter-xvii) \ [Упражнение 13 - Money back to our customers](#Упражнение-13-money-back-to-our-customers)
-  </details>
-  
-
+	
+<summary> day 03 - Продолжаем погружение в JOIN.  </summary>
+# Day 03 - Piscine SQL
+Resume: Today you will see how to change data based on DML language
 
 <details>
 <summary> ## Chapter I Preamble</summary>
     
 ![D03_01](misc/images/D03_01.png)
 
-Relation Theory is a mathematical foundation for modern(современный) Relational Databases. Every databases’ aspect has corresponding mathematical and logical justification(обоснование). Including INSERT / UPDATE / DELETE operators. (Dr. Edgar Frank Codd is on the picture).
-
-> Реляционная теория это математическая основа для соверменных реляционной базы данных. Любой аспект базы данных имеет соответсвующую математичесое и логическое обоснование. Включая операторы вставки / обновления / удаления.  ( доктор Эдгар Франк Кодд на снимке) 
+Реляционная теория это математическая основа для соверменных реляционной базы данных. Любой аспект базы данных имеет соответсвующую математичесое и логическое обоснование. Включая операторы вставки / обновления / удаления.  ( доктор Эдгар Франк Кодд на снимке) 
 
 How the INSERT operator works from a mathematical point of view.
 
@@ -482,29 +435,6 @@ The last case with UPDATE statement is really interesting, because in other word
 Let’s make a cheese of our data! :-)
 
   </details>
-  
-
-
-<details>
-<summary> ## Chapter II General Rules</summary>
-
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
- > Используйте эту страницу как единственную ссылку. Не слушайте никаких слухов и домыслов о том, как подготовить свое решение.  
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-  > Для оценки ваше решение должно находиться в вашем репозитории GIT.
-- Your solutions will be evaluated(оценивается) by your piscine mates.
- >  Ваши решения будут оценены вашими товарищами по бассейну
-- You should not leave in your directory any other file than those explicitly specified by the Упражнение instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
-  </details>
-  
- 
 
 <details>
 <summary>Упражнение 00 - Let’s find appropriate(Подходящий) prices for Kate</summary>
@@ -750,58 +680,20 @@ Please register new visits into Dominos restaurant from Denis and Irina on 24th 
 
   </details>
 
-
-<details>
-<summary>Упражнение 10 - New visits means new orders</summary>
-
-
-| Упражнение 10: New visits means new orders |                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex10                                                                                                                     |
-| Files to turn-in                      | `day03_ex10.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Pattern                        | Don’t use direct numbers for identifiers of Primary Key and pizzeria                                                                                               |     
-
-
-Please register new orders from Denis and Irina on 24th of February 2022 for the new menu with “sicilian pizza”.
-**Warning**: this Упражнение will probably be the cause  of changing data in the wrong way. Actually, you can restore the initial database model with data from the link in the “Rules of the day” section and replay script from Упражнениеs 07 , 08 and 09.
-
-** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.
-
-[D03_ex10](src/day03_ex10.sql)
-
-  </details>
-
-
-<details>
-<summary>Упражнение 11 - “Improve” a price for clients</summary>
-## 
-
-
-| Упражнение 11: “Improve” a price for clients |    Please change the price for “greek pizza” on -10% from the current value. ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.                                                                                                                      |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| ///                    | ///                                                                                                                |
-                                                                                         
-[D03_ex11](src/day03_ex11.sql)
-
-
-| Упражнение 12: New orders are coming!  |   Please register new orders from all persons for “greek pizza” on 25th of February 2022. ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.   |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| **Allowed** SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
-| **Allowed** SQL Syntax Patten                        | Please use “insert-select” pattern  `INSERT INTO ... SELECT ...`|
-|  **Denied**  SQL Syntax Patten                        | - Don’t use direct numbers for identifiers of Primary Key, and menu  - Don’t use window functions like `ROW_NUMBER( )` - Don’t use atomic `INSERT` statements |
-
-[D03_ex12](src/day03_ex12.sql)
-
-
-| Упражнение 13: Money back to our customers|                                                                                                                          |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| ** Внимание**: это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07 , 08 ,09 , 10 , 11, 12 and 13.                    |  написать 2 DML запроса которые удаляют все  новые заказы из упражнения 12, возвращая таблицу к базовому виду. Удалите “greek pizza” из меню   |
-
-
-  [D03_ex13](src/day03_ex13.sql)
+| Номер задания |    Текст задания  | Код выполнения  |
+| --------------------------------------------- | ------ | ------ |
+|  **Упражнение 10:** New visits means new orders  | Please register new orders from Denis and Irina on 24th of February 2022 for the new menu with “sicilian pizza”.  | [D03_ex10](src/day03_ex10.sql) |
+| *Внимание*: | это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.| |
+| **запрещено** SQL синтаксис | Don’t use direct numbers for identifiers of Primary Key and pizzeria  | |
+| **Упражнение 11:** “Improve” a price for clients |    Please change the price for “greek pizza” on -10% from the current value.                   | [D03_ex11](src/day03_ex11.sql) |
+| *Внимание*: | это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.| |
+| **Упражнение 12:** New orders are coming!  |   Please register new orders from all persons for “greek pizza” on 25th of February 2022.   |  [D03_ex12](src/day03_ex12.sql) | |
+|*Внимание*: | это упражнение, вероятно, приведет к неправильному изменению данных. На самом деле, вы можете восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07.| |
+| **Allowed** SQL Syntax Construction                        | `generate_series(...)`                                                                                              | |
+| **Allowed** SQL Syntax Patten                        | Please use “insert-select” pattern  `INSERT INTO ... SELECT ...`| |
+|  **Denied**  SQL Syntax Patten                        | - Don’t use direct numbers for identifiers of Primary Key, and menu  - Don’t use window functions like `ROW_NUMBER( )` - Don’t use atomic `INSERT` statements | |
+| **Упражнение 13:** Money back to our customers |  написать 2 DML запроса которые удаляют все  новые заказы из упражнения 12, возвращая таблицу к базовому виду. Удалите “greek pizza” из меню   | [D03_ex13](src/day03_ex13.sql) |
+| *Внимание*: |это упражнение может привести к неправильному изменению данных. Восстановить исходную модель базы данных, используя данные по ссылке в разделе “Правила дня” и воспроизвести сценарий из упражнения 07 , 08 ,09 , 10 , 11, 12 and 13 | |
   
   </details>
-
+</details>
